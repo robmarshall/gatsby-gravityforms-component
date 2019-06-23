@@ -20,15 +20,21 @@ export default id => {
               slug
               apiURL
               formFields {
+                id
+                label
+                labelPlacement
                 type
                 choices
+                errorMessage
+                inputMaskValue
+                isRequired
+                visibility
+                cssClass
               }
               button {
-                type
                 text
               }
               confirmations {
-                id
                 message
               }
             }
