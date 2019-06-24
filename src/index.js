@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { graphql, StaticQuery } from "gatsby"
 import PropTypes from "prop-types"
-import allFormData from "../queries/allForms"
-import FormBuilder from "../FormBuilder"
+import allFormData from "./queries/allForms"
+import FormBuilder from "./FormBuilder"
 
 /**
  * Component to get a specific Gravity Form form data and
