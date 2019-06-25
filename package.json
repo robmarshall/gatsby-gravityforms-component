@@ -1,54 +1,58 @@
 {
-  "name": "gatsby-gravityforms-component",
-  "version": "1.0.0",
-  "description": "A component to take gatsby-source-gravityforms query data and return usable components",
-  "main": "dist/index.js",
-  "scripts": {
-    "build": "babel src --out-dir ./dist --ignore **/__tests__",
-    "prepare": "cross-env NODE_ENV=production npm run build",
-    "watch": "babel -w src --out-dir ./dist --ignore **/__tests__",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/robmarshall/gatsby-gravityforms-component.git"
-  },
-  "keywords": [
-    "gravity",
-    "forms",
-    "gravityforms",
-    "WordPress",
-    "form",
-    "Gatsby",
-    "Gatsby",
-    "JS"
-  ],
-  "author": "Robert Marshall",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/robmarshall/gatsby-gravityforms-component/issues"
-  },
-  "homepage": "https://github.com/robmarshall/gatsby-gravityforms-component#readme",
-  "dependencies": {
-    "axios": ">=0.19.0",
-    "chalk": "^2.4.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "babel-loader": "^8.0.6",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-gatsby-package": "^0.1.4",
-    "cross-env": "^5.2.0",
-    "css-loader": "^1.0.0",
-    "install-peers": "^1.0.3",
-    "node-sass": "^4.9.3",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "url-loader": "^1.1.2",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.0"
-  }
+    "name": "gatsby-gravityforms-component",
+    "version": "1.0.0",
+    "description": "A component to take gatsby-source-gravityforms query data and return usable components",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "babel src --out-dir ./dist --ignore **/__tests__",
+        "prepare": "cross-env NODE_ENV=production npm run build",
+        "watch": "babel -w src --out-dir ./dist --ignore **/__tests__",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/robmarshall/gatsby-gravityforms-component.git"
+    },
+    "keywords": [
+        "gravity",
+        "forms",
+        "gravityforms",
+        "WordPress",
+        "form",
+        "Gatsby",
+        "Gatsby",
+        "JS"
+    ],
+    "author": "Robert Marshall",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/robmarshall/gatsby-gravityforms-component/issues"
+    },
+    "homepage": "https://github.com/robmarshall/gatsby-gravityforms-component#readme",
+    "dependencies": {
+        "axios": ">=0.19.0",
+        "chalk": "^2.4.2"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.4.4",
+        "@babel/core": "^7.4.5",
+        "babel-loader": "^8.0.6",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-gatsby-package": "^0.1.4",
+        "cross-env": "^5.2.0",
+        "css-loader": "^1.0.0",
+        "install-peers": "^1.0.3",
+        "node-sass": "^4.9.3",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
+        "url-loader": "^1.1.2",
+        "webpack": "^4.28.3",
+        "webpack-cli": "^3.2.0"
+    },
+    "peerDependencies": {
+        "gatsby-source-gravityforms": "^1.0.8",
+        "gatsby-plugin-compile-es6-packages": "^1.1.0",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
+    }
 }
