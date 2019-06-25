@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { graphql, StaticQuery } from "gatsby"
 import PropTypes from "prop-types"
 import allFormData from "./queries/allForms"
 import FormBuilder from "./FormBuilder"
@@ -16,7 +15,8 @@ export const GravityFormForm = ({ id, lambda }) => {
   // Take ID argument, and get Gravity Form data for this form
   // This is a React Hook, so has to be set here. Cannot go in
   // a functional component. Thats against the rules.
-  return allFormData(id) && <FormBuilder formData={allFormData(id)} />
+  const formData = allFormData(id)
+  return formData && <FormBuilder formData={formData} />
 }
 
 export default GravityFormForm
