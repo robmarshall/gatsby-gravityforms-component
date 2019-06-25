@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { graphql, StaticQuery } from "gatsby"
 import PropTypes from "prop-types"
 
 class FormBuilder extends Component {
