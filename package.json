@@ -31,7 +31,10 @@
     "homepage": "https://github.com/robmarshall/gatsby-gravityforms-component#readme",
     "dependencies": {
         "axios": ">=0.19.0",
-        "chalk": "^2.4.2"
+        "chalk": "^2.4.2",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "prop-types": "^15.7.2"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
@@ -50,9 +53,8 @@
         "webpack-cli": "^3.2.0"
     },
     "peerDependencies": {
+        "gatsby": "^2.4.3",
         "gatsby-source-gravityforms": "^1.0.8",
-        "gatsby-plugin-compile-es6-packages": "^1.1.0",
-        "react": "^16.8.6",
-        "react-dom": "^16.8.6"
+        "gatsby-plugin-compile-es6-packages": "^1.1.0"
     }
 }
