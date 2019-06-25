@@ -12,13 +12,12 @@ yarn add gatsby-gravityforms-components
 npm i gatsby-gravityforms-components
 ```
 
-### Gatsby Config
-
 So that Gatsby parses the components node_modules, gatsby-plugin-compile-es6-packages
 is included as a peer dependency. This will need to be added to your Gatsby Config
 like so:
 
 ```js
+// gatsby-config.js
 plugins: [
   {
     resolve: `gatsby-plugin-compile-es6-packages`,
