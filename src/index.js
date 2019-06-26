@@ -15,7 +15,7 @@ import FormBuilder from './FormBuilder'
 export const GravityFormForm = ({ formData, id, lambda }) => {
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
-    return formData && <FormBuilder formData={singleForm} />
+    return formData && <FormBuilder formId={id} formData={singleForm} />
 }
 
 export default GravityFormForm
