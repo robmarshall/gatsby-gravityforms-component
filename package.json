@@ -38,8 +38,8 @@
         "@babel/cli": "^7.4.4",
         "@babel/core": "^7.4.5",
         "babel-loader": "^8.0.6",
-        "babel-preset-env": "^1.7.0",
         "babel-preset-gatsby-package": "^0.1.4",
+        "babel-preset-env": "^1.7.0",
         "cross-env": "^5.2.0",
         "css-loader": "^1.0.0",
         "install-peers": "^1.0.3",
@@ -49,10 +49,5 @@
         "url-loader": "^1.1.2",
         "webpack": "^4.28.3",
         "webpack-cli": "^3.2.0"
-    },
-    "peerDependencies": {
-        "gatsby": "^2.4.3",
-        "gatsby-source-gravityforms": "^1.0.8",
-        "gatsby-plugin-compile-es6-packages": "^1.1.0"
     }
 }
