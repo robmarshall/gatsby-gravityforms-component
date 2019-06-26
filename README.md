@@ -6,10 +6,10 @@ This code is the beginning of the front end for gatsby-source-gravityforms.
 
 ```js
 # Install the plugin
-yarn add gatsby-gravityforms-components
+yarn add gatsby-gravityforms-component
 
 # Or with NPM
-npm i gatsby-gravityforms-components
+npm i gatsby-gravityforms-component
 ```
 
 ## Using the component
