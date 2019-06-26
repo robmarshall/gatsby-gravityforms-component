@@ -1,31 +1,31 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import allFormData from "./queries/allForms"
-import FormBuilder from "./FormBuilder"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import getForm from './utils/getForm'
+import FormBuilder from './FormBuilder'
 
 /**
- * Component to get a specific Gravity Form form data and
- * output as a fully functional form.
- * @param int id    Form ID from Gravity Forms
- * @param string    lambda API link for Lambda functions when working with
- *                  netlify or similar
+ * Component to take Gravity Form graphQL data and turn into
+ * a fully functional form.
+ * @param mixed     formData    Form dataset from graphQL
+ * @param int       id          Form ID from Gravity Forms
+ * @param string    lambda      API link for Lambda functions when working with
+ *                              netlify or similar
  */
 
-export const GravityFormForm = ({ id, lambda }) => {
-  // Take ID argument, and get Gravity Form data for this form
-  // This is a React Hook, so has to be set here. Cannot go in
-  // a functional component. Thats against the rules.
-  const formData = allFormData(id)
-  return formData && <FormBuilder formData={formData} />
+export const GravityFormForm = ({ formData, id, lambda }) => {
+    // Take ID argument and graphQL Gravity Form data for this form
+    const singleForm = getForm(formData, id)
+    return formData && <FormBuilder formData={singleForm} />
 }
 
 export default GravityFormForm
 
 GravityFormForm.defaultProps = {
-  lambda: "",
+    lambda: '',
 }
 
 GravityFormForm.propTypes = {
-  id: PropTypes.number.isRequired,
-  lambda: PropTypes.string,
+    formData: PropTypes.object.isRequired,
+    id: PropTypes.number.isRequired,
+    lambda: PropTypes.string,
 }
