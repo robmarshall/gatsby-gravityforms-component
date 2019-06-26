@@ -42,11 +42,15 @@ const allGravityData = () => {
                                 labelPlacement
                                 type
                                 choices
+                                content
                                 errorMessage
                                 inputMaskValue
                                 isRequired
                                 visibility
                                 cssClass
+                                placeholder
+                                size
+                                defaultValue
                             }
                             button {
                                 text
@@ -72,7 +76,7 @@ This outputs the form set up in WordPress, ready to go.
 ## To Do
 
 -   Parse all fields - correct types
--   Properly semantic
+-   Input masking
 -   Handle errors provided by Gravity Forms
 -   Always create honeypot
 -   Styling???
