@@ -21,9 +21,11 @@ npm i gatsby-gravityforms-components
 
 ```js
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
 import GravityFormForm from 'gatsby-gravityforms-component'
 
+// Would recommend moving this into a separate /src/hooks/gravityforms.js file
+// and import where needed
+import { useStaticQuery, graphql } from 'gatsby'
 const allGravityData = () => {
     const { allGfForm } = useStaticQuery(
         graphql`
