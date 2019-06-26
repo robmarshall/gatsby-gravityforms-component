@@ -32,13 +32,52 @@ plugins: [
 
 1. Once you have set up [gatsby-source-gravityforms](https://www.npmjs.com/package/gatsby-source-gravityforms)
 2. Import the component where you want to use it
-3. Set the form ID
+3. Grab the GraphQL data from the gatsby-source-gravityforms plugin and pass to component
+4. Set the form ID
 
 ```js
 import React from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import GravityFormForm from 'gatsby-gravityforms-component'
 
-const examplePage = () => <GravityFormForm id={1} />
+const allGravityData = () => {
+    const { allGfForm } = useStaticQuery(
+        graphql`
+            query {
+                allGfForm {
+                    edges {
+                        node {
+                            formId
+                            slug
+                            apiURL
+                            formFields {
+                                id
+                                label
+                                labelPlacement
+                                type
+                                choices
+                                errorMessage
+                                inputMaskValue
+                                isRequired
+                                visibility
+                                cssClass
+                            }
+                            button {
+                                text
+                            }
+                            confirmations {
+                                message
+                            }
+                        }
+                    }
+                }
+            }
+        `
+    )
+    return allGfForm
+}
+
+const examplePage = () => <GravityFormForm id={1} formData={allGravityData} />
 export default examplePage
 ```
 
