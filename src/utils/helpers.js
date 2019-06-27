@@ -9,6 +9,12 @@ function slugify(text) {
         .replace(/-+$/, '') // Trim - from end of text
 }
 
+function getFieldID(string) {
+    const fieldName = 'field-'
+    return string.slice(string.indexOf(fieldName) + fieldName.length)
+}
+
 module.exports = {
+    getFieldID,
     slugify,
 }
