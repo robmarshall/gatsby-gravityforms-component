@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { ifDefaultValue, islabelHidden } from '../utils/inputSettings'
-import { slugify } from '../utils/helpers'
+import { getFieldID, slugify } from '../utils/helpers'
 
 class FormBuilder extends Component {
     constructor(props) {
@@ -22,23 +22,40 @@ class FormBuilder extends Component {
                 value: ifDefaultValue(field),
                 error: '',
             }
+            let choices = JSON.parse(field.choices)
+            if (choices.length > 0) {
+                choices.forEach((choice, index) => {
+                    this.state.fields[`${field.id}-${index}`] = {
+                        value: choice.isSelected,
+                        error: '',
+                    }
+                })
+            }
         })
     }
 
-    handleSubmit(event) {
-        event.preventDefault()
-        const form = event.target
+    handleSubmit(e) {
+        e.preventDefault()
+        const form = e.target
     }
 
-    handleChange(event) {
-        event.preventDefault()
+    handleChange(e) {
+        const target = e.target
+        const value = target.type === 'checkbox' ? target.checked : target.value
+        const fieldId = getFieldID(target.id)
+        const newFields = this.state.fields
+        newFields[fieldId]['value'] = value
+        this.setState((state, props) => {
+            return { fields: newFields }
+        })
+        console.log(this.state)
     }
 
     render() {
         const { formId, formData } = this.props
 
         const fields = formData.formFields.map(field => {
-            console.log(field)
+            //console.log(field)
 
             return (
                 <div
@@ -91,19 +108,19 @@ class FormBuilder extends Component {
                                 name={`field-${field.id}`}
                                 onChange={this.handleChange}
                             >
-                                {JSON.parse(field.choices).map(choice => {
-                                    return (
-                                        <option
-                                            key={`${field.id}-${slugify(
-                                                choice.value
-                                            )}`}
-                                            value={choice.value}
-                                            defaultValue={choice.isSelected}
-                                        >
-                                            {choice.text}
-                                        </option>
-                                    )
-                                })}
+                                {JSON.parse(field.choices).map(
+                                    (choice, index) => {
+                                        return (
+                                            <option
+                                                key={`${field.id}-${index}`}
+                                                value={choice.value}
+                                                defaultValue={choice.isSelected}
+                                            >
+                                                {choice.text}
+                                            </option>
+                                        )
+                                    }
+                                )}
                             </select>
                         </Fragment>
                     )}
@@ -118,19 +135,19 @@ class FormBuilder extends Component {
                                 name={`field-${field.id}`}
                                 onChange={this.handleChange}
                             >
-                                {JSON.parse(field.choices).map(choice => {
-                                    return (
-                                        <option
-                                            key={`${field.id}-${slugify(
-                                                choice.value
-                                            )}`}
-                                            value={choice.value}
-                                            defaultValue={choice.isSelected}
-                                        >
-                                            {choice.text}
-                                        </option>
-                                    )
-                                })}
+                                {JSON.parse(field.choices).map(
+                                    (choice, index) => {
+                                        return (
+                                            <option
+                                                key={`${field.id}-${index}`}
+                                                value={choice.value}
+                                                defaultValue={choice.isSelected}
+                                            >
+                                                {choice.text}
+                                            </option>
+                                        )
+                                    }
+                                )}
                             </select>
                         </Fragment>
                     )}
@@ -152,22 +169,22 @@ class FormBuilder extends Component {
                     {field.type === 'checkbox' && (
                         <Fragment key={`fragment-${field.id}`}>
                             <legend>{field.label}</legend>
-                            {JSON.parse(field.choices).map(choice => {
+                            {JSON.parse(field.choices).map((choice, index) => {
                                 return (
-                                    <div
-                                        key={`${field.id}-${slugify(
-                                            choice.value
-                                        )}`}
-                                    >
+                                    <div key={`${field.id}-${index}`}>
                                         <input
                                             type="checkbox"
-                                            id={slugify(choice.value)}
-                                            name={field.id}
+                                            id={`field-${field.id}-${index}`}
+                                            name={`field-${field.id}`}
                                             value={choice.text}
                                             checked={choice.isSelected}
                                             onChange={this.handleChange}
                                         />
-                                        <label htmlFor={slugify(choice.value)}>
+                                        <label
+                                            htmlFor={`field-${
+                                                field.id
+                                            }-${index}`}
+                                        >
                                             {choice.text}
                                         </label>
                                     </div>
@@ -178,22 +195,22 @@ class FormBuilder extends Component {
                     {field.type === 'radio' && (
                         <Fragment key={`fragment-${field.id}`}>
                             <legend>{field.label}</legend>
-                            {JSON.parse(field.choices).map(choice => {
+                            {JSON.parse(field.choices).map((choice, index) => {
                                 return (
-                                    <div
-                                        key={`${field.id}-${slugify(
-                                            choice.value
-                                        )}`}
-                                    >
+                                    <div key={`${field.id}-${index}`}>
                                         <input
                                             type="radio"
-                                            id={slugify(choice.value)}
-                                            name={field.id}
+                                            id={`field-${field.id}-${index}`}
+                                            name={`field-${field.id}`}
                                             value={choice.text}
                                             checked={choice.isSelected}
                                             onChange={this.handleChange}
                                         />
-                                        <label htmlFor={slugify(choice.value)}>
+                                        <label
+                                            htmlFor={`field-${
+                                                field.id
+                                            }-${index}`}
+                                        >
                                             {choice.text}
                                         </label>
                                     </div>
