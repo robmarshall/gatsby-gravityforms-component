@@ -2,7 +2,6 @@ import React from 'react'
 import classnames from 'classnames'
 
 const Input = props => {
-    console.log('here')
     return (
         <div className={props.wrapClassName}>
             <label htmlFor={props.name} className="gravityform__label">
