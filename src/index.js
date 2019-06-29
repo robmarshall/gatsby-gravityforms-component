@@ -13,9 +13,9 @@ import FieldBuilder from './container/FieldBuilder'
  *                              netlify or similar
  */
 
-const GravityFormForm = ({ id, formData }) => {
-    //const { register, handleSubmit } = useForm()
-    const register = function() {}
+const GravityFormForm = ({ id, formData, lambda }) => {
+    const { register, handleSubmit } = useForm()
+
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
 
