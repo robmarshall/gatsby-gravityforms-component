@@ -2,6 +2,10 @@ import React from 'react'
 import classnames from 'classnames'
 
 const Input = props => {
+    const regex = props.inputMaskValue
+        ? new RegExp(props.inputMaskValue)
+        : false
+
     return (
         <div className={props.wrapClassName}>
             <label htmlFor={props.name} className="gravityform__label">
@@ -15,8 +19,9 @@ const Input = props => {
                 defaultValue={props.value}
                 placeholder={props.placeholder}
                 ref={props.register({
-                    required: props.required,
+                    required: props.isRequired,
                     maxlength: props.maxLength,
+                    pattern: regex,
                 })}
             />
         </div>

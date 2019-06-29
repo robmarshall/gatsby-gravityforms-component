@@ -36,7 +36,8 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         register={register}
                         required={field.isRequired}
                         placeholder={field.placeholder}
-                        maxLength="0"
+                        maxLength={field.maxLength}
+                        inputMaskValue={field.inputMaskValue}
                     />
                 )
             case 'textarea':
@@ -52,7 +53,8 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         register={register}
                         required={field.isRequired}
                         placeholder={field.placeholder}
-                        maxLength="0"
+                        maxLength={field.maxLength}
+                        inputMaskValue={field.inputMaskValue}
                     />
                 )
             case 'select':
@@ -96,7 +98,8 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         register={register}
                         required={field.isRequired}
                         placeholder={field.placeholder}
-                        maxLength="0"
+                        maxLength={field.maxLength}
+                        inputMaskValue={field.inputMaskValue}
                     />
                 )
             case 'checkbox':
@@ -138,7 +141,6 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         register={register}
                         required={field.isRequired}
                         placeholder={field.placeholder}
-                        maxLength="0"
                     />
                 )
             case 'html':
