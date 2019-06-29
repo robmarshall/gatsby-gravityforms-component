@@ -15,7 +15,7 @@ import FieldBuilder from './container/FieldBuilder'
 
 const GravityFormForm = ({ id, formData }) => {
     //const { register, handleSubmit } = useForm()
-    const register = 'true'
+    const register = function() {}
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
 

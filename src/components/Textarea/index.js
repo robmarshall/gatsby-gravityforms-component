@@ -1,3 +1,4 @@
+import React from 'react'
 import classnames from 'classnames'
 
 const Textarea = props => {
@@ -8,8 +9,8 @@ const Textarea = props => {
             </label>
             <textarea
                 id={props.name}
-                type={field.type}
-                className={classNames('gravityform__input', props.className)}
+                type={props.type}
+                className={classnames('gravityform__input', props.className)}
                 name={props.name}
                 defaultValue={props.value}
                 placeholder={props.placeholder}

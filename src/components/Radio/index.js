@@ -1,3 +1,4 @@
+import React from 'react'
 import classnames from 'classnames'
 
 const Radio = props => {
@@ -9,16 +10,16 @@ const Radio = props => {
             <select
                 id={props.name}
                 name={props.name}
-                className={classNames('gravityform__input', props.className)}
-                ref={register({
+                className={classnames('gravityform__input', props.className)}
+                ref={props.register({
                     required: props.required,
                 })}
                 onChange={props.handleChange}
             >
-                {props.choices.map((choice, index) => {
+                {props.options.map((choice, index) => {
                     return (
                         <option
-                            key={`${field.id}-${index}`}
+                            key={`${props.id}-${index}`}
                             value={choice.value}
                             //defaultValue={choice.isSelected}
                         >

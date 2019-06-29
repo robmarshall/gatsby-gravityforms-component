@@ -22,120 +22,140 @@ const FieldBuilder = ({ formId, formData, register }) => {
             { 'hidden-label': islabelHidden(field.labelPlacement) }
         )
 
-        return (
-            field.type === 'text' && (
-                <Input
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    type={field.type}
-                    value={ifDefaultValue(field)}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                    register={register}
-                    required={field.isRequired}
-                    placeholder={field.placeholder}
-                    maxLength="0"
-                />
-            ),
-            field.type === 'textarea' && (
-                <Textarea
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    type={field.type}
-                    value={ifDefaultValue(field)}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                    register={register}
-                    required={field.isRequired}
-                    placeholder={field.placeholder}
-                    maxLength="0"
-                />
-            ),
-            field.type === 'select' && (
-                <Select
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    value={ifDefaultValue(field)}
-                    options={JSON.parse(field.choices)}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                    register={register}
-                    required={field.isRequired}
-                />
-            ),
-            field.type === 'multiselect' && (
-                <Multiselect
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    value={ifDefaultValue(field)}
-                    options={JSON.parse(field.choices)}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                    register={register}
-                    required={field.isRequired}
-                />
-            ),
-            field.type === 'number' && (
-                <Input
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    type={field.type}
-                    value={ifDefaultValue(field)}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                    register={register}
-                    required={field.isRequired}
-                    placeholder={field.placeholder}
-                    maxLength="0"
-                />
-            ),
-            field.type === 'checkbox' && (
-                <Checkbox
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    options={JSON.parse(field.choices)}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                    register={register}
-                    required={field.isRequired}
-                />
-            ),
-            field.type === 'radio' && (
-                <Radio
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    options={JSON.parse(field.choices)}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                    register={register}
-                    required={field.isRequired}
-                />
-            ),
-            field.type === 'hidden' && (
-                <Input
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    type={field.type}
-                    value={ifDefaultValue(field)}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                    register={register}
-                    required={field.isRequired}
-                    placeholder={field.placeholder}
-                    maxLength="0"
-                />
-            ),
-            field.type === 'html' && (
-                <Html
-                    name={`field-${field.id}`}
-                    label={field.label}
-                    type={field.type}
-                    content={field.content}
-                    wrapClassName={inputWrapperClass}
-                    className={field.cssClass}
-                />
-            )
-        )
+        switch (field.type) {
+            case 'text':
+                return (
+                    <Input
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        type={field.type}
+                        value={ifDefaultValue(field)}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                        placeholder={field.placeholder}
+                        maxLength="0"
+                    />
+                )
+            case 'textarea':
+                return (
+                    <Textarea
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        type={field.type}
+                        value={ifDefaultValue(field)}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                        placeholder={field.placeholder}
+                        maxLength="0"
+                    />
+                )
+            case 'select':
+                return (
+                    <Select
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        value={ifDefaultValue(field)}
+                        options={JSON.parse(field.choices)}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                    />
+                )
+            case 'multiselect':
+                return (
+                    <Multiselect
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        value={ifDefaultValue(field)}
+                        options={JSON.parse(field.choices)}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                    />
+                )
+            case 'number':
+                return (
+                    <Input
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        type={field.type}
+                        value={ifDefaultValue(field)}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                        placeholder={field.placeholder}
+                        maxLength="0"
+                    />
+                )
+            case 'checkbox':
+                return (
+                    <Checkbox
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        options={JSON.parse(field.choices)}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                    />
+                )
+            case 'radio':
+                return (
+                    <Radio
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        options={JSON.parse(field.choices)}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                    />
+                )
+            case 'hidden':
+                return (
+                    <Input
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        type={field.type}
+                        value={ifDefaultValue(field)}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                        placeholder={field.placeholder}
+                        maxLength="0"
+                    />
+                )
+            case 'html':
+                return (
+                    <Html
+                        key={field.id}
+                        name={`field-${field.id}`}
+                        label={field.label}
+                        type={field.type}
+                        content={field.content}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                    />
+                )
+            default:
+                return null
+        }
     })
 }
 
