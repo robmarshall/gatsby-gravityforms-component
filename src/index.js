@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import useForm from 'react-hook-form'
 import getForm from './utils/getForm'
-import FormBuilder from './FormBuilder'
+import FieldBuilder from './container/FieldBuilder'
 
 /**
  * Component to take Gravity Form graphQL data and turn into
@@ -12,10 +13,35 @@ import FormBuilder from './FormBuilder'
  *                              netlify or similar
  */
 
-export const GravityFormForm = ({ formData, id, lambda }) => {
+const GravityFormForm = ({ id, formData }) => {
+    //const { register, handleSubmit } = useForm()
+    const register = 'true'
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
-    return formData && <FormBuilder formId={id} formData={singleForm} />
+
+    return (
+        singleForm && (
+            <form
+                className={`gravityform gravityform--id-${id}`}
+                key={`gravityform--id-${id}`}
+            >
+                <FieldBuilder
+                    register={register}
+                    formId={id}
+                    formData={singleForm}
+                />
+                <input
+                    key="submit-button"
+                    type="submit"
+                    value={
+                        singleForm.button.text
+                            ? singleForm.button.text
+                            : 'Submit'
+                    }
+                />
+            </form>
+        )
+    )
 }
 
 export default GravityFormForm
