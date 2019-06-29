@@ -13,22 +13,23 @@ const Checkbox = ({
         <div className={wrapClassName}>
             <legend>{label}</legend>
             {options.map((choice, index) => {
+                const choiceID = index + 1
                 return (
-                    <div key={`${name}-${index}`}>
+                    <div key={`${name}-${index + 1}`}>
                         <input
                             type="checkbox"
-                            id={`field-${name}-${index}`}
+                            id={`${name}-${choiceID}`}
                             className={classnames(
                                 'gravityform__checkbox',
-                                'gravityform__checkbox--' + index,
+                                'gravityform__checkbox--' + choiceID,
                                 className
                             )}
-                            name={`field-${name}-${index}`}
+                            name={`${name}-${choiceID}`}
                             value={choice.value}
                             defaultChecked={choice.isSelected}
                             ref={register}
                         />
-                        <label htmlFor={`field-${name}-${index}`}>
+                        <label htmlFor={`${name}-${choiceID}`}>
                             {choice.text}
                         </label>
                     </div>

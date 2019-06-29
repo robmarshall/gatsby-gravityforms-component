@@ -19,7 +19,7 @@ const Select = props => {
                 {props.options.map((choice, index) => {
                     return (
                         <option
-                            key={`${props.id}-${index}`}
+                            key={`${props.name}-${index}`}
                             value={choice.value}
                             defaultValue={choice.isSelected}
                         >

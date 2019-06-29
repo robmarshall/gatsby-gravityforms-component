@@ -13,22 +13,23 @@ const Radio = ({
         <div className={wrapClassName}>
             <legend>{label}</legend>
             {options.map((choice, index) => {
+                const choiceID = index + 1
                 return (
-                    <div key={`${name}-${index}`}>
+                    <div key={`${name}-${choiceID}`}>
                         <input
                             type="radio"
-                            id={`field-${name}-${index}`}
+                            id={`${name}-${choiceID}`}
                             className={classnames(
-                                'gravityform__checkbox',
-                                'gravityform__checkbox--' + index,
+                                'gravityform__radio',
+                                'gravityform__radio--' + choiceID,
                                 className
                             )}
-                            name={`field-${name}`}
+                            name={`${name}`}
                             value={choice.value}
                             defaultChecked={choice.isSelected}
                             ref={register}
                         />
-                        <label htmlFor={`field-${name}-${index}`}>
+                        <label htmlFor={`${name}-${choiceID}`}>
                             {choice.text}
                         </label>
                     </div>
