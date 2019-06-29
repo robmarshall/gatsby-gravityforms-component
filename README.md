@@ -93,4 +93,9 @@ This outputs the form set up in WordPress, ready to go.
 
 -   [ ] Honeypot
 -   [ ] Styling
+
+### Send to CMS
+
+-   [ ] Turn data into Gravity Forms schema
+-   [ ] Function to send/receive data from CMS
 -   [ ] Error handling provided by Gravity Forms
