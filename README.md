@@ -75,8 +75,22 @@ This outputs the form set up in WordPress, ready to go.
 
 ## To Do
 
--   Parse all fields - correct types
--   Input masking
--   Handle errors provided by Gravity Forms
--   Always create honeypot
--   Styling???
+### Field Components
+
+-   [x] Input
+-   [x] Textarea
+-   [ ] Select
+-   [ ] Multiselect
+-   [x] Number
+-   [ ] Checkbox
+-   [ ] Radio
+-   [x] Hidden
+-   [x] HTML
+
+-   [ ] Add masking to inputs
+
+### General Form
+
+-   [ ] Honeypot
+-   [ ] Styling
+-   [ ] Error handling provided by Gravity Forms
