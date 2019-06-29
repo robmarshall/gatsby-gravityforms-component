@@ -18,18 +18,18 @@ const Checkbox = ({
                     <div key={`${name}-${index + 1}`}>
                         <input
                             type="checkbox"
-                            id={`${name}-${choiceID}`}
+                            id={`${name}_${choiceID}`}
                             className={classnames(
                                 'gravityform__checkbox',
                                 'gravityform__checkbox--' + choiceID,
                                 className
                             )}
-                            name={`${name}-${choiceID}`}
+                            name={`${name}_${choiceID}`}
                             value={choice.value}
                             defaultChecked={choice.isSelected}
                             ref={register}
                         />
-                        <label htmlFor={`${name}-${choiceID}`}>
+                        <label htmlFor={`${name}_${choiceID}`}>
                             {choice.text}
                         </label>
                     </div>

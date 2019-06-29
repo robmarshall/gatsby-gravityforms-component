@@ -27,7 +27,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Input
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
                         value={ifDefaultValue(field)}
@@ -44,7 +44,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Textarea
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
                         value={ifDefaultValue(field)}
@@ -61,7 +61,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Select
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         value={ifDefaultValue(field)}
                         options={JSON.parse(field.choices)}
@@ -75,7 +75,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Multiselect
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         value={ifDefaultValue(field)}
                         options={JSON.parse(field.choices)}
@@ -89,7 +89,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Input
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
                         value={ifDefaultValue(field)}
@@ -106,7 +106,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Checkbox
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         options={JSON.parse(field.choices)}
                         wrapClassName={inputWrapperClass}
@@ -119,7 +119,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Radio
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         options={JSON.parse(field.choices)}
                         wrapClassName={inputWrapperClass}
@@ -132,7 +132,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Input
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
                         value={ifDefaultValue(field)}
@@ -147,7 +147,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                 return (
                     <Html
                         key={field.id}
-                        name={`field-${field.id}`}
+                        name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
                         content={field.content}

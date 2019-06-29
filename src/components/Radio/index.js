@@ -18,7 +18,7 @@ const Radio = ({
                     <div key={`${name}-${choiceID}`}>
                         <input
                             type="radio"
-                            id={`${name}-${choiceID}`}
+                            id={`${name}_${choiceID}`}
                             className={classnames(
                                 'gravityform__radio',
                                 'gravityform__radio--' + choiceID,
@@ -29,7 +29,7 @@ const Radio = ({
                             defaultChecked={choice.isSelected}
                             ref={register}
                         />
-                        <label htmlFor={`${name}-${choiceID}`}>
+                        <label htmlFor={`${name}_${choiceID}`}>
                             {choice.text}
                         </label>
                     </div>

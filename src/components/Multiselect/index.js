@@ -19,7 +19,7 @@ const Multiselect = props => {
                 {props.options.map((choice, index) => {
                     return (
                         <option
-                            key={`${props.id}-${index}`}
+                            key={`${props.id}_${index}`}
                             value={choice.value}
                             defaultValue={choice.isSelected}
                         >
