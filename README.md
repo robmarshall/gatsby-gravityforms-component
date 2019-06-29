@@ -79,11 +79,11 @@ This outputs the form set up in WordPress, ready to go.
 
 -   [x] Input
 -   [x] Textarea
--   [ ] Select
+-   [x] Select
 -   [ ] Multiselect
 -   [x] Number
--   [ ] Checkbox
--   [ ] Radio
+-   [x] Checkbox
+-   [x] Radio
 -   [x] Hidden
 -   [x] HTML
 

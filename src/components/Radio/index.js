@@ -1,33 +1,39 @@
 import React from 'react'
 import classnames from 'classnames'
 
-const Radio = props => {
+const Radio = ({
+    name,
+    label,
+    options,
+    wrapClassName,
+    className,
+    register,
+}) => {
     return (
-        <div className={props.wrapClassName}>
-            <label htmlFor={props.name} className="gravityform__label">
-                {props.label}
-            </label>
-            <select
-                id={props.name}
-                name={props.name}
-                className={classnames('gravityform__input', props.className)}
-                ref={props.register({
-                    required: props.required,
-                })}
-                onChange={props.handleChange}
-            >
-                {props.options.map((choice, index) => {
-                    return (
-                        <option
-                            key={`${props.id}-${index}`}
+        <div className={wrapClassName}>
+            <legend>{label}</legend>
+            {options.map((choice, index) => {
+                return (
+                    <div key={`${name}-${index}`}>
+                        <input
+                            type="radio"
+                            id={`field-${name}-${index}`}
+                            className={classnames(
+                                'gravityform__checkbox',
+                                'gravityform__checkbox--' + index,
+                                className
+                            )}
+                            name={`field-${name}`}
                             value={choice.value}
-                            //defaultValue={choice.isSelected}
-                        >
+                            defaultChecked={choice.isSelected}
+                            ref={register}
+                        />
+                        <label htmlFor={`field-${name}-${index}`}>
                             {choice.text}
-                        </option>
-                    )
-                })}
-            </select>
+                        </label>
+                    </div>
+                )
+            })}
         </div>
     )
 }

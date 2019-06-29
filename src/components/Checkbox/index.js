@@ -1,26 +1,34 @@
 import React from 'react'
 import classnames from 'classnames'
 
-const Checkbox = props => {
+const Checkbox = ({
+    name,
+    label,
+    options,
+    wrapClassName,
+    className,
+    register,
+}) => {
     return (
-        <div className={props.wrapClassName}>
-            <legend>{props.label}</legend>
-            {props.options.map((choice, index) => {
+        <div className={wrapClassName}>
+            <legend>{label}</legend>
+            {options.map((choice, index) => {
                 return (
-                    <div key={`${props.name}-${index}`}>
+                    <div key={`${name}-${index}`}>
                         <input
                             type="checkbox"
-                            id={`field-${props.name}-${index}`}
+                            id={`field-${name}-${index}`}
                             className={classnames(
                                 'gravityform__checkbox',
-                                props.className
+                                'gravityform__checkbox--' + index,
+                                className
                             )}
-                            name={`field-${props.name}`}
-                            value={props.text}
-                            checked={props.isSelected}
-                            ref={props.register()}
+                            name={`field-${name}-${index}`}
+                            value={choice.value}
+                            defaultChecked={choice.isSelected}
+                            ref={register}
                         />
-                        <label htmlFor={`field-${props.id}-${index}`}>
+                        <label htmlFor={`field-${name}-${index}`}>
                             {choice.text}
                         </label>
                     </div>

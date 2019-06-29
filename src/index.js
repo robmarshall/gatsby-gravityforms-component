@@ -14,7 +14,11 @@ import FieldBuilder from './container/FieldBuilder'
  */
 
 const GravityFormForm = ({ id, formData, lambda }) => {
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, watch } = useForm()
+
+    let watchAllFields = watch()
+
+    console.log(watchAllFields)
 
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
@@ -26,9 +30,9 @@ const GravityFormForm = ({ id, formData, lambda }) => {
                 key={`gravityform--id-${id}`}
             >
                 <FieldBuilder
-                    register={register}
                     formId={id}
                     formData={singleForm}
+                    register={register}
                 />
                 <input
                     key="submit-button"
