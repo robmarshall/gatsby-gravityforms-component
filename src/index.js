@@ -22,6 +22,7 @@ const GravityFormForm = ({ id, formData, lambda }) => {
     }
 
     if (!isObjEmpty(errors)) {
+        console.log(errors)
         scrollToElem(`#gravityform--id-${id}`)
     }
 
@@ -36,10 +37,13 @@ const GravityFormForm = ({ id, formData, lambda }) => {
                 key={`gravityform--id-${id}`}
                 onSubmit={handleSubmit(onSubmitCallback)}
             >
+                {!isObjEmpty(errors) && <p>There are some errors here!</p>}
+
                 <FieldBuilder
                     formId={id}
                     formData={singleForm}
                     register={register}
+                    errors={errors}
                 />
                 <button type="submit">
                     {singleForm.button.text ? singleForm.button.text : 'Submit'}

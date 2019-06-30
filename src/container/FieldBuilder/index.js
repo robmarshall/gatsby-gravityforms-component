@@ -13,7 +13,7 @@ import Checkbox from '../../components/Checkbox'
 import Radio from '../../components/Radio'
 import Html from '../../components/Html'
 
-const FieldBuilder = ({ formId, formData, register }) => {
+const FieldBuilder = ({ formId, formData, register, errors }) => {
     return formData.formFields.map(field => {
         let inputWrapperClass = classnames(
             'gravityform__' + field.type,
@@ -38,6 +38,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         placeholder={field.placeholder}
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
+                        errors={props.errors[`input_${field.id}`]}
                     />
                 )
             case 'textarea':
@@ -55,6 +56,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         placeholder={field.placeholder}
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
+                        errors={props.errors[`input_${field.id}`]}
                     />
                 )
             case 'select':
@@ -69,6 +71,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
+                        errors={props.errors[`input_${field.id}`]}
                     />
                 )
             case 'multiselect':
@@ -83,6 +86,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
+                        errors={props.errors[`input_${field.id}`]}
                     />
                 )
             case 'number':
@@ -100,6 +104,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         placeholder={field.placeholder}
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
+                        errors={props.errors[`input_${field.id}`]}
                     />
                 )
             case 'checkbox':
@@ -113,6 +118,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
+                        errors={props.errors[`input_${field.id}`]}
                     />
                 )
             case 'radio':
@@ -126,6 +132,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
+                        errors={props.errors[`input_${field.id}`]}
                     />
                 )
             case 'hidden':
@@ -141,6 +148,7 @@ const FieldBuilder = ({ formId, formData, register }) => {
                         register={register}
                         required={field.isRequired}
                         placeholder={field.placeholder}
+                        errors={props.errors[`input_${field.id}`]}
                     />
                 )
             case 'html':

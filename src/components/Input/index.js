@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+import manageErrors from '../../utils/manageErrors'
 
 const Input = props => {
     const regex = props.inputMaskValue
@@ -8,6 +9,8 @@ const Input = props => {
 
     return (
         <div className={props.wrapClassName}>
+            {errors && manageErrors(errors)}
+
             <label htmlFor={props.name} className="gravityform__label">
                 {props.label}
             </label>
