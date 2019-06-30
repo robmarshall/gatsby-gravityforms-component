@@ -1,3 +1,5 @@
+import SmoothScroll from 'smooth-scroll'
+
 function slugify(text) {
     return text
         .toString()
@@ -14,7 +16,14 @@ function getFieldID(string) {
     return string.slice(string.indexOf(fieldName) + fieldName.length)
 }
 
+function scrollToElem(elem) {
+    let scroll = new SmoothScroll()
+    let anchor = document.querySelector(elem)
+    scroll.animateScroll(anchor)
+}
+
 module.exports = {
     getFieldID,
+    scrollToElem,
     slugify,
 }
