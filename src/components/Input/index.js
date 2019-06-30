@@ -19,7 +19,7 @@ const Input = props => {
                 defaultValue={props.value}
                 placeholder={props.placeholder}
                 ref={props.register({
-                    required: props.isRequired,
+                    required: props.required,
                     maxlength: props.maxLength,
                     pattern: regex,
                 })}
