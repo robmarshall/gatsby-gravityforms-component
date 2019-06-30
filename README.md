@@ -1,4 +1,4 @@
-# Gravity Forms Form Component
+variables# Gravity Forms Form Component
 
 This code is the beginning of the front end for gatsby-source-gravityforms.
 
@@ -18,6 +18,7 @@ npm i gatsby-gravityforms-component
 2. Import the component where you want to use it
 3. Grab the GraphQL data from the gatsby-source-gravityforms plugin and pass to component
 4. Set the form ID
+5. Add the Lambda function (scroll down a little)
 
 ```js
 import React from 'react'
@@ -72,6 +73,20 @@ export default examplePage
 ```
 
 This outputs the form set up in WordPress, ready to go.
+
+## Adding the Lambda
+
+So you decided to make a static site, but then expect it to be easy to send data using secret keys to a server.
+
+Well, it is!
+
+Add the following function as a Lambda function, and add your Gravity Form keys as environment variables (these will be already set if you are using the gatsby-source-gravityforms plugin)
+
+``js
+// Example function will go here once I have made it.
+// If you fancy taking over and sending a PR, I will be happy...
+
+``
 
 ## To Do
 
