@@ -1,4 +1,16 @@
-import SmoothScroll from 'smooth-scroll'
+import scrollToElement from 'scroll-to-element'
+
+function getFieldID(string) {
+    const fieldName = 'field-'
+    return string.slice(string.indexOf(fieldName) + fieldName.length)
+}
+
+function isObjEmpty(obj) {
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) return false
+    }
+    return true
+}
 
 function slugify(text) {
     return text
@@ -11,19 +23,13 @@ function slugify(text) {
         .replace(/-+$/, '') // Trim - from end of text
 }
 
-function getFieldID(string) {
-    const fieldName = 'field-'
-    return string.slice(string.indexOf(fieldName) + fieldName.length)
-}
-
 function scrollToElem(elem) {
-    let scroll = new SmoothScroll()
-    let anchor = document.querySelector(elem)
-    scroll.animateScroll(anchor)
+    scrollToElement(elem)
 }
 
 module.exports = {
     getFieldID,
+    isObjEmpty,
     scrollToElem,
     slugify,
 }

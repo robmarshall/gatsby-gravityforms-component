@@ -33,7 +33,7 @@
         "classnames": "^2.2.6",
         "prop-types": "^15.7.2",
         "react-hook-form": "^3.14.0",
-        "smooth-scroll": "^16.1.0"
+        "scroll-to-element": "^2.0.3"
     },
     "devDependencies": {
         "@babel/cli": "^7.4.4",
