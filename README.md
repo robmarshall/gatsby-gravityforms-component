@@ -92,6 +92,8 @@ AUTH_PASSWORD = 'XXXXXX'
 LAMBDA_ENDPOINT = 'https://examplesite.com/.netlify/functions/newGfEntry'
 ```
 
+See "/examples/lambda/.env/sample" for the file.
+
 Depending on what build (Gatsby/React/ect) you are using, these will need to be defined and pulled into your project in different ways.
 
 -   Webpack: https://webpack.js.org/plugins/define-plugin/
