@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createGfKeyFromField } from './helpers'
 
-export default (id, baseUrl, formData, lambdaEndpoint) => {
+export default async (id, baseUrl, formData, lambdaEndpoint) => {
     let lambaData = {
         baseUrl: baseurl,
         payload: {
