@@ -1,4 +1,4 @@
-import strings from './strings.json'
+import strings from './strings'
 
 /**
  * Take the error function and return the correct string for
