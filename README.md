@@ -7,7 +7,7 @@ Uses [React Hook Forms](https://react-hook-form.com/) under the hood for all tha
 ## Installation
 
 ```js
-# Install the plugin
+# Install the component
 yarn add gatsby-gravityforms-component
 
 # Or with NPM
