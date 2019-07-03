@@ -2,6 +2,8 @@
 
 A (relatively) plug and play component for parsing [gatsby-source-gravityforms](https://www.npmjs.com/package/gatsby-source-gravityforms) GraphQL data. Outputs a component using BEM classes, meaning all you need to do it style it.
 
+Uses (React Hook Forms)[https://react-hook-form.com/] under the hood for all that good state management.
+
 ## Installation
 
 ```js
@@ -76,7 +78,7 @@ const examplePage = () => <GravityFormForm id={1} formData={allGravityData} />
 export default examplePage
 ```
 
-This outputs the form set up in WordPress, ready to go.
+This outputs the form that has been set up in WordPress - Gravity Forms. Ready for you to style it!
 
 ## Add Environment Variables
 
