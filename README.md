@@ -52,6 +52,7 @@ const allGravityData = () => {
                                 placeholder
                                 size
                                 defaultValue
+                                maxLength
                             }
                             button {
                                 text
