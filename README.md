@@ -92,6 +92,11 @@ AUTH_PASSWORD = 'XXXXXX'
 LAMBDA_ENDPOINT = 'https://examplesite.com/.netlify/functions/newGfEntry'
 ```
 
+Depending on what build (Gatsby/React/ect) you are using, these will need to be defined and pulled into your project in different ways.
+
+-   Webpack: https://webpack.js.org/plugins/define-plugin/
+-   Gatsby: https://www.gatsbyjs.org/docs/environment-variables/#accessing-environment-variables-in-javascript
+
 ## Adding the Lambda (for netlify)
 
 To enable the component to pass data from a static site to a server needs a little big of help to bridge the gap. As Gravity Forms uses secret keys to read/write, there needs to be somewhere safe to hold and manage these details.
@@ -140,6 +145,7 @@ If you have any issues with these steps, see these articles:
 ### General Form
 
 -   [ ] Honeypot
+-   [ ] Add submit/error callback for custom use
 
 ### Send to CMS
 
