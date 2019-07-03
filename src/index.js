@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import useForm from 'react-hook-form'
 import getForm from './utils/getForm'
 import { isObjEmpty, scrollToElem } from './utils/helpers'
+import { manageMainFormError } from './utils/manageErrors'
 import FieldBuilder from './container/FieldBuilder'
 
 /**
@@ -15,7 +16,7 @@ import FieldBuilder from './container/FieldBuilder'
  */
 
 const GravityFormForm = ({ id, formData, lambda }) => {
-    const { register, errors, handleSubmit, watch } = useForm()
+    const { register, errors, handleSubmit, watch, customErrors } = useForm()
 
     const onSubmitCallback = values => {
         console.log(values)
@@ -37,7 +38,11 @@ const GravityFormForm = ({ id, formData, lambda }) => {
                 key={`gravityform--id-${id}`}
                 onSubmit={handleSubmit(onSubmitCallback)}
             >
-                {!isObjEmpty(errors) && <p>There are some errors here!</p>}
+                {!isObjEmpty(errors) && (
+                    <div className="gravityform__error_inform">
+                        <p>{manageMainFormError()}</p>
+                    </div>
+                )}
 
                 <FieldBuilder
                     formId={id}

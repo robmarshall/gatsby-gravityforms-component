@@ -16,7 +16,9 @@ import Html from '../../components/Html'
 const FieldBuilder = ({ formId, formData, register, errors }) => {
     return formData.formFields.map(field => {
         let inputWrapperClass = classnames(
-            'gravityform__' + field.type,
+            'gravityform__field',
+            'gravityform__field__' + field.type,
+            'gravityform__field--' + field.size,
             field.cssClass,
             { 'field-required': field.isRequired },
             { 'hidden-label': islabelHidden(field.labelPlacement) }
@@ -38,7 +40,8 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         placeholder={field.placeholder}
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
-                        errors={props.errors[`input_${field.id}`]}
+                        errors={errors[`input_${field.id}`]}
+                        customErrorMessage={field.errorMessage}
                     />
                 )
             case 'textarea':
@@ -56,7 +59,8 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         placeholder={field.placeholder}
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
-                        errors={props.errors[`input_${field.id}`]}
+                        errors={errors[`input_${field.id}`]}
+                        customErrorMessage={field.errorMessage}
                     />
                 )
             case 'select':
@@ -71,7 +75,7 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
-                        errors={props.errors[`input_${field.id}`]}
+                        errors={errors[`input_${field.id}`]}
                     />
                 )
             case 'multiselect':
@@ -86,7 +90,7 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
-                        errors={props.errors[`input_${field.id}`]}
+                        errors={errors[`input_${field.id}`]}
                     />
                 )
             case 'number':
@@ -104,7 +108,8 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         placeholder={field.placeholder}
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
-                        errors={props.errors[`input_${field.id}`]}
+                        errors={errors[`input_${field.id}`]}
+                        customErrorMessage={field.errorMessage}
                     />
                 )
             case 'checkbox':
@@ -118,7 +123,7 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
-                        errors={props.errors[`input_${field.id}`]}
+                        errors={errors[`input_${field.id}`]}
                     />
                 )
             case 'radio':
@@ -132,7 +137,7 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
-                        errors={props.errors[`input_${field.id}`]}
+                        errors={errors[`input_${field.id}`]}
                     />
                 )
             case 'hidden':
@@ -148,7 +153,8 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         register={register}
                         required={field.isRequired}
                         placeholder={field.placeholder}
-                        errors={props.errors[`input_${field.id}`]}
+                        errors={errors[`input_${field.id}`]}
+                        customErrorMessage={field.errorMessage}
                     />
                 )
             case 'html':

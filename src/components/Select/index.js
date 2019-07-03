@@ -10,9 +10,13 @@ const Select = props => {
             <select
                 id={props.name}
                 name={props.name}
-                className={classnames('gravityform__input', props.className)}
+                className={classnames(
+                    'gravityform__field__input',
+                    'gravityform__field__input__select',
+                    props.className
+                )}
                 ref={props.register({
-                    required: props.required,
+                    required: props.required && 'This field is required',
                 })}
                 onChange={props.handleChange}
             >

@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
-import manageErrors from '../../utils/manageErrors'
+import { manageSingleErrors } from '../../utils/manageErrors'
+import strings from '../../utils/strings.json'
 
 const Input = props => {
     const regex = props.inputMaskValue
@@ -9,24 +10,41 @@ const Input = props => {
 
     return (
         <div className={props.wrapClassName}>
-            {errors && manageErrors(errors)}
-
             <label htmlFor={props.name} className="gravityform__label">
                 {props.label}
             </label>
             <input
                 id={props.name}
                 type={props.type}
-                className={classnames('gravityform__input', props.className)}
+                className={classnames(
+                    'gravityform__field__input',
+                    `gravityform__field__input__${props.type}`,
+                    props.className
+                )}
                 name={props.name}
                 defaultValue={props.value}
                 placeholder={props.placeholder}
                 ref={props.register({
-                    required: props.required,
-                    maxlength: props.maxLength,
-                    pattern: regex,
+                    required: props.required && strings.errors.required,
+                    maxlength: {
+                        value: props.maxLength,
+                        message:
+                            props.maxLength > 0 &&
+                            `${strings.errors.maxChar.front}  ${
+                                props.maxLength
+                            } ${strings.errors.maxChar.back}`,
+                    },
+                    pattern: {
+                        value: regex,
+                        message: regex && strings.errors.pattern,
+                    },
                 })}
             />
+            {props.errors && (
+                <div class="gravityform__error">
+                    {manageSingleErrors(props.errors, props.customErrorMessage)}
+                </div>
+            )}
         </div>
     )
 }
