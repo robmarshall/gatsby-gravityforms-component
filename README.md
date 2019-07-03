@@ -1,4 +1,4 @@
-#Gravity Forms Form Component
+# Gravity Forms Form Component
 
 A (relatively) plug and play component for parsing gatsby-source-gravityforms GraphQL data. Outputs a component using BEM classes, meaning all you need to do it style it.
 
