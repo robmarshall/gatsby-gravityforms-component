@@ -18,7 +18,8 @@ npm i gatsby-gravityforms-component
 2. Import the component where you want to use it
 3. Grab the GraphQL data from the gatsby-source-gravityforms plugin and pass to component
 4. Set the form ID
-5. Add the Lambda function (scroll down a little)
+5. Add your environment variables
+6. Add the Lambda function (scroll down a little)
 
 ```js
 import React from 'react'
@@ -77,19 +78,53 @@ export default examplePage
 
 This outputs the form set up in WordPress, ready to go.
 
-## Adding the Lambda
+## Add Environment Variables
 
-So you decided to make a static site, but then expect it to be easy to send data using secret keys to a server.
+The following environment variables should be added to your hosting provider backend. If unsure, most providers have an article explaining. A quick Google should find this.
 
-Well, it is!
+```js
+GF_CONSUMER_KEY = 'XXXXXX'
+GF_CONSUMER_SECRET = 'XXXXXX'
+AUTH_USERNAME = 'XXXXXX'
+AUTH_PASSWORD = 'XXXXXX'
+LAMBDA_ENDPOINT = 'https://examplesite.com/.netlify/functions/newGfEntry'
+```
+
+## Adding the Lambda (for netlify)
+
+To enable the component to pass data from a static site to a server needs a little big of help to bridge the gap. As Gravity Forms uses secret keys to read/write, there needs to be somewhere safe to hold and manage these details.
+
+Using a combination of environment variables and a Lambda function we can navigate these insecure waters.
 
 Add the following function as a Lambda function, and add your Gravity Form keys as environment variables (these will be already set if you are using the gatsby-source-gravityforms plugin)
+
+1. In your projects /src folder, add a folder called "lambda"
+2. Create a file inside called "newGfEntry.js"
+3. Copy the following code into that file
 
 ``js
 // Example function will go here once I have made it.
 // If you fancy taking over and sending a PR, I will be happy...
 
 ``
+
+4. Make sure all environment variables at the top of the code have been updated with yours.
+5. Add a folder at the root of your project called "built-lambda"
+6. Create a file at the root of your project called netlify.toml
+7. Add the following code to netlify.toml
+8. TODO - add details about deployment
+
+```
+[build]
+    functions = "built-lambda"
+
+```
+
+If you have any issues with these steps, see these articles:
+
+-   https://www.netlify.com/docs/functions/
+-   https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e
+-   https://macarthur.me/posts/building-a-lambda-function-with-netlify
 
 ## To Do
 
