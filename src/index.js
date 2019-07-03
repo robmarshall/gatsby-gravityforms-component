@@ -4,6 +4,7 @@ import useForm from 'react-hook-form'
 import getForm from './utils/getForm'
 import { isObjEmpty } from './utils/helpers'
 import { manageMainFormError } from './utils/manageErrors'
+import passToGravityForms from './utils/passToGravityForms'
 import FieldBuilder from './container/FieldBuilder'
 
 /**
@@ -18,16 +19,17 @@ import FieldBuilder from './container/FieldBuilder'
 const GravityFormForm = ({ id, formData, lambda }) => {
     const { register, errors, handleSubmit, watch, customErrors } = useForm()
 
+    // Take ID argument and graphQL Gravity Form data for this form
+    const singleForm = getForm(formData, id)
+
     const onSubmitCallback = values => {
         console.log(values)
+        passToGravityForms(id, singleForm.apiUrl, values)
     }
 
     if (!isObjEmpty(errors)) {
         console.log(errors)
     }
-
-    // Take ID argument and graphQL Gravity Form data for this form
-    const singleForm = getForm(formData, id)
 
     return (
         singleForm && (
