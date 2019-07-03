@@ -7,7 +7,6 @@ import {
     ifDefaultValue,
     islabelHidden,
 } from '../../utils/inputSettings'
-import { getFieldID, slugify } from '../../utils/helpers'
 
 import Input from '../../components/Input'
 import Textarea from '../../components/Textarea'
