@@ -1,6 +1,6 @@
-variables# Gravity Forms Form Component
+#Gravity Forms Form Component
 
-This code is the beginning of the front end for gatsby-source-gravityforms.
+A (relatively) plug and play component for parsing gatsby-source-gravityforms GraphQL data. Outputs a component using BEM classes, meaning all you need to do it style it.
 
 ## Installation
 
@@ -110,7 +110,6 @@ Add the following function as a Lambda function, and add your Gravity Form keys 
 ### General Form
 
 -   [ ] Honeypot
--   [ ] Styling
 
 ### Send to CMS
 
