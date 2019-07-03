@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+import { outputDescription } from '../../utils/inputSettings'
 
 const Checkbox = ({
     name,
@@ -8,10 +9,13 @@ const Checkbox = ({
     wrapClassName,
     className,
     register,
+    description,
+    descriptionPlacement,
 }) => {
     return (
         <div className={wrapClassName}>
             <legend>{label}</legend>
+            {outputDescription(description, descriptionPlacement, 'above')}
             {options.map((choice, index) => {
                 const choiceID = index + 1
                 return (
@@ -36,6 +40,7 @@ const Checkbox = ({
                     </div>
                 )
             })}
+            {outputDescription(description, descriptionPlacement, 'below')}
         </div>
     )
 }

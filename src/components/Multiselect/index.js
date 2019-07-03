@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+import { outputDescription } from '../../utils/inputSettings'
 
 const Multiselect = props => {
     return (
@@ -7,6 +8,11 @@ const Multiselect = props => {
             <label htmlFor={props.name} className="gravityform__label">
                 {props.label}
             </label>
+            {outputDescription(
+                props.description,
+                props.descriptionPlacement,
+                'above'
+            )}
             <select
                 id={props.name}
                 name={props.name}
@@ -31,6 +37,11 @@ const Multiselect = props => {
                     )
                 })}
             </select>
+            {outputDescription(
+                props.description,
+                props.descriptionPlacement,
+                'below'
+            )}
         </div>
     )
 }

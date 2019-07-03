@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+import { outputDescription } from '../../utils/inputSettings'
 
 const Select = props => {
     return (
@@ -7,6 +8,11 @@ const Select = props => {
             <label htmlFor={props.name} className="gravityform__label">
                 {props.label}
             </label>
+            {outputDescription(
+                props.description,
+                props.descriptionPlacement,
+                'above'
+            )}
             <select
                 id={props.name}
                 name={props.name}
@@ -32,6 +38,11 @@ const Select = props => {
                     )
                 })}
             </select>
+            {outputDescription(
+                props.description,
+                props.descriptionPlacement,
+                'below'
+            )}
         </div>
     )
 }

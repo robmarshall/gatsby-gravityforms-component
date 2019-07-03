@@ -2,7 +2,11 @@ import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 
-import { ifDefaultValue, islabelHidden } from '../../utils/inputSettings'
+import {
+    getPlacement,
+    ifDefaultValue,
+    islabelHidden,
+} from '../../utils/inputSettings'
 import { getFieldID, slugify } from '../../utils/helpers'
 
 import Input from '../../components/Input'
@@ -14,7 +18,14 @@ import Radio from '../../components/Radio'
 import Html from '../../components/Html'
 
 const FieldBuilder = ({ formId, formData, register, errors }) => {
+    // The top level settings for the whole form
+    const formSettings = {
+        descriptionPlacement: formData.descriptionPlacement,
+    }
+
+    // Loop through fields and create
     return formData.formFields.map(field => {
+        // Set the wrapper classes
         let inputWrapperClass = classnames(
             'gravityform__field',
             'gravityform__field__' + field.type,
@@ -33,6 +44,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         label={field.label}
                         type={field.type}
                         value={ifDefaultValue(field)}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
                         register={register}
@@ -52,6 +68,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         label={field.label}
                         type={field.type}
                         value={ifDefaultValue(field)}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
                         register={register}
@@ -72,6 +93,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         value={ifDefaultValue(field)}
                         options={JSON.parse(field.choices)}
                         wrapClassName={inputWrapperClass}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
@@ -86,6 +112,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         label={field.label}
                         value={ifDefaultValue(field)}
                         options={JSON.parse(field.choices)}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
                         register={register}
@@ -101,6 +132,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         label={field.label}
                         type={field.type}
                         value={ifDefaultValue(field)}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
                         register={register}
@@ -119,6 +155,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         name={`input_${field.id}`}
                         label={field.label}
                         options={JSON.parse(field.choices)}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
                         register={register}
@@ -133,6 +174,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         name={`input_${field.id}`}
                         label={field.label}
                         options={JSON.parse(field.choices)}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
                         register={register}
@@ -148,6 +194,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         label={field.label}
                         type={field.type}
                         value={ifDefaultValue(field)}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
                         register={register}
@@ -164,6 +215,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
                         content={field.content}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
