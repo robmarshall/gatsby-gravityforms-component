@@ -2,8 +2,10 @@ import axios from 'axios'
 import { createGfKeyFromField } from './helpers'
 
 export default async (id, baseUrl, formData, lambdaEndpoint) => {
+    console.log(lambdaEndpoint)
+
     let lambaData = {
-        baseUrl: baseurl,
+        baseUrl: baseUrl,
         payload: {
             form_id: id,
         },
@@ -12,19 +14,19 @@ export default async (id, baseUrl, formData, lambdaEndpoint) => {
     // Set data object from form fields
     Object.keys(formData).map(function(key) {
         const data = createGfKeyFromField(key)
-        lambaData.payload[data] = formData[key]
+        lambaData['payload'][data] = formData[key]
     })
 
-    console.log(payload)
+    console.log(lambaData)
 
     let result
 
     try {
         result = await axios.post(lambdaEndpoint, {
             responseType: 'json',
-            data: {
-                lambaData,
-            },
+            withCredentials: true,
+            crossdomain: true,
+            data: lambaData,
         })
     } catch (err) {
         console.log(err)
