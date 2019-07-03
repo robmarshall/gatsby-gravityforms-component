@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createGfKeyFromField } from './helpers'
 
-export default (id, baseUrl, formData) => {
+export default (id, baseUrl, formData, lambdaEndpoint) => {
     let lambaData = {
         baseUrl: baseurl,
         payload: {
@@ -16,6 +16,22 @@ export default (id, baseUrl, formData) => {
     })
 
     console.log(payload)
+
+    let result
+
+    try {
+        result = await axios.post(lambdaEndpoint, {
+            responseType: 'json',
+            data: {
+                lambaData,
+            },
+        })
+    } catch (err) {
+        console.log(err)
+        return false
+    }
+
+    console.log(result)
 
     return false
 }
