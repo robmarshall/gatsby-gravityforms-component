@@ -23,8 +23,7 @@ const GravityFormForm = ({ id, formData, lambda }) => {
     const singleForm = getForm(formData, id)
 
     const onSubmitCallback = values => {
-        console.log(values)
-        passToGravityForms(id, singleForm.apiUrl, values, lambda)
+        passToGravityForms(id, singleForm.apiURL, values, lambda)
     }
 
     if (!isObjEmpty(errors)) {
