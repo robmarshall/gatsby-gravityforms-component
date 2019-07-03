@@ -1,5 +1,3 @@
-import scrollToElement from 'scroll-to-element'
-
 function getFieldID(string) {
     const fieldName = 'field-'
     return string.slice(string.indexOf(fieldName) + fieldName.length)
@@ -23,13 +21,8 @@ function slugify(text) {
         .replace(/-+$/, '') // Trim - from end of text
 }
 
-function scrollToElem(elem) {
-    scrollToElement(elem)
-}
-
 module.exports = {
     getFieldID,
     isObjEmpty,
-    scrollToElem,
     slugify,
 }

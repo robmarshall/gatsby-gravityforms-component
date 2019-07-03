@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import useForm from 'react-hook-form'
 import getForm from './utils/getForm'
-import { isObjEmpty, scrollToElem } from './utils/helpers'
+import { isObjEmpty } from './utils/helpers'
 import { manageMainFormError } from './utils/manageErrors'
 import FieldBuilder from './container/FieldBuilder'
 
@@ -24,7 +24,6 @@ const GravityFormForm = ({ id, formData, lambda }) => {
 
     if (!isObjEmpty(errors)) {
         console.log(errors)
-        scrollToElem(`#gravityform--id-${id}`)
     }
 
     // Take ID argument and graphQL Gravity Form data for this form
@@ -33,8 +32,8 @@ const GravityFormForm = ({ id, formData, lambda }) => {
     return (
         singleForm && (
             <form
-                className={`gravityform gravityform--id-${id}`}
                 id={`gravityform--id-${id}`}
+                className={`gravityform gravityform--id-${id}`}
                 key={`gravityform--id-${id}`}
                 onSubmit={handleSubmit(onSubmitCallback)}
             >
