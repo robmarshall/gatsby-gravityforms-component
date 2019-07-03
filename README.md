@@ -37,10 +37,12 @@ const allGravityData = () => {
                             formId
                             slug
                             apiURL
+                            descriptionPlacement
                             formFields {
                                 id
                                 label
-                                labelPlacement
+                                description
+                                descriptionPlacement
                                 type
                                 choices
                                 content
@@ -103,7 +105,7 @@ Add the following function as a Lambda function, and add your Gravity Form keys 
 -   [x] Hidden
 -   [x] HTML
 
--   [ ] Add masking to inputs
+-   [x] Add masking to inputs
 
 ### General Form
 
