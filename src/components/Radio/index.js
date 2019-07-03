@@ -20,8 +20,8 @@ const Radio = ({
                             type="radio"
                             id={`${name}_${choiceID}`}
                             className={classnames(
-                                'gravityform__radio',
-                                'gravityform__radio--' + choiceID,
+                                'gravityform__field__input__radio',
+                                'gravityform__field__input__radio--' + choiceID,
                                 className
                             )}
                             name={`${name}`}

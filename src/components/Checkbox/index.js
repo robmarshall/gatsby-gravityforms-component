@@ -20,8 +20,9 @@ const Checkbox = ({
                             type="checkbox"
                             id={`${name}_${choiceID}`}
                             className={classnames(
-                                'gravityform__checkbox',
-                                'gravityform__checkbox--' + choiceID,
+                                'gravityform__field__input__checkbox',
+                                'gravityform__field__input__checkbox--' +
+                                    choiceID,
                                 className
                             )}
                             name={`${name}_${choiceID}`}
