@@ -10,7 +10,12 @@ const Input = props => {
         : false
 
     return (
-        <div className={props.wrapClassName}>
+        <div
+            className={classnames(
+                props.wrapClassName,
+                props.errors && 'gravityform__field--error'
+            )}
+        >
             <label htmlFor={props.name} className="gravityform__label">
                 {props.label}
                 {props.maxLength > 0 &&
@@ -55,7 +60,7 @@ const Input = props => {
                 'below'
             )}
             {props.errors && (
-                <div class="gravityform__error">
+                <div className="gravityform__error_message">
                     {manageSingleErrors(props.errors, props.customErrorMessage)}
                 </div>
             )}
