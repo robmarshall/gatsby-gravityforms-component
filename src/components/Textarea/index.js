@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { manageSingleErrors } from '../../utils/manageErrors'
+import { outputDescription } from '../../utils/inputSettings'
 import strings from '../../utils/strings'
 
 const Textarea = props => {
@@ -15,6 +16,11 @@ const Textarea = props => {
                 {props.maxLength > 0 &&
                     `(maxiumum ${props.maxLength} characters)`}
             </label>
+            {outputDescription(
+                props.description,
+                props.descriptionPlacement,
+                'above'
+            )}
             <textarea
                 id={props.name}
                 type={props.type}
@@ -23,6 +29,7 @@ const Textarea = props => {
                     `gravityform__field__input__${props.type}`,
                     props.className
                 )}
+                maxLength={props.maxLength > 0 ? props.maxLength : undefined}
                 name={props.name}
                 defaultValue={props.value}
                 placeholder={props.placeholder}
@@ -42,6 +49,11 @@ const Textarea = props => {
                     },
                 })}
             />
+            {outputDescription(
+                props.description,
+                props.descriptionPlacement,
+                'below'
+            )}
             {props.errors && (
                 <div class="gravityform__error">
                     {manageSingleErrors(props.errors, props.customErrorMessage)}
