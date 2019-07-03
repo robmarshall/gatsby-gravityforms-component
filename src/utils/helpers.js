@@ -1,6 +1,7 @@
-function getFieldID(string) {
-    const fieldName = 'field-'
-    return string.slice(string.indexOf(fieldName) + fieldName.length)
+function createGfKeyFromField(string) {
+    const fieldName = 'input_'
+    const field = string.slice(string.indexOf(fieldName) + fieldName.length)
+    return field.replace('_', '.')
 }
 
 function isObjEmpty(obj) {
@@ -10,19 +11,7 @@ function isObjEmpty(obj) {
     return true
 }
 
-function slugify(text) {
-    return text
-        .toString()
-        .toLowerCase()
-        .replace(/\s+/g, '-') // Replace spaces with -
-        .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-        .replace(/\-\-+/g, '-') // Replace multiple - with single -
-        .replace(/^-+/, '') // Trim - from start of text
-        .replace(/-+$/, '') // Trim - from end of text
-}
-
 module.exports = {
-    getFieldID,
+    createGfKeyFromField,
     isObjEmpty,
-    slugify,
 }
