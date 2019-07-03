@@ -100,14 +100,7 @@ Add the following function as a Lambda function, and add your Gravity Form keys 
 
 1. In your projects /src folder, add a folder called "lambda"
 2. Create a file inside called "newGfEntry.js"
-3. Copy the following code into that file
-
-``js
-// Example function will go here once I have made it.
-// If you fancy taking over and sending a PR, I will be happy...
-
-``
-
+3. Copy the code from /examples/lambda/newGfEntry.js into that file
 4. Make sure all environment variables at the top of the code have been updated with yours.
 5. Add a folder at the root of your project called "built-lambda"
 6. Create a file at the root of your project called netlify.toml
