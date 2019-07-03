@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { manageSingleErrors } from '../../utils/manageErrors'
-import strings from '../../utils/strings.json'
+import strings from '../../utils/strings'
 
 const Input = props => {
     const regex = props.inputMaskValue
@@ -12,6 +12,8 @@ const Input = props => {
         <div className={props.wrapClassName}>
             <label htmlFor={props.name} className="gravityform__label">
                 {props.label}
+                {props.maxLength > 0 &&
+                    maxLengthSentence(props.maxLength, props.type)}
             </label>
             <input
                 id={props.name}
@@ -27,7 +29,7 @@ const Input = props => {
                 ref={props.register({
                     required: props.required && strings.errors.required,
                     maxlength: {
-                        value: props.maxLength,
+                        value: props.maxLength > 0 && props.maxLength,
                         message:
                             props.maxLength > 0 &&
                             `${strings.errors.maxChar.front}  ${
@@ -50,3 +52,8 @@ const Input = props => {
 }
 
 export default Input
+
+const maxLengthSentence = (length, type) => {
+    let word = type === 'number' ? 'numbers' : 'characters'
+    return length && ` (maxiumum ${length} ${word})`
+}

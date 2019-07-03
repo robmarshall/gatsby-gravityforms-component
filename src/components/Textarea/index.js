@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import { manageSingleErrors } from '../../utils/manageErrors'
-import strings from '../../utils/strings.json'
+import strings from '../../utils/strings'
 
 const Textarea = props => {
     const regex = props.inputMaskValue
@@ -12,6 +12,8 @@ const Textarea = props => {
         <div className={props.wrapClassName}>
             <label htmlFor={props.name} className="gravityform__label">
                 {props.label}
+                {props.maxLength > 0 &&
+                    `(maxiumum ${props.maxLength} characters)`}
             </label>
             <textarea
                 id={props.name}
@@ -27,7 +29,7 @@ const Textarea = props => {
                 ref={props.register({
                     required: props.required && strings.errors.required,
                     maxlength: {
-                        value: props.maxLength,
+                        value: props.maxLength > 0 && props.maxLength,
                         message:
                             props.maxLength > 0 &&
                             `${strings.errors.maxChar.front}  ${
