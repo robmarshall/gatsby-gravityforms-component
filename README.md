@@ -74,19 +74,7 @@ const allGravityData = () => {
     return allGfForm
 }
 
-const examplePage = () => (
-    <GravityFormForm
-        id={1}
-        formData={allGravityData()}
-        lambda={process.env.GATSBY_LAMBDA_ENDPOINT}
-        auth={{
-            gf_api: process.env.GATSBY_GF_CONSUMER_KEY,
-            gf_secret: process.env.GATSBY_GF_CONSUMER_SECRET,
-            basicUsername: process.env.GATSBY_AUTH_USERNAME,
-            basicPassword: process.env.GATSBY_AUTH_PASSWORD,
-        }}
-    />
-)
+const examplePage = () => <GravityFormForm id={1} formData={allGravityData} />
 export default examplePage
 ```
 
