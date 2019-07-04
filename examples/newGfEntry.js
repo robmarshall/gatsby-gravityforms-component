@@ -1,15 +1,15 @@
-require('dotenv').config()
+require('dotenv')
 
 const axios = require('axios')
 const nanoid = require('nanoid')
 const oauthSignature = require('oauth-signature')
 
 const secretData = {
-    gfKey: process.env.GF_CONSUMER_KEY,
-    gfSecret: process.env.GF_CONSUMER_SECRET,
+    gfKey: process.env.GATSBY_GF_CONSUMER_KEY,
+    gfSecret: process.env.GATSBY_GF_CONSUMER_SECRET,
     auth: {
-        username: process.env.AUTH_USERNAME,
-        password: process.env.AUTH_PASSWORD,
+        username: process.env.GATSBY_AUTH_USERNAME,
+        password: process.env.GATSBY_AUTH_PASSWORD,
     },
 }
 
@@ -32,7 +32,7 @@ exports.handler = async (event, context, callback) => {
 
     // Parse that post data body
     const data = JSON.parse(event.body)
-    const apiUrl = data.data.baseUrl
+    const apiUrl = data.data.baseUrl + '/entries'
     const payload = data.data.payload
 
     // Check we have the required data
@@ -78,7 +78,14 @@ exports.handler = async (event, context, callback) => {
         })
     } catch (err) {
         console.log(err)
-        // Kill the plugin
+
+        return {
+            statusCode: 400,
+            headers,
+            body: JSON.stringify({
+                message: 'Something went wrong',
+            }),
+        }
         return false
     }
 
