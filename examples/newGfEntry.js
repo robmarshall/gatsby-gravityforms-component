@@ -71,7 +71,7 @@ exports.handler = async (event, context, callback) => {
                 ...authParams,
                 oauth_signature: signature,
             },
-            data: '', //data.data.payload,
+            data: data.data.payload,
         })
     } catch (error) {
         const data = error.response.data
