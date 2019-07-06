@@ -64,8 +64,13 @@ exports.handler = async (event, context, callback) => {
     )
 
     let result
+
+    console.log(data.data.payload)
+
     try {
-        result = await axios.post(apiUrl, {
+        result = await axios({
+            method: 'post',
+            url: apiUrl,
             responseType: 'json',
             params: {
                 ...authParams,
@@ -106,7 +111,7 @@ exports.handler = async (event, context, callback) => {
         body: JSON.stringify({
             status: 'success',
             message: 'Entry added to Gravity Forms',
-            data: result,
+            confirmation_message: result.data.confirmation_message,
         }),
     }
 }
