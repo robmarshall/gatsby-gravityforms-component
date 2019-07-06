@@ -20,7 +20,7 @@ import passToGravityForms from './utils/passToGravityForms'
 
 const GravityFormForm = ({ id, formData, lambda }) => {
     // Pull in form functions
-    const { register, errors, handleSubmit, watch } = useForm()
+    const { register, errors, handleSubmit, watch, setError } = useForm()
 
     // Create general error state
     const [generalError, setGeneralError] = useState('')
@@ -33,21 +33,21 @@ const GravityFormForm = ({ id, formData, lambda }) => {
     const onSubmitCallback = values => {
         // Check that at least one field has been filled in
         if (submittionHasOneFieldEntry(values)) {
-            passToGravityForms(singleForm.apiURL, values, lambda)
+            passToGravityForms(singleForm.apiURL, values, lambda, setError)
         } else {
             setGeneralError('leastOneField')
         }
     }
 
-    if (!isObjEmpty(errors)) {
-        setGeneralError('formHasError')
-    } else {
-        // If there is an error currently, and there is one
-        // field populated, clean up
-        if (generalError && submittionHasOneFieldEntry(watchAllForm)) {
-            setGeneralError('')
-        }
-    }
+    // if (!isObjEmpty(errors)) {
+    //     setGeneralError('formHasError')
+    // } else {
+    //     // If there is an error currently, and there is one
+    //     // field populated, clean up
+    //     if (generalError && submittionHasOneFieldEntry(watchAllForm)) {
+    //         setGeneralError('')
+    //     }
+    // }
 
     return (
         singleForm && (
