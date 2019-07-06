@@ -2,7 +2,7 @@ const strings = {
     errors: {
         general:
             'There was a problem with your submittion. Errors have been highlighted below.',
-        leastOneField: 'There needs to be at least one field populated.',
+        leastOneField: 'At least one field must be filled out.',
         required: 'This field is required.',
         pattern: 'The format seems to be wrong.',
         maxChar: {
