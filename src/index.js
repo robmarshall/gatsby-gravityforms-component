@@ -33,7 +33,7 @@ const GravityFormForm = ({ id, formData, lambda }) => {
     const onSubmitCallback = values => {
         // Check that at least one field has been filled in
         if (submittionHasOneFieldEntry(values)) {
-            passToGravityForms(id, singleForm.apiURL, values, lambda)
+            passToGravityForms(singleForm.apiURL, values, lambda)
         } else {
             setGeneralError('leastOneField')
         }
