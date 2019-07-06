@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
+import ReactHtmlParser from 'react-html-parser'
 import PropTypes from 'prop-types'
 import useForm from 'react-hook-form'
 import getForm from './utils/getForm'
 import FieldBuilder from './container/FieldBuilder'
 import FormGeneralError from './components/FormGeneralError'
-import { isObjEmpty } from './utils/helpers'
-import { manageMainFormError } from './utils/manageErrors'
+import { doesObjectExist, isObjEmpty } from './utils/helpers'
+import {
+    handleGravityFormsValidationErrors,
+    manageMainFormError,
+} from './utils/manageErrors'
 import { submittionHasOneFieldEntry } from './utils/manageFormData'
 import passToGravityForms from './utils/passToGravityForms'
 
@@ -25,20 +29,53 @@ const GravityFormForm = ({ id, formData, lambda }) => {
     // Create general error state
     const [generalError, setGeneralError] = useState('')
 
+    // State for confirmation message
+    const [confirmationMessage, setConfirmationMessage] = useState('')
+
     const watchAllForm = watch()
 
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
 
-    const onSubmitCallback = values => {
+    const onSubmitCallback = async values => {
         // Check that at least one field has been filled in
         if (submittionHasOneFieldEntry(values)) {
-            passToGravityForms(singleForm.apiURL, values, lambda, setError)
+            let restResponse = await passToGravityForms(
+                singleForm.apiURL,
+                values,
+                lambda
+            )
+
+            if (restResponse.status == 'error') {
+                // Handle the errors
+                // First check to make sure we have the correct data
+                if (doesObjectExist(res.data)) {
+                    // Validation errors passed back by Gravity Forms
+                    if (restResponse.data.status === 'gravityFormErrors') {
+                        // Pass messages to handle that sets react-hook-form errors
+                        handleGravityFormsValidationErrors(
+                            res.data.validation_messages,
+                            setError
+                        )
+                    }
+                } else {
+                    console.log(err.response)
+                    // FILL OUT ERROR
+                    // Seemed to be an unknown issue
+                }
+            }
+
+            if (restResponse.status == 'success') {
+                setConfirmationMessage(
+                    restResponse.data.data.confirmation_message
+                )
+            }
         } else {
             setGeneralError('leastOneField')
         }
     }
 
+    // FIX ERROR CLEANER
     // if (!isObjEmpty(errors)) {
     //     setGeneralError('formHasError')
     // } else {
@@ -48,31 +85,36 @@ const GravityFormForm = ({ id, formData, lambda }) => {
     //         setGeneralError('')
     //     }
     // }
+    if (!confirmationMessage) {
+        return (
+            singleForm && (
+                <form
+                    id={`gravityform--id-${id}`}
+                    className={`gravityform gravityform--id-${id}`}
+                    key={`gravityform--id-${id}`}
+                    onSubmit={handleSubmit(onSubmitCallback)}
+                >
+                    {(!isObjEmpty(errors) || generalError) && (
+                        <FormGeneralError errorCode={generalError} />
+                    )}
 
-    return (
-        singleForm && (
-            <form
-                id={`gravityform--id-${id}`}
-                className={`gravityform gravityform--id-${id}`}
-                key={`gravityform--id-${id}`}
-                onSubmit={handleSubmit(onSubmitCallback)}
-            >
-                {(!isObjEmpty(errors) || generalError) && (
-                    <FormGeneralError errorCode={generalError} />
-                )}
-
-                <FieldBuilder
-                    formId={id}
-                    formData={singleForm}
-                    register={register}
-                    errors={errors}
-                />
-                <button type="submit">
-                    {singleForm.button.text ? singleForm.button.text : 'Submit'}
-                </button>
-            </form>
+                    <FieldBuilder
+                        formId={id}
+                        formData={singleForm}
+                        register={register}
+                        errors={errors}
+                    />
+                    <button type="submit">
+                        {singleForm.button.text
+                            ? singleForm.button.text
+                            : 'Submit'}
+                    </button>
+                </form>
+            )
         )
-    )
+    } else {
+        return ReactHtmlParser(confirmationMessage)
+    }
 }
 
 export default GravityFormForm
