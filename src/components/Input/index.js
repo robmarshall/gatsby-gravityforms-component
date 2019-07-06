@@ -8,8 +8,6 @@ const Input = props => {
         ? new RegExp(props.inputMaskValue)
         : false
 
-    console.log(props.errors)
-
     return (
         <div
             className={classnames(
