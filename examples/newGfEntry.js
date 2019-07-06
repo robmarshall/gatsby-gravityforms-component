@@ -9,10 +9,6 @@ require('dotenv').config({
     path: `.env.${activeEnv}`,
 })
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-
-console.log(`Using environment config: '${activeEnv}'`)
-
 // Set up essential values
 const secretData = {
     gfKey: process.env.GATSBY_GF_CONSUMER_KEY,
@@ -29,15 +25,16 @@ const headers = {
     'Access-Control-Allow-Headers': 'Content-Type',
 }
 
-const statusCode = 200
-
 exports.handler = async (event, context, callback) => {
     // Make sure we are dealing with a POST request
     if (event.httpMethod !== 'POST') {
         return {
-            statusCode,
+            statusCode: 400,
             headers,
-            body: 'This was not a POST request!',
+            body: JSON.stringify({
+                status: 'notPost',
+                message: 'This was not a POST request!',
+            }),
         }
     }
 
@@ -47,14 +44,12 @@ exports.handler = async (event, context, callback) => {
 
     // Check we have the required data
     if (!apiUrl) {
-        const message = 'Required data is missing'
-        console.error(message)
-
         return {
             statusCode: 424,
             headers,
             body: JSON.stringify({
-                message,
+                status: 'missingApiData',
+                message: 'Required API data is missing',
             }),
         }
     }
@@ -68,18 +63,7 @@ exports.handler = async (event, context, callback) => {
         secretData.gfSecret
     )
 
-    const test = {
-        input_2: 'rt',
-        input_6: 'rt',
-        input_9: 'rt',
-        input_10: 'rt',
-        input_11: 'rt',
-    }
-
-    console.log(test)
-
     let result
-
     try {
         result = await axios.post(apiUrl, {
             responseType: 'json',
@@ -87,30 +71,42 @@ exports.handler = async (event, context, callback) => {
                 ...authParams,
                 oauth_signature: signature,
             },
-            data: test,
-            // auth: {
-            //   username: secretData.auth.username,
-            //   password: secretData.auth.password,
-            // },
+            data: '', //data.data.payload,
         })
-    } catch (err) {
-        console.log(err.response)
-        console.log(err.response.data)
-        return {
-            statusCode: 400,
-            headers,
-            body: JSON.stringify({
-                message: 'Something went wrong',
-            }),
+    } catch (error) {
+        const data = error.response.data
+
+        // Here we know this is a Gravity Form Error
+        if (data.is_valid === false) {
+            return {
+                statusCode: 400,
+                headers,
+                body: JSON.stringify({
+                    status: 'gravityFormErrors',
+                    message: 'Gravity Forms has flagged issues',
+                    validation_messages: data.validation_messages,
+                }),
+            }
+        } else {
+            // Unknown error
+            return {
+                statusCode: 400,
+                headers,
+                body: JSON.stringify({
+                    status: 'unknown',
+                    message: 'Something went wrong',
+                }),
+            }
         }
-        return false
     }
 
     return {
-        statusCode,
+        statusCode: 200,
         headers,
         body: JSON.stringify({
-            message: 'Charge successfully created!',
+            status: 'success',
+            message: 'Entry added to Gravity Forms',
+            data: result,
         }),
     }
 }
