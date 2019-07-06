@@ -79,7 +79,7 @@ exports.handler = async (event, context, callback) => {
         // Here we know this is a Gravity Form Error
         if (data.is_valid === false) {
             return {
-                statusCode: 400,
+                statusCode: 422,
                 headers,
                 body: JSON.stringify({
                     status: 'gravityFormErrors',
@@ -101,7 +101,7 @@ exports.handler = async (event, context, callback) => {
     }
 
     return {
-        statusCode: 200,
+        statusCode: 201,
         headers,
         body: JSON.stringify({
             status: 'success',
