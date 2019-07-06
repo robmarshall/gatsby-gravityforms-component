@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import useForm from 'react-hook-form'
 import getForm from './utils/getForm'
+import FieldBuilder from './container/FieldBuilder'
+import FormGeneralError from './components/FormGeneralError'
 import { isObjEmpty } from './utils/helpers'
 import { manageMainFormError } from './utils/manageErrors'
+import { submittionHasOneFieldEntry } from './utils/manageFormData'
 import passToGravityForms from './utils/passToGravityForms'
-import FieldBuilder from './container/FieldBuilder'
 
 /**
  * Component to take Gravity Form graphQL data and turn into
@@ -17,17 +19,34 @@ import FieldBuilder from './container/FieldBuilder'
  */
 
 const GravityFormForm = ({ id, formData, lambda }) => {
-    const { register, errors, handleSubmit, watch, customErrors } = useForm()
+    // Pull in form functions
+    const { register, errors, handleSubmit, watch } = useForm()
+
+    // Create general error state
+    const [generalError, setGeneralError] = useState('')
+
+    const watchAllForm = watch()
 
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
 
     const onSubmitCallback = values => {
-        passToGravityForms(id, singleForm.apiURL, values, lambda)
+        // Check that at least one field has been filled in
+        if (submittionHasOneFieldEntry(values)) {
+            passToGravityForms(id, singleForm.apiURL, values, lambda)
+        } else {
+            setGeneralError('leastOneField')
+        }
     }
 
     if (!isObjEmpty(errors)) {
-        console.log(errors)
+        setGeneralError('formHasError')
+    } else {
+        // If there is an error currently, and there is one
+        // field populated, clean up
+        if (generalError && submittionHasOneFieldEntry(watchAllForm)) {
+            setGeneralError('')
+        }
     }
 
     return (
@@ -38,10 +57,8 @@ const GravityFormForm = ({ id, formData, lambda }) => {
                 key={`gravityform--id-${id}`}
                 onSubmit={handleSubmit(onSubmitCallback)}
             >
-                {!isObjEmpty(errors) && (
-                    <div className="gravityform__error_inform">
-                        <p>{manageMainFormError()}</p>
-                    </div>
+                {(!isObjEmpty(errors) || generalError) && (
+                    <FormGeneralError errorCode={generalError} />
                 )}
 
                 <FieldBuilder
