@@ -1,5 +1,3 @@
-import strings from './strings'
-
 /**
  * Take the error function and return the correct string for
  * that error
@@ -17,12 +15,4 @@ export const manageSingleErrors = (errors, customError) => {
     }
 
     return ''
-}
-
-export const manageMainFormError = error => {
-    if (error) {
-        return error
-    }
-
-    return strings.errors.general
 }
