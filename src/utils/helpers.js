@@ -10,6 +10,13 @@ function isObject(element) {
     return true
 }
 
+function doesObjectExist(obj) {
+    if (typeof obj != 'undefined') {
+        return true
+    }
+    return false
+}
+
 function isObjEmpty(obj) {
     for (var key in obj) {
         if (obj.hasOwnProperty(key)) return false
@@ -19,6 +26,7 @@ function isObjEmpty(obj) {
 
 module.exports = {
     createGfKeyFromField,
+    doesObjectExist,
     isObject,
     isObjEmpty,
 }
