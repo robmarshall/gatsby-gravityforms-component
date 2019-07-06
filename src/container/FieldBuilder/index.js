@@ -56,7 +56,6 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
                         errors={errors[`input_${field.id}`]}
-                        customErrorMessage={field.errorMessage}
                     />
                 )
             case 'textarea':
@@ -80,7 +79,6 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
                         errors={errors[`input_${field.id}`]}
-                        customErrorMessage={field.errorMessage}
                     />
                 )
             case 'select':
@@ -144,7 +142,6 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         maxLength={field.maxLength}
                         inputMaskValue={field.inputMaskValue}
                         errors={errors[`input_${field.id}`]}
-                        customErrorMessage={field.errorMessage}
                     />
                 )
             case 'checkbox':
@@ -204,7 +201,6 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         required={field.isRequired}
                         placeholder={field.placeholder}
                         errors={errors[`input_${field.id}`]}
-                        customErrorMessage={field.errorMessage}
                     />
                 )
             case 'html':

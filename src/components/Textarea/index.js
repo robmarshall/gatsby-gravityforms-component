@@ -1,6 +1,5 @@
 import React from 'react'
 import classnames from 'classnames'
-import { manageSingleErrors } from '../../utils/manageErrors'
 import { outputDescription } from '../../utils/inputSettings'
 import strings from '../../utils/strings'
 
@@ -61,7 +60,7 @@ const Textarea = props => {
             )}
             {props.errors && (
                 <div className="gravityform__error_message">
-                    {manageSingleErrors(props.errors, props.customErrorMessage)}
+                    {props.errors.message}
                 </div>
             )}
         </div>
