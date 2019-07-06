@@ -128,6 +128,14 @@ If you have any issues with these steps, see these articles:
 -   https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e
 -   https://macarthur.me/posts/building-a-lambda-function-with-netlify
 
+### Running on Localhost
+
+If you are running this in a development build on localhost in Chrome, you will come across a Cors issue. No matter what you do, the request will not be read. This is due to Chrome not allowing this.
+
+A solution for a development environment - Run Chrome with the following flag: --disable-web-security
+
+For more information: https://stackoverflow.com/questions/10883211/deadly-cors-when-http-localhost-is-the-origin/10892392#10892392
+
 ## To Do
 
 ### Field Components
