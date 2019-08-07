@@ -13,10 +13,6 @@ require('dotenv').config({
 const secretData = {
     gfKey: process.env.GATSBY_GF_CONSUMER_KEY,
     gfSecret: process.env.GATSBY_GF_CONSUMER_SECRET,
-    auth: {
-        username: process.env.GATSBY_AUTH_USERNAME,
-        password: process.env.GATSBY_AUTH_PASSWORD,
-    },
 }
 
 // For those requests
