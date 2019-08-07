@@ -1,6 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import _ from 'lodash'
 
 import {
     getPlacement,
@@ -16,7 +17,13 @@ import Checkbox from '../../components/Checkbox'
 import Radio from '../../components/Radio'
 import Html from '../../components/Html'
 
-const FieldBuilder = ({ formId, formData, register, errors }) => {
+const FieldBuilder = ({
+    formId,
+    formData,
+    presetValues = {},
+    register,
+    errors,
+}) => {
     // The top level settings for the whole form
     const formSettings = {
         descriptionPlacement: formData.descriptionPlacement,
@@ -43,7 +50,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
-                        value={ifDefaultValue(field)}
+                        value={
+                            _get(presetValues, `input_${field.id}`, false)
+                                ? _get(presetValues, `input_${field.id}`, false)
+                                : ifDefaultValue(field)
+                        }
                         description={field.description}
                         descriptionPlacement={getPlacement(
                             formSettings.descriptionPlacement,
@@ -66,7 +77,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
-                        value={ifDefaultValue(field)}
+                        value={
+                            _get(presetValues, `input_${field.id}`, false)
+                                ? _get(presetValues, `input_${field.id}`, false)
+                                : ifDefaultValue(field)
+                        }
                         description={field.description}
                         descriptionPlacement={getPlacement(
                             formSettings.descriptionPlacement,
@@ -129,7 +144,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
-                        value={ifDefaultValue(field)}
+                        value={
+                            _get(presetValues, `input_${field.id}`, false)
+                                ? _get(presetValues, `input_${field.id}`, false)
+                                : ifDefaultValue(field)
+                        }
                         description={field.description}
                         descriptionPlacement={getPlacement(
                             formSettings.descriptionPlacement,
@@ -190,7 +209,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
-                        value={ifDefaultValue(field)}
+                        value={
+                            _get(presetValues, `input_${field.id}`, false)
+                                ? _get(presetValues, `input_${field.id}`, false)
+                                : ifDefaultValue(field)
+                        }
                         description={field.description}
                         descriptionPlacement={getPlacement(
                             formSettings.descriptionPlacement,
@@ -231,7 +254,11 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         name={`input_${field.id}`}
                         label={field.label}
                         type={field.type}
-                        value={ifDefaultValue(field)}
+                        value={
+                            _get(presetValues, `input_${field.id}`, false)
+                                ? _get(presetValues, `input_${field.id}`, false)
+                                : ifDefaultValue(field)
+                        }
                         description={field.description}
                         descriptionPlacement={getPlacement(
                             formSettings.descriptionPlacement,

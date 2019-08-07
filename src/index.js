@@ -22,7 +22,7 @@ import passToGravityForms from './utils/passToGravityForms'
  *                              netlify or similar
  */
 
-const GravityFormForm = ({ id, formData, lambda }) => {
+const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
     // Pull in form functions
     const { register, errors, handleSubmit, watch, setError } = useForm()
 
@@ -101,6 +101,7 @@ const GravityFormForm = ({ id, formData, lambda }) => {
                     <FieldBuilder
                         formId={id}
                         formData={singleForm}
+                        presetValues={presetValues}
                         register={register}
                         errors={errors}
                     />

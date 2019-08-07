@@ -78,6 +78,7 @@ const examplePage = () => (
     <GravityFormForm
         id={1}
         formData={allGravityData()}
+        presetValues={{ input_1: 'special_value' }}
         lambda={process.env.LAMBDA_ENDPOINT}
     />
 )
@@ -85,6 +86,11 @@ export default examplePage
 ```
 
 This outputs the form that has been set up in WordPress - Gravity Forms. Ready for you to style it!
+
+id: The ID of the form, get in WordPress Gravity Forms
+formDate: The data passed from the query function - this is the same for all forms
+presetValues: An object, with the keys set as the input ID (shown in Gravity Forms editor) and the value to set the field as. Great for hidden fields.
+lambda: The URL to the lambda endpoint
 
 ## Add Environment Variables
 
