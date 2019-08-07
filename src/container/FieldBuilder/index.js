@@ -35,6 +35,7 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
         )
 
         switch (field.type) {
+            // Start with the standard fields
             case 'text':
                 return (
                     <Input
@@ -220,6 +221,33 @@ const FieldBuilder = ({ formId, formData, register, errors }) => {
                         className={field.cssClass}
                     />
                 )
+
+            // Move onto Advanced fields
+
+            case 'email':
+                return (
+                    <Input
+                        key={field.id}
+                        name={`input_${field.id}`}
+                        label={field.label}
+                        type={field.type}
+                        value={ifDefaultValue(field)}
+                        description={field.description}
+                        descriptionPlacement={getPlacement(
+                            formSettings.descriptionPlacement,
+                            field.descriptionPlacement
+                        )}
+                        wrapClassName={inputWrapperClass}
+                        className={field.cssClass}
+                        register={register}
+                        required={field.isRequired}
+                        placeholder={field.placeholder}
+                        maxLength={field.maxLength}
+                        inputMaskValue={field.inputMaskValue}
+                        errors={errors[`input_${field.id}`]}
+                    />
+                )
+
             default:
                 return null
         }
