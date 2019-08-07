@@ -36,6 +36,7 @@ exports.handler = async (event, context, callback) => {
 
     // Parse that post data body
     const data = JSON.parse(event.body)
+
     const apiUrl = data.data.baseUrl + '/submissions'
 
     // Check we have the required data
@@ -73,21 +74,21 @@ exports.handler = async (event, context, callback) => {
             data: data.data.payload,
         })
     } catch (error) {
-        const data = error.response.data
-
         // Check the function log for this!
         console.log('newGFEntry.js Error Data')
         console.log(error)
 
+        const errorResponse = error.response.data
+
         // Here we know this is a Gravity Form Error
-        if (data.is_valid === false) {
+        if (errorResponse.is_valid === false) {
             return {
                 statusCode: 422,
                 headers,
                 body: JSON.stringify({
                     status: 'gravityFormErrors',
                     message: 'Gravity Forms has flagged issues',
-                    validation_messages: data.validation_messages,
+                    validation_messages: errorResponse.validation_messages,
                 }),
             }
         } else {
