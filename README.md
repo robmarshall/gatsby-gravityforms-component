@@ -77,7 +77,7 @@ const allGravityData = () => {
 const examplePage = () => (
     <GravityFormForm
         id={1}
-        formData={allGravityData}
+        formData={allGravityData()}
         lambda={process.env.LAMBDA_ENDPOINT}
     />
 )
