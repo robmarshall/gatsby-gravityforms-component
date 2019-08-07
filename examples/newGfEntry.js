@@ -61,8 +61,6 @@ exports.handler = async (event, context, callback) => {
 
     let result
 
-    console.log(data.data.payload)
-
     try {
         result = await axios({
             method: 'post',
@@ -76,6 +74,10 @@ exports.handler = async (event, context, callback) => {
         })
     } catch (error) {
         const data = error.response.data
+
+        // Check the function log for this!
+        console.log('newGFEntry.js Error Data')
+        console.log(error)
 
         // Here we know this is a Gravity Form Error
         if (data.is_valid === false) {
