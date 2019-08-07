@@ -49,12 +49,12 @@ const GravityFormForm = ({ id, formData, lambda }) => {
             if (restResponse.status == 'error') {
                 // Handle the errors
                 // First check to make sure we have the correct data
-                if (doesObjectExist(res.data)) {
+                if (doesObjectExist(restResponse.data)) {
                     // Validation errors passed back by Gravity Forms
                     if (restResponse.data.status === 'gravityFormErrors') {
                         // Pass messages to handle that sets react-hook-form errors
                         handleGravityFormsValidationErrors(
-                            res.data.validation_messages,
+                            restResponse.data.validation_messages,
                             setError
                         )
                     }
