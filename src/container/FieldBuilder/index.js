@@ -51,8 +51,12 @@ const FieldBuilder = ({
                         label={field.label}
                         type={field.type}
                         value={
-                            _get(presetValues, `input_${field.id}`, false)
-                                ? _get(presetValues, `input_${field.id}`, false)
+                            _.get(presetValues, `input_${field.id}`, false)
+                                ? _.get(
+                                      presetValues,
+                                      `input_${field.id}`,
+                                      false
+                                  )
                                 : ifDefaultValue(field)
                         }
                         description={field.description}
@@ -78,8 +82,12 @@ const FieldBuilder = ({
                         label={field.label}
                         type={field.type}
                         value={
-                            _get(presetValues, `input_${field.id}`, false)
-                                ? _get(presetValues, `input_${field.id}`, false)
+                            _.get(presetValues, `input_${field.id}`, false)
+                                ? _.get(
+                                      presetValues,
+                                      `input_${field.id}`,
+                                      false
+                                  )
                                 : ifDefaultValue(field)
                         }
                         description={field.description}
@@ -145,8 +153,12 @@ const FieldBuilder = ({
                         label={field.label}
                         type={field.type}
                         value={
-                            _get(presetValues, `input_${field.id}`, false)
-                                ? _get(presetValues, `input_${field.id}`, false)
+                            _.get(presetValues, `input_${field.id}`, false)
+                                ? _.get(
+                                      presetValues,
+                                      `input_${field.id}`,
+                                      false
+                                  )
                                 : ifDefaultValue(field)
                         }
                         description={field.description}
@@ -210,8 +222,12 @@ const FieldBuilder = ({
                         label={field.label}
                         type={field.type}
                         value={
-                            _get(presetValues, `input_${field.id}`, false)
-                                ? _get(presetValues, `input_${field.id}`, false)
+                            _.get(presetValues, `input_${field.id}`, false)
+                                ? _.get(
+                                      presetValues,
+                                      `input_${field.id}`,
+                                      false
+                                  )
                                 : ifDefaultValue(field)
                         }
                         description={field.description}
@@ -255,8 +271,12 @@ const FieldBuilder = ({
                         label={field.label}
                         type={field.type}
                         value={
-                            _get(presetValues, `input_${field.id}`, false)
-                                ? _get(presetValues, `input_${field.id}`, false)
+                            _.get(presetValues, `input_${field.id}`, false)
+                                ? _.get(
+                                      presetValues,
+                                      `input_${field.id}`,
+                                      false
+                                  )
                                 : ifDefaultValue(field)
                         }
                         description={field.description}
