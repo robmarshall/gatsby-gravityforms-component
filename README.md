@@ -140,6 +140,16 @@ A solution for a development environment - Run Chrome with the following flag: -
 
 For more information: https://stackoverflow.com/questions/10883211/deadly-cors-when-http-localhost-is-the-origin/10892392#10892392
 
+## Self Signed Certificate Error - SSL
+
+If you are having Self Signed Certificate issues, put this at the top of the newGfEntry.js file.
+
+```
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+```
+
+-   But only on your localhost!!! \*
+
 ## Testing & Developing
 
 Firstly, yes please! Any help would be great.
