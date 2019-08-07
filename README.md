@@ -74,7 +74,7 @@ const allGravityData = () => {
     return allGfForm
 }
 
-const examplePage = () => <GravityFormForm id={1} formData={allGravityData} />
+const examplePage = () => <GravityFormForm id={1} formData={allGravityData} lambda={process.env.LAMBDA_ENDPOINT} />
 export default examplePage
 ```
 
