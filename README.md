@@ -140,6 +140,12 @@ A solution for a development environment - Run Chrome with the following flag: -
 
 For more information: https://stackoverflow.com/questions/10883211/deadly-cors-when-http-localhost-is-the-origin/10892392#10892392
 
+## Testing & Developing
+
+Firstly, yes please! Any help would be great.
+
+If you are developing locally, you may run into an error "Cannot resolve React". If you do, check out this article: https://thoughtsandstuff.com/building-react-components-for-gatsby-using-npm-link-and-hooks-cant-resolve-react-solution
+
 ## To Do
 
 ### Field Components
