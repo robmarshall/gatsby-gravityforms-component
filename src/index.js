@@ -59,7 +59,7 @@ const GravityFormForm = ({ id, formData, lambda }) => {
                         )
                     }
                 } else {
-                    console.log(err.response)
+                    console.log(restResponse)
                     // FILL OUT ERROR
                     // Seemed to be an unknown issue
                 }
