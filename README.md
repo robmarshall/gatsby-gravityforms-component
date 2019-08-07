@@ -74,7 +74,13 @@ const allGravityData = () => {
     return allGfForm
 }
 
-const examplePage = () => <GravityFormForm id={1} formData={allGravityData} lambda={process.env.LAMBDA_ENDPOINT} />
+const examplePage = () => (
+    <GravityFormForm
+        id={1}
+        formData={allGravityData}
+        lambda={process.env.LAMBDA_ENDPOINT}
+    />
+)
 export default examplePage
 ```
 
@@ -87,8 +93,6 @@ The following environment variables should be added to your hosting provider bac
 ```js
 GF_CONSUMER_KEY = 'XXXXXX'
 GF_CONSUMER_SECRET = 'XXXXXX'
-AUTH_USERNAME = 'XXXXXX'
-AUTH_PASSWORD = 'XXXXXX'
 LAMBDA_ENDPOINT = 'https://examplesite.com/.netlify/functions/newGfEntry'
 ```
 
@@ -107,7 +111,7 @@ Using a combination of environment variables and a Lambda function we can naviga
 
 Add the following function as a Lambda function, and add your Gravity Form keys as environment variables (these will be already set if you are using the gatsby-source-gravityforms plugin)
 
-1. In your projects /src folder, add a folder called "lambda"
+1. Add a folder called "lambda" in your projects /src folder
 2. Create a file inside called "newGfEntry.js"
 3. Copy the code from /examples/lambda/newGfEntry.js into that file
 4. Make sure all environment variables at the top of the code have been updated with yours.
