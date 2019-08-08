@@ -5,12 +5,12 @@ import React from 'react'
  * Things such as: Input Mask, Required, Visibility
  */
 
-function getPlacement(formSetting, fieldSettings) {
+export function getPlacement(formSetting, fieldSettings) {
     return fieldSettings ? fieldSettings : formSetting
 }
 
-function outputDescription(description, placement, currentPosition) {
-    if (description && currentPosition == placement) {
+export function outputDescription(description, placement, currentPosition) {
+    if (description && currentPosition === placement) {
         return (
             <p
                 className={`gravityforms__description gravityforms__description--${placement}`}
@@ -22,17 +22,10 @@ function outputDescription(description, placement, currentPosition) {
     return false
 }
 
-function islabelHidden(label) {
+export function islabelHidden(label) {
     return label === 'hidden_label' ? true : false
 }
 
-function ifDefaultValue(field) {
+export function ifDefaultValue(field) {
     return field['defaultValue'] !== 'undefined' ? field['defaultValue'] : false
-}
-
-module.exports = {
-    getPlacement,
-    outputDescription,
-    ifDefaultValue,
-    islabelHidden,
 }

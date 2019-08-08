@@ -27,6 +27,4 @@ export default async (baseUrl, formData, lambdaEndpoint) => {
         status: 'success',
         data: result,
     }
-
-    return false
 }

@@ -8,9 +8,9 @@ import FormGeneralError from './components/FormGeneralError'
 import { doesObjectExist, isObjEmpty } from './utils/helpers'
 import {
     handleGravityFormsValidationErrors,
-    manageMainFormError,
+    // manageMainFormError,
 } from './utils/manageErrors'
-import { submittionHasOneFieldEntry } from './utils/manageFormData'
+import { submissionHasOneFieldEntry } from './utils/manageFormData'
 import passToGravityForms from './utils/passToGravityForms'
 
 /**
@@ -24,7 +24,7 @@ import passToGravityForms from './utils/passToGravityForms'
 
 const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
     // Pull in form functions
-    const { register, errors, handleSubmit, watch, setError } = useForm()
+    const { register, errors, handleSubmit, setError } = useForm()
 
     // Create general error state
     const [generalError, setGeneralError] = useState('')
@@ -32,21 +32,21 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
     // State for confirmation message
     const [confirmationMessage, setConfirmationMessage] = useState('')
 
-    const watchAllForm = watch()
+    // const watchAllForm = watch()
 
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
 
     const onSubmitCallback = async values => {
         // Check that at least one field has been filled in
-        if (submittionHasOneFieldEntry(values)) {
-            let restResponse = await passToGravityForms(
+        if (submissionHasOneFieldEntry(values)) {
+            const restResponse = await passToGravityForms(
                 singleForm.apiURL,
                 values,
                 lambda
             )
 
-            if (restResponse.status == 'error') {
+            if (restResponse.status === 'error') {
                 // Handle the errors
                 // First check to make sure we have the correct data
                 if (doesObjectExist(restResponse.data)) {
@@ -65,7 +65,7 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                 }
             }
 
-            if (restResponse.status == 'success') {
+            if (restResponse.status === 'success') {
                 setConfirmationMessage(
                     restResponse.data.data.confirmation_message
                 )
@@ -81,7 +81,7 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
     // } else {
     //     // If there is an error currently, and there is one
     //     // field populated, clean up
-    //     if (generalError && submittionHasOneFieldEntry(watchAllForm)) {
+    //     if (generalError && submissionHasOneFieldEntry(watchAllForm)) {
     //         setGeneralError('')
     //     }
     // }
@@ -113,9 +113,9 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                 </form>
             )
         )
-    } else {
-        return ReactHtmlParser(confirmationMessage)
     }
+
+    return ReactHtmlParser(confirmationMessage)
 }
 
 export default GravityFormForm
