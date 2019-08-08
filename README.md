@@ -109,28 +109,53 @@ Depending on what build (Gatsby/React/ect) you are using, these will need to be 
 -   Webpack: https://webpack.js.org/plugins/define-plugin/
 -   Gatsby: https://www.gatsbyjs.org/docs/environment-variables/#accessing-environment-variables-in-javascript
 
-## Adding the Lambda (for netlify)
+## Adding the Lambda (for Netlify)
 
 To enable the component to pass data from a static site to a server needs a little big of help to bridge the gap. As Gravity Forms uses secret keys to read/write, there needs to be somewhere safe to hold and manage these details.
 
 Using a combination of environment variables and a Lambda function we can navigate these insecure waters.
 
-Add the following function as a Lambda function, and add your Gravity Form keys as environment variables (these will be already set if you are using the gatsby-source-gravityforms plugin)
+Add the following function as a Lambda function, and add your Gravity Form keys as environment variables (these will be already set if you are using the gatsby-source-gravityforms plugin).
+
+The steps below are a boilerplate to build this bridge. However you will need to add a new step in your development process. [This blog post explains](https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e) how to start locally developing lambda functions. You can test the function locally by adding the below environment variables. _See section below about testing on localhost and circumventing security warnings_
+
+```env.development
+LAMBDA_ENDPOINT="http://localhost:9000/.netlify/functions/newGfEntry"
+```
+
+```env.production
+LAMBDA_ENDPOINT="https://website-name/.netlify/functions/newGfEntry"
+```
 
 1. Add a folder called "lambda" in your projects /src folder
 2. Create a file inside called "newGfEntry.js"
 3. Copy the code from /examples/lambda/newGfEntry.js into that file
 4. Make sure all environment variables at the top of the code have been updated with yours.
-5. Add a folder at the root of your project called "built-lambda"
+5. Add a folder at the root of your project called "lambda". This will be empty. The built lambda function will go in here on deployment.
 6. Create a file at the root of your project called netlify.toml
-7. Add the following code to netlify.toml
-8. TODO - add details about deployment
+7. Add the following code to netlify.toml:
 
-```
+```netlify.toml
 [build]
-    functions = "built-lambda"
+  Functions = "lambda"
+  Command = "npm run build:lambda && gatsby build"
 
+[build.environment]
+  GF_CONSUMER_KEY="XXX"
+  GF_CONSUMER_SECRET="XXX"
 ```
+
+The `netlify.toml` file will override your build command on deployment. So we need to tell Netlify to build your lamdba function _and also_ your Gatsby site.
+
+The lambda function _does not_ have access to your `.env.*` files you need to define the same keys here again (it is unfortunate to double handle this and a solution would be appreciated).
+
+When done, you will have created these files and folders:
+./netlify.toml
+./lambda/
+./src/lambda/
+./src/lambda/newGfEntry.js
+
+To test all this make sure to run `npm run start:lambda` in one tab, which will spin up the endpoint at `http://localhost:9000`, and then run `gatsby develop` in another.
 
 If you have any issues with these steps, see these articles:
 
@@ -175,6 +200,7 @@ If you are developing locally, you may run into an error "Cannot resolve React".
 -   [x] Radio
 -   [x] Hidden
 -   [x] HTML
+-   [ ] Captcha
 
 -   [x] Add masking to inputs
 
