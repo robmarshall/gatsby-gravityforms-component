@@ -11,7 +11,7 @@ function isObject(element) {
 }
 
 function doesObjectExist(obj) {
-    if (typeof obj != 'undefined') {
+    if (typeof obj !== 'undefined') {
         return true
     }
     return false

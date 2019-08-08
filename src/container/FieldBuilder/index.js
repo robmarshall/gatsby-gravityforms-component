@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import _ from 'lodash'
 
 import {
@@ -42,8 +42,22 @@ const FieldBuilder = ({
         )
 
         switch (field.type) {
+            // Add note for unsupported captcha field
+            case 'captcha':
+                return (
+                    <p>
+                        <strong>
+                            Gatsby Gravity Form Component currently does not
+                            support the CAPTCHA field. Form will not submit with
+                            this field present. Remove this field from the
+                            Gravity Form.
+                        </strong>
+                    </p>
+                )
             // Start with the standard fields
             case 'text':
+            case 'email':
+            case 'phone':
                 return (
                     <Input
                         key={field.id}
@@ -258,40 +272,6 @@ const FieldBuilder = ({
                         content={field.content}
                         wrapClassName={inputWrapperClass}
                         className={field.cssClass}
-                    />
-                )
-
-            // Move onto Advanced fields
-
-            case 'email':
-                return (
-                    <Input
-                        key={field.id}
-                        name={`input_${field.id}`}
-                        label={field.label}
-                        type={field.type}
-                        value={
-                            _.get(presetValues, `input_${field.id}`, false)
-                                ? _.get(
-                                      presetValues,
-                                      `input_${field.id}`,
-                                      false
-                                  )
-                                : ifDefaultValue(field)
-                        }
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
-                        wrapClassName={inputWrapperClass}
-                        className={field.cssClass}
-                        register={register}
-                        required={field.isRequired}
-                        placeholder={field.placeholder}
-                        maxLength={field.maxLength}
-                        inputMaskValue={field.inputMaskValue}
-                        errors={errors[`input_${field.id}`]}
                     />
                 )
 

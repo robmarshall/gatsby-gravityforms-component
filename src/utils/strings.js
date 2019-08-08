@@ -1,7 +1,7 @@
 const strings = {
     errors: {
         general:
-            'There was a problem with your submittion. Errors have been highlighted below.',
+            'There was a problem with your submission. Errors have been highlighted below.',
         leastOneField: 'At least one field must be filled out.',
         required: 'This field is required.',
         pattern: 'The format seems to be wrong.',
