@@ -230,6 +230,6 @@ If you are developing locally, you may run into an error "Cannot resolve React".
 
 ### Send to CMS
 
--   [ ] Turn data into Gravity Forms schema
--   [ ] Function to send/receive data from CMS
--   [ ] Error handling provided by Gravity Forms
+-   [x] Turn data into Gravity Forms schema
+-   [x] Function to send/receive data from CMS
+-   [x] Error handling provided by Gravity Forms
