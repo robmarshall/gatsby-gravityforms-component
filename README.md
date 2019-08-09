@@ -212,11 +212,11 @@ If you are developing locally, you may run into an error "Cannot resolve React".
 
 -   [x] Input
 -   [x] Textarea
--   [x] Select
+-   [ ] Select (half done, need to add default values)
 -   [ ] Multiselect
 -   [x] Number
--   [x] Checkbox
--   [x] Radio
+-   [ ] Checkbox (half done, need to add default values)
+-   [ ] Radio (half done, need to add default values)
 -   [x] Hidden
 -   [x] HTML
 -   [ ] Captcha
