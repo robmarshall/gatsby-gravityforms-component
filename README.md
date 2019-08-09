@@ -109,7 +109,22 @@ Depending on what build (Gatsby/React/ect) you are using, these will need to be 
 -   Webpack: https://webpack.js.org/plugins/define-plugin/
 -   Gatsby: https://www.gatsbyjs.org/docs/environment-variables/#accessing-environment-variables-in-javascript
 
-## Adding the Lambda (for Netlify)
+## Passing the Submission to Gravity Forms
+
+There is a need for a Lambda (or other) server function as the Gravity Forms API keys cannot be stored in a static site. The data needs to be passed to a middleman where the keys are added, before being sent to WordPress.
+
+The data flow is as follows:
+
+1. User submits form
+2. Component sends data to lambda (or any server) URL as a POST request
+3. Server takes post, and passes it to Gravity Forms as POST request
+4. Gravity Forms gets data
+
+Point 3 can be managed in multiple ways, depending on your build.
+
+### Adding the Lambda (for Netlify)
+
+If you are using Netlify then it is recommended you use a Lambda function. This process is _relatively_ plug and play.
 
 To enable the component to pass data from a static site to a server needs a little big of help to bridge the gap. As Gravity Forms uses secret keys to read/write, there needs to be somewhere safe to hold and manage these details.
 
@@ -162,6 +177,10 @@ If you have any issues with these steps, see these articles:
 -   https://www.netlify.com/docs/functions/
 -   https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e
 -   https://macarthur.me/posts/building-a-lambda-function-with-netlify
+
+### Using a Server
+
+TODO
 
 ### Running on Localhost
 
