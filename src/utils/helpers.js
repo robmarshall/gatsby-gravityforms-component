@@ -4,17 +4,25 @@ function createGfKeyFromField(string) {
     return field.replace('_', '.')
 }
 
-// Check if element is an object
-function isObject(element) {
-    if (typeof element !== 'object') return false
-    return true
-}
-
 function doesObjectExist(obj) {
     if (typeof obj !== 'undefined') {
         return true
     }
     return false
+}
+
+function filteredKeys(obj, filter) {
+    let key,
+        keys = []
+    for (key in obj)
+        if (obj.hasOwnProperty(key) && filter.test(key)) keys.push(key)
+    return keys
+}
+
+// Check if element is an object
+function isObject(element) {
+    if (typeof element !== 'object') return false
+    return true
 }
 
 function isObjEmpty(obj) {
@@ -27,6 +35,7 @@ function isObjEmpty(obj) {
 module.exports = {
     createGfKeyFromField,
     doesObjectExist,
+    filteredKeys,
     isObject,
     isObjEmpty,
 }
