@@ -1,5 +1,5 @@
 import React from 'react'
-import SanitizeHTML from './SanitizeHTML'
+import SanitizeHTML from '../components/SanitizeHTML'
 
 /**
  * This file manages all of the Gravity Forms input settings.

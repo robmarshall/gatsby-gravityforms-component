@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import SanitizeHTML from './SanitizeHTML'
+import SanitizeHTML from '../SanitizeHTML'
 import { outputDescription } from '../../utils/inputSettings'
 
 const Html = props => {
