@@ -42,6 +42,8 @@ const FieldBuilder = ({
             { 'hidden-label': islabelHidden(field.labelPlacement) }
         )
 
+        let errorKey = ''
+
         switch (field.type) {
             // Add note for unsupported captcha field
             case 'captcha':
@@ -192,10 +194,7 @@ const FieldBuilder = ({
                     />
                 )
             case 'checkbox':
-                const errorKey = filteredKeys(
-                    errors,
-                    RegExp(`input_${field.id}_`)
-                )
+                errorKey = filteredKeys(errors, RegExp(`input_${field.id}_`))
                 return (
                     <Checkbox
                         key={field.id}
@@ -217,10 +216,7 @@ const FieldBuilder = ({
                     />
                 )
             case 'radio':
-                const errorKey = filteredKeys(
-                    errors,
-                    RegExp(`input_${field.id}_`)
-                )
+                errorKey = filteredKeys(errors, RegExp(`input_${field.id}_`))
                 return (
                     <Radio
                         key={field.id}
