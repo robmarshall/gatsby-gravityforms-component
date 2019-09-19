@@ -20,7 +20,7 @@ const Html = props => {
                     props.className
                 )}
             >
-                ReactHtmlParser(props.content)
+                {ReactHtmlParser(props.content)}
             </div>
 
             {outputDescription(

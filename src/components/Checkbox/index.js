@@ -36,7 +36,7 @@ const Checkbox = ({
                             ref={register}
                         />
                         <label htmlFor={`${name}_${choiceID}`}>
-                            ReactHtmlParser(choice.text)
+                            {ReactHtmlParser(choice.text)}
                         </label>
                     </div>
                 )

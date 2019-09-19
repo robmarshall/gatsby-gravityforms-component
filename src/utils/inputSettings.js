@@ -16,7 +16,7 @@ export function outputDescription(description, placement, currentPosition) {
             <p
                 className={`gravityforms__description gravityforms__description--${placement}`}
             >
-                ReactHtmlParser(description)
+                {ReactHtmlParser(description)}
             </p>
         )
     }
