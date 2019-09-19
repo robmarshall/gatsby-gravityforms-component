@@ -32,12 +32,13 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
     // State for confirmation message
     const [confirmationMessage, setConfirmationMessage] = useState('')
 
-    // const watchAllForm = watch()
-
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
 
     const onSubmitCallback = async values => {
+        // Clean error
+        setGeneralError('')
+
         // Check that at least one field has been filled in
         if (submissionHasOneFieldEntry(values)) {
             const restResponse = await passToGravityForms(
@@ -60,8 +61,8 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                     }
                 } else {
                     console.log(restResponse)
-                    // FILL OUT ERROR
                     // Seemed to be an unknown issue
+                    setGeneralError('unknownError')
                 }
             }
 
@@ -75,16 +76,6 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
         }
     }
 
-    // FIX ERROR CLEANER
-    // if (!isObjEmpty(errors)) {
-    //     setGeneralError('formHasError')
-    // } else {
-    //     // If there is an error currently, and there is one
-    //     // field populated, clean up
-    //     if (generalError && submissionHasOneFieldEntry(watchAllForm)) {
-    //         setGeneralError('')
-    //     }
-    // }
     if (!confirmationMessage) {
         return (
             singleForm && (
