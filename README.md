@@ -44,6 +44,7 @@ const allGravityData = () => {
                             formFields {
                                 id
                                 label
+                                labelPlacement
                                 description
                                 descriptionPlacement
                                 type
