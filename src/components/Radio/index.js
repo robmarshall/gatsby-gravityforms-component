@@ -1,19 +1,27 @@
 import React from 'react'
 import classnames from 'classnames'
 import { outputDescription } from '../../utils/inputSettings'
+import strings from '../../utils/strings'
 
 const Radio = ({
     name,
     label,
+    errors,
     options,
     wrapClassName,
     className,
     register,
+    required,
     description,
     descriptionPlacement,
 }) => {
     return (
-        <div className={wrapClassName}>
+        <div
+            className={classnames(
+                wrapClassName,
+                errors && 'gravityform__field--error'
+            )}
+        >
             <legend>{label}</legend>
             {outputDescription(description, descriptionPlacement, 'above')}
             {options.map((choice, index) => {
@@ -31,7 +39,9 @@ const Radio = ({
                             name={`${name}`}
                             value={choice.value}
                             defaultChecked={choice.isSelected}
-                            ref={register}
+                            ref={register({
+                                required: required && strings.errors.required,
+                            })}
                         />
                         <label htmlFor={`${name}_${choiceID}`}>
                             {choice.text}
@@ -40,6 +50,11 @@ const Radio = ({
                 )
             })}
             {outputDescription(description, descriptionPlacement, 'below')}
+            {errors && (
+                <div className="gravityform__error_message">
+                    {errors.message}
+                </div>
+            )}
         </div>
     )
 }
