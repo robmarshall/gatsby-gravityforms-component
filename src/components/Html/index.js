@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import SanitizeHTML from '../SanitizeHTML'
+import ReactHtmlParser from 'react-html-parser'
 import { outputDescription } from '../../utils/inputSettings'
 
 const Html = props => {
@@ -14,13 +14,14 @@ const Html = props => {
                 props.descriptionPlacement,
                 'above'
             )}
-            <SanitizeHTML
+            <div
                 className={classnames(
                     'gravityform__' + props.type + '__wrap',
                     props.className
                 )}
-                html={props.content}
-            />
+            >
+                ReactHtmlParser(props.content)
+            </div>
 
             {outputDescription(
                 props.description,

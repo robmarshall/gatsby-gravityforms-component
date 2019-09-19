@@ -1,5 +1,5 @@
 import React from 'react'
-import SanitizeHTML from '../components/SanitizeHTML'
+import ReactHtmlParser from 'react-html-parser'
 
 /**
  * This file manages all of the Gravity Forms input settings.
@@ -13,11 +13,11 @@ export function getPlacement(formSetting, fieldSettings) {
 export function outputDescription(description, placement, currentPosition) {
     if (description && currentPosition === placement) {
         return (
-            <SanitizeHTML
-                tag="p"
+            <p
                 className={`gravityforms__description gravityforms__description--${placement}`}
-                html={description}
-            />
+            >
+                ReactHtmlParser(description)
+            </p>
         )
     }
     return false

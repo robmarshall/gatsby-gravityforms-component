@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import SanitizeHTML from '../SanitizeHTML'
+import ReactHtmlParser from 'react-html-parser'
 import { outputDescription } from '../../utils/inputSettings'
 
 const Checkbox = ({
@@ -36,7 +36,7 @@ const Checkbox = ({
                             ref={register}
                         />
                         <label htmlFor={`${name}_${choiceID}`}>
-                            <SanitizeHTML html={choice.text} />
+                            ReactHtmlParser(choice.text)
                         </label>
                     </div>
                 )
