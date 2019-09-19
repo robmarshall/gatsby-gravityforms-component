@@ -2,19 +2,27 @@ import React from 'react'
 import classnames from 'classnames'
 import ReactHtmlParser from 'react-html-parser'
 import { outputDescription } from '../../utils/inputSettings'
+import strings from '../../utils/strings'
 
 const Checkbox = ({
     name,
     label,
+    errors,
     options,
     wrapClassName,
     className,
     register,
+    required,
     description,
     descriptionPlacement,
 }) => {
     return (
-        <div className={wrapClassName}>
+        <div
+            className={classnames(
+                wrapClassName,
+                errors && 'gravityform__field--error'
+            )}
+        >
             <legend>{label}</legend>
             {outputDescription(description, descriptionPlacement, 'above')}
             {options.map((choice, index) => {
@@ -33,7 +41,9 @@ const Checkbox = ({
                             name={`${name}_${choiceID}`}
                             value={choice.value}
                             defaultChecked={choice.isSelected}
-                            ref={register}
+                            ref={register({
+                                required: required && strings.errors.required,
+                            })}
                         />
                         <label htmlFor={`${name}_${choiceID}`}>
                             {ReactHtmlParser(choice.text)}
@@ -42,6 +52,11 @@ const Checkbox = ({
                 )
             })}
             {outputDescription(description, descriptionPlacement, 'below')}
+            {errors && (
+                <div className="gravityform__error_message">
+                    {errors.message}
+                </div>
+            )}
         </div>
     )
 }
