@@ -8,6 +8,8 @@ import {
     islabelHidden,
 } from '../../utils/inputSettings'
 
+import { filteredKeys } from '../../utils/helpers'
+
 import Input from '../../components/Input'
 import Textarea from '../../components/Textarea'
 import Select from '../../components/Select'
@@ -190,6 +192,10 @@ const FieldBuilder = ({
                     />
                 )
             case 'checkbox':
+                const errorKey = filteredKeys(
+                    errors,
+                    RegExp(`input_${field.id}_`)
+                )
                 return (
                     <Checkbox
                         key={field.id}
@@ -205,10 +211,16 @@ const FieldBuilder = ({
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
-                        errors={errors[`input_${field.id}`]}
+                        errors={
+                            errorKey.length > 0 ? errors[errorKey[0]] : null
+                        }
                     />
                 )
             case 'radio':
+                const errorKey = filteredKeys(
+                    errors,
+                    RegExp(`input_${field.id}_`)
+                )
                 return (
                     <Radio
                         key={field.id}
@@ -224,7 +236,9 @@ const FieldBuilder = ({
                         className={field.cssClass}
                         register={register}
                         required={field.isRequired}
-                        errors={errors[`input_${field.id}`]}
+                        errors={
+                            errorKey.length > 0 ? errors[errorKey[0]] : null
+                        }
                     />
                 )
             case 'hidden':
