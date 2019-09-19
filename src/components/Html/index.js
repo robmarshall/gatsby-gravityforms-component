@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+import SanitizeHTML from './SanitizeHTML'
 import { outputDescription } from '../../utils/inputSettings'
 
 const Html = props => {
@@ -13,15 +14,14 @@ const Html = props => {
                 props.descriptionPlacement,
                 'above'
             )}
-            <div
+            <SanitizeHTML
                 className={classnames(
                     'gravityform__' + props.type + '__wrap',
                     props.className
                 )}
-                dangerouslySetInnerHTML={{
-                    __html: props.content,
-                }}
+                html={props.content}
             />
+
             {outputDescription(
                 props.description,
                 props.descriptionPlacement,

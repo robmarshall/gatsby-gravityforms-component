@@ -15,13 +15,15 @@ const sanitize = (dirty, options) => {
     }
 }
 
-const SanitizeHTML = ({ html, options, ...other }) => {
+const SanitizeHTML = ({ tag = 'div', html, options, ...other }) => {
+    const Tag = tag
+
     const clean = sanitize(html, options)
 
     if (clean.__html) {
-        return <div dangerouslySetInnerHTML={clean} {...other} />
+        return <Tag dangerouslySetInnerHTML={clean} {...other} />
     }
-    return false
+    return null
 }
 
 export default SanitizeHTML
