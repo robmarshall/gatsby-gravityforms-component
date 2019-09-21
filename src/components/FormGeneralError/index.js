@@ -8,6 +8,10 @@ const FormGeneralError = props => {
         errorMessage = strings.errors.general
     }
 
+    if (props.errorCode === 'unknownError') {
+        errorMessage = strings.errors.unknownError
+    }
+
     if (props.errorCode === 'leastOneField') {
         errorMessage = strings.errors.leastOneField
     }
