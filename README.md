@@ -234,3 +234,7 @@ If you are developing locally, you may run into an error "Cannot resolve React".
 -   [x] Turn data into Gravity Forms schema
 -   [x] Function to send/receive data from CMS
 -   [x] Error handling provided by Gravity Forms
+
+# Update
+
+Split into a component that can work with GF, or be created by a custom object and pass to any backend api.
