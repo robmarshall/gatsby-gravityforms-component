@@ -25,7 +25,7 @@ exports.handler = async (event, context, callback) => {
     // Make sure we are dealing with a POST request
     if (event.httpMethod !== 'POST') {
         return {
-            statusCode: 400,
+            statusCode: 200, // <-- Important for CORS
             headers,
             body: JSON.stringify({
                 status: 'notPost',
