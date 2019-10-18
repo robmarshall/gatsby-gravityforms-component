@@ -1,0 +1,14 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "amd": true,
+        "node": true
+    },
+    "rules": {
+        "strict": 0,
+        "import-order-alphabetical/order": "error"
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "plugins": ["eslint-plugin-import-order-alphabetical"]
+}
