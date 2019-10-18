@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import ReactHtmlParser from 'react-html-parser'
 import PropTypes from 'prop-types'
+import React, { useState } from 'react'
 import useForm from 'react-hook-form/dist/react-hook-form.ie11'
-import getForm from './utils/getForm'
-import FieldBuilder from './container/FieldBuilder'
+import ReactHtmlParser from 'react-html-parser'
 import FormGeneralError from './components/FormGeneralError'
+import FieldBuilder from './container/FieldBuilder'
+import getForm from './utils/getForm'
 import { doesObjectExist, isObjEmpty } from './utils/helpers'
 import {
     handleGravityFormsValidationErrors,

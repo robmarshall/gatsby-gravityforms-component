@@ -1,5 +1,5 @@
-import React from 'react'
 import classnames from 'classnames'
+import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import { outputDescription } from '../../utils/inputSettings'
 

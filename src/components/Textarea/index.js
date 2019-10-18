@@ -1,5 +1,5 @@
-import React from 'react'
 import classnames from 'classnames'
+import React from 'react'
 import { outputDescription } from '../../utils/inputSettings'
 import strings from '../../utils/strings'
 

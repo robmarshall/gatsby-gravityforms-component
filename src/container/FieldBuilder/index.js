@@ -1,22 +1,22 @@
-import React from 'react'
 import classnames from 'classnames'
 import _ from 'lodash'
+import React from 'react'
 
+
+
+import Checkbox from '../../components/Checkbox'
+import Html from '../../components/Html'
+import Input from '../../components/Input'
+import Multiselect from '../../components/Multiselect'
+import Radio from '../../components/Radio'
+import Select from '../../components/Select'
+import Textarea from '../../components/Textarea'
+import { filteredKeys } from '../../utils/helpers'
 import {
     getPlacement,
     ifDefaultValue,
     islabelHidden,
 } from '../../utils/inputSettings'
-
-import { filteredKeys } from '../../utils/helpers'
-
-import Input from '../../components/Input'
-import Textarea from '../../components/Textarea'
-import Select from '../../components/Select'
-import Multiselect from '../../components/Multiselect'
-import Checkbox from '../../components/Checkbox'
-import Radio from '../../components/Radio'
-import Html from '../../components/Html'
 
 const FieldBuilder = ({
     formId,
