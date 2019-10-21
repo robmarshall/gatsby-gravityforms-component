@@ -2,8 +2,6 @@ import classnames from 'classnames'
 import _ from 'lodash'
 import React from 'react'
 
-
-
 import Checkbox from '../../components/Checkbox'
 import Html from '../../components/Html'
 import Input from '../../components/Input'
