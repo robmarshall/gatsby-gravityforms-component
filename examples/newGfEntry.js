@@ -16,6 +16,7 @@ const secretData = {
 }
 
 // For those requests
+// Update with correct origin when on production!
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
