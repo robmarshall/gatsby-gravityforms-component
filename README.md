@@ -88,10 +88,10 @@ export default examplePage
 
 This outputs the form that has been set up in WordPress - Gravity Forms. Ready for you to style it!
 
-- id: The ID of the form, get in WordPress Gravity Forms
-- formDate: The data passed from the query function - this is the same for all forms
-- presetValues: An object, with the keys set as the input ID (shown in Gravity Forms editor) and the value to set the field as. Great for hidden fields.
-- lambda: The URL to the lambda endpoint
+-   id: The ID of the form, get in WordPress Gravity Forms
+-   formDate: The data passed from the query function - this is the same for all forms
+-   presetValues: An object, with the keys set as the input ID (shown in Gravity Forms editor) and the value to set the field as. Great for hidden fields.
+-   lambda: The URL to the lambda endpoint
 
 ## Add Environment Variables
 
@@ -234,6 +234,19 @@ If you are developing locally, you may run into an error "Cannot resolve React".
 -   [x] Turn data into Gravity Forms schema
 -   [x] Function to send/receive data from CMS
 -   [x] Error handling provided by Gravity Forms
+
+### Add Tests to Inputs
+
+-   [ ] Input
+-   [ ] Textarea
+-   [ ] Select (half done, need to add default values)
+-   [ ] Multiselect
+-   [ ] Number
+-   [ ] Checkbox (half done, need to add default values)
+-   [ ] Radio (half done, need to add default values)
+-   [ ] Hidden
+-   [ ] HTML
+-   [ ] Captcha
 
 # Update
 
