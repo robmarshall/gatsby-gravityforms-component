@@ -16,7 +16,7 @@ const Html = ({
 }) => {
     return (
         <div className={wrapClassName}>
-            <label htmlFor={name} className="gravityform__label">
+            <label className="gravityform__label" htmlFor={name}>
                 {label}
             </label>
             {outputDescription(description, descriptionPlacement, 'above')}
@@ -37,12 +37,12 @@ const Html = ({
 export default Html
 
 Html.propTypes = {
-    name: PropTypes.string,
-    label: PropTypes.string,
-    wrapClassName: PropTypes.string,
     className: PropTypes.string,
     content: PropTypes.string,
-    type: PropTypes.string,
     description: PropTypes.string,
     descriptionPlacement: PropTypes.string,
+    label: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+    wrapClassName: PropTypes.string,
 }

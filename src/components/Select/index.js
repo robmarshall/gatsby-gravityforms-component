@@ -17,29 +17,29 @@ const Select = ({
 }) => {
     return (
         <div className={wrapClassName}>
-            <label htmlFor={name} className="gravityform__label">
+            <label className="gravityform__label" htmlFor={name}>
                 {label}
             </label>
             {outputDescription(description, descriptionPlacement, 'above')}
             <select
-                id={name}
-                name={name}
                 className={classnames(
                     'gravityform__field__input',
                     'gravityform__field__input__select',
                     className
                 )}
+                id={name}
+                name={name}
+                onChange={handleChange}
                 ref={register({
                     required: required && 'This field is required',
                 })}
-                onChange={handleChange}
             >
                 {options.map((choice, index) => {
                     return (
                         <option
+                            defaultValue={choice.isSelected}
                             key={`${name}-${index}`}
                             value={choice.value}
-                            defaultValue={choice.isSelected}
                         >
                             {choice.text}
                         </option>
@@ -54,14 +54,14 @@ const Select = ({
 export default Select
 
 Select.propTypes = {
-    name: PropTypes.string,
-    label: PropTypes.string,
+    className: PropTypes.string,
     description: PropTypes.string,
     descriptionPlacement: PropTypes.string,
-    className: PropTypes.string,
-    wrapClassName: PropTypes.string,
+    handleChange: PropTypes.func,
+    label: PropTypes.string,
+    name: PropTypes.string,
     options: PropTypes.array,
     register: PropTypes.func,
     required: PropTypes.bool,
-    handleChange: PropTypes.func,
+    wrapClassName: PropTypes.string,
 }

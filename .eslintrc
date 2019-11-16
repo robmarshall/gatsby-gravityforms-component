@@ -7,7 +7,9 @@
     },
     "rules": {
         "strict": 0,
-        "import-order-alphabetical/order": "error"
+        "import-order-alphabetical/order": "error",
+        "react/jsx-sort-props": "warn",
+        "react/sort-prop-types": "warn"
     },
     "extends": ["eslint:recommended", "plugin:react/recommended"],
     "plugins": ["eslint-plugin-import-order-alphabetical"]

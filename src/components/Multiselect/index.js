@@ -18,28 +18,28 @@ const Multiselect = ({
 }) => {
     return (
         <div className={wrapClassName}>
-            <label htmlFor={name} className="gravityform__label">
+            <label className="gravityform__label" htmlFor={name}>
                 {label}
             </label>
             {outputDescription(description, descriptionPlacement, 'above')}
             <select
-                id={name}
-                name={name}
                 className={classnames(
                     'gravityform__field__input__select',
                     className
                 )}
+                id={name}
+                name={name}
+                onChange={handleChange}
                 ref={register({
                     required: required,
                 })}
-                onChange={handleChange}
             >
                 {options.map((choice, index) => {
                     return (
                         <option
+                            defaultValue={choice.isSelected}
                             key={`${id}_${index}`}
                             value={choice.value}
-                            defaultValue={choice.isSelected}
                         >
                             {choice.text}
                         </option>
@@ -54,15 +54,15 @@ const Multiselect = ({
 export default Multiselect
 
 Multiselect.propTypes = {
-    id: PropTypes.string,
-    name: PropTypes.string,
-    label: PropTypes.string,
+    className: PropTypes.string,
     description: PropTypes.string,
     descriptionPlacement: PropTypes.string,
-    className: PropTypes.string,
+    handleChange: PropTypes.func,
+    id: PropTypes.string,
+    label: PropTypes.string,
+    name: PropTypes.string,
     options: PropTypes.array,
-    wrapClassName: PropTypes.string,
     register: PropTypes.func,
     required: PropTypes.bool,
-    handleChange: PropTypes.func,
+    wrapClassName: PropTypes.string,
 }

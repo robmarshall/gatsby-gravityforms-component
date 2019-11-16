@@ -30,19 +30,19 @@ const Radio = ({
                 return (
                     <div key={`${name}-${choiceID}`}>
                         <input
-                            type="radio"
-                            id={`${name}_${choiceID}`}
                             className={classnames(
                                 'gravityform__field__input__radio',
                                 'gravityform__field__input__radio--' + choiceID,
                                 className
                             )}
-                            name={`${name}`}
-                            value={choice.value}
                             defaultChecked={choice.isSelected}
+                            id={`${name}_${choiceID}`}
+                            name={`${name}`}
                             ref={register({
                                 required: required && strings.errors.required,
                             })}
+                            type="radio"
+                            value={choice.value}
                         />
                         <label htmlFor={`${name}_${choiceID}`}>
                             {choice.text}
@@ -63,14 +63,14 @@ const Radio = ({
 export default Radio
 
 Radio.propTypes = {
-    name: PropTypes.string,
-    label: PropTypes.string,
-    errors: PropTypes.array,
+    className: PropTypes.string,
     description: PropTypes.string,
     descriptionPlacement: PropTypes.string,
-    className: PropTypes.string,
-    wrapClassName: PropTypes.string,
+    errors: PropTypes.array,
+    label: PropTypes.string,
+    name: PropTypes.string,
     options: PropTypes.array,
     register: PropTypes.func,
     required: PropTypes.bool,
+    wrapClassName: PropTypes.string,
 }

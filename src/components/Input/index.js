@@ -29,22 +29,21 @@ const Input = ({
                 errors && 'gravityform__field--error'
             )}
         >
-            <label htmlFor={name} className="gravityform__label">
+            <label className="gravityform__label" htmlFor={name}>
                 {label}
                 {maxLength > 0 && maxLengthSentence(maxLength, type)}
             </label>
             {outputDescription(description, descriptionPlacement, 'above')}
             <input
-                id={name}
-                type={type}
                 className={classnames(
                     'gravityform__field__input',
                     `gravityform__field__input__${type}`,
                     className
                 )}
+                defaultValue={value}
+                id={name}
                 maxLength={maxLength > 0 ? maxLength : undefined}
                 name={name}
-                defaultValue={value}
                 placeholder={placeholder}
                 ref={register({
                     required: required && errors.required,
@@ -59,6 +58,7 @@ const Input = ({
                         message: regex && strings.errors.pattern,
                     },
                 })}
+                type={type}
             />
             {outputDescription(description, descriptionPlacement, 'below')}
             {errors && (
@@ -78,18 +78,18 @@ const maxLengthSentence = (length, type) => {
 }
 
 Input.propTypes = {
-    name: PropTypes.string,
-    label: PropTypes.string,
-    wrapClassName: PropTypes.string,
     className: PropTypes.string,
-    inputMaskValue: PropTypes.string,
+    description: PropTypes.string,
+    descriptionPlacement: PropTypes.string,
     errors: PropTypes.object,
+    inputMaskValue: PropTypes.string,
+    label: PropTypes.string,
+    maxLength: PropTypes.int,
+    name: PropTypes.string,
     placeholder: PropTypes.string,
     register: PropTypes.func,
     required: PropTypes.bool,
-    value: PropTypes.string,
-    maxLength: PropTypes.int,
     type: PropTypes.string,
-    description: PropTypes.string,
-    descriptionPlacement: PropTypes.string,
+    value: PropTypes.string,
+    wrapClassName: PropTypes.string,
 }

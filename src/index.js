@@ -87,12 +87,12 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
         return (
             singleForm && (
                 <form
-                    id={`gravityform--id-${id}`}
                     className={
                         formLoading
                             ? `gravityform gravityform--loading gravityform--id-${id}`
                             : `gravityform gravityform--id-${id}`
                     }
+                    id={`gravityform--id-${id}`}
                     key={`gravityform--id-${id}`}
                     onSubmit={handleSubmit(onSubmitCallback)}
                 >
@@ -101,13 +101,13 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                     )}
 
                     <FieldBuilder
-                        formId={id}
+                        errors={errors}
                         formData={singleForm}
+                        formId={id}
                         presetValues={presetValues}
                         register={register}
-                        errors={errors}
                     />
-                    <button type="submit" className="gravityform__button">
+                    <button className="gravityform__button" type="submit">
                         {singleForm.button.text
                             ? singleForm.button.text
                             : 'Submit'}{' '}

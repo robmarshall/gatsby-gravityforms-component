@@ -29,22 +29,21 @@ const Textarea = ({
                 errors && 'gravityform__field--error'
             )}
         >
-            <label htmlFor={name} className="gravityform__label">
+            <label className="gravityform__label" htmlFor={name}>
                 {label}
                 {maxLength > 0 && `(maxiumum ${maxLength} characters)`}
             </label>
             {outputDescription(description, descriptionPlacement, 'above')}
             <textarea
-                id={name}
-                type={type}
                 className={classnames(
                     'gravityform__field__input',
                     `gravityform__field__input__${type}`,
                     className
                 )}
+                defaultValue={value}
+                id={name}
                 maxLength={maxLength > 0 ? maxLength : undefined}
                 name={name}
-                defaultValue={value}
                 placeholder={placeholder}
                 ref={register({
                     required: required && strings.errors.required,
@@ -59,6 +58,7 @@ const Textarea = ({
                         message: regex && strings.errors.pattern,
                     },
                 })}
+                type={type}
             />
             {outputDescription(description, descriptionPlacement, 'below')}
             {errors && (
@@ -73,18 +73,18 @@ const Textarea = ({
 export default Textarea
 
 Textarea.propTypes = {
-    name: PropTypes.string,
-    label: PropTypes.string,
-    wrapClassName: PropTypes.string,
-    value: PropTypes.string,
-    placeholder: PropTypes.string,
     className: PropTypes.string,
-    errors: PropTypes.obj,
     description: PropTypes.string,
     descriptionPlacement: PropTypes.string,
+    errors: PropTypes.obj,
     inputMaskValue: PropTypes.string,
+    label: PropTypes.string,
     maxLength: PropTypes.string,
-    type: PropTypes.string,
+    name: PropTypes.string,
+    placeholder: PropTypes.string,
     register: PropTypes.func,
     required: PropTypes.bool,
+    type: PropTypes.string,
+    value: PropTypes.string,
+    wrapClassName: PropTypes.string,
 }

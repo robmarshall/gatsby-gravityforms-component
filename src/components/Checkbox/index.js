@@ -31,20 +31,20 @@ const Checkbox = ({
                 return (
                     <div key={`${name}-${index + 1}`}>
                         <input
-                            type="checkbox"
-                            id={`${name}_${choiceID}`}
                             className={classnames(
                                 'gravityform__field__input__checkbox',
                                 'gravityform__field__input__checkbox--' +
                                     choiceID,
                                 className
                             )}
-                            name={`${name}_${choiceID}`}
-                            value={choice.value}
                             defaultChecked={choice.isSelected}
+                            id={`${name}_${choiceID}`}
+                            name={`${name}_${choiceID}`}
                             ref={register({
                                 required: required && strings.errors.required,
                             })}
+                            type="checkbox"
+                            value={choice.value}
                         />
                         <label htmlFor={`${name}_${choiceID}`}>
                             {ReactHtmlParser(choice.text)}
@@ -65,14 +65,14 @@ const Checkbox = ({
 export default Checkbox
 
 Checkbox.propTypes = {
-    name: PropTypes.string,
-    label: PropTypes.string,
-    errors: PropTypes.object,
-    options: PropTypes.array,
-    wrapClassName: PropTypes.string,
     className: PropTypes.string,
-    register: PropTypes.func,
-    required: PropTypes.bool,
     description: PropTypes.string,
     descriptionPlacement: PropTypes.string,
+    errors: PropTypes.object,
+    label: PropTypes.string,
+    name: PropTypes.string,
+    options: PropTypes.array,
+    register: PropTypes.func,
+    required: PropTypes.bool,
+    wrapClassName: PropTypes.string,
 }
