@@ -4,17 +4,17 @@ import React from 'react'
 import { outputDescription } from '../../utils/inputSettings'
 
 const Multiselect = ({
-    id,
-    name,
-    label,
+    className,
     description,
     descriptionPlacement,
-    className,
-    options,
-    wrapClassName,
-    required,
-    register,
     handleChange,
+    id,
+    label,
+    name,
+    options,
+    register,
+    required,
+    wrapClassName,
 }) => {
     return (
         <div className={wrapClassName}>

@@ -24,7 +24,7 @@ import passToGravityForms from './utils/passToGravityForms'
 
 const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
     // Pull in form functions
-    const { register, errors, handleSubmit, setError } = useForm()
+    const { errors, handleSubmit, register, setError } = useForm()
 
     const [generalError, setGeneralError] = useState('')
     const [formLoading, setLoadingState] = useState(false)

@@ -9,8 +9,12 @@
         "strict": 0,
         "import-order-alphabetical/order": "error",
         "react/jsx-sort-props": "warn",
-        "react/sort-prop-types": "warn"
+        "react/sort-prop-types": "warn",
+        "sort-destructure-keys/sort-destructure-keys": "warn"
     },
     "extends": ["eslint:recommended", "plugin:react/recommended"],
-    "plugins": ["eslint-plugin-import-order-alphabetical"]
+    "plugins": [
+        "eslint-plugin-import-order-alphabetical",
+        "sort-destructure-keys"
+    ]
 }

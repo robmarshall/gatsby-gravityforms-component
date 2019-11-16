@@ -5,20 +5,20 @@ import { outputDescription } from '../../utils/inputSettings'
 import strings from '../../utils/strings'
 
 const Textarea = ({
-    name,
-    label,
-    wrapClassName,
     className,
-    errors,
-    inputMaskValue,
-    register,
-    type,
-    value,
-    placeholder,
-    required,
-    maxLength,
     description,
     descriptionPlacement,
+    errors,
+    inputMaskValue,
+    label,
+    maxLength,
+    name,
+    placeholder,
+    register,
+    required,
+    type,
+    value,
+    wrapClassName,
 }) => {
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
 

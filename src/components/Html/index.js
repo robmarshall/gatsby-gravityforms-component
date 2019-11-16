@@ -5,14 +5,14 @@ import ReactHtmlParser from 'react-html-parser'
 import { outputDescription } from '../../utils/inputSettings'
 
 const Html = ({
-    name,
-    wrapClassName,
-    label,
-    description,
-    descriptionPlacement,
-    type,
     className,
     content,
+    description,
+    descriptionPlacement,
+    label,
+    name,
+    type,
+    wrapClassName,
 }) => {
     return (
         <div className={wrapClassName}>

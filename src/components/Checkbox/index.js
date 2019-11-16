@@ -6,16 +6,16 @@ import { outputDescription } from '../../utils/inputSettings'
 import strings from '../../utils/strings'
 
 const Checkbox = ({
-    name,
-    label,
-    errors,
-    options,
-    wrapClassName,
     className,
-    register,
-    required,
     description,
     descriptionPlacement,
+    errors,
+    label,
+    name,
+    options,
+    register,
+    required,
+    wrapClassName,
 }) => {
     return (
         <div

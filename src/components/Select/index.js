@@ -4,16 +4,16 @@ import React from 'react'
 import { outputDescription } from '../../utils/inputSettings'
 
 const Select = ({
-    name,
-    label,
-    options,
-    wrapClassName,
     className,
-    register,
-    required,
     description,
     descriptionPlacement,
     handleChange,
+    label,
+    name,
+    options,
+    register,
+    required,
+    wrapClassName,
 }) => {
     return (
         <div className={wrapClassName}>

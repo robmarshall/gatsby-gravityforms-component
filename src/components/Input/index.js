@@ -5,20 +5,20 @@ import { outputDescription } from '../../utils/inputSettings'
 import strings from '../../utils/strings'
 
 const Input = ({
-    name,
-    label,
     className,
-    wrapClassName,
-    inputMaskValue,
-    errors,
-    type,
-    placeholder,
-    value,
-    register,
-    required,
-    maxLength,
     description,
     descriptionPlacement,
+    errors,
+    inputMaskValue,
+    label,
+    maxLength,
+    name,
+    placeholder,
+    register,
+    required,
+    type,
+    value,
+    wrapClassName,
 }) => {
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
 
