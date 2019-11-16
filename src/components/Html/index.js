@@ -1,35 +1,48 @@
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import { outputDescription } from '../../utils/inputSettings'
 
-const Html = props => {
+const Html = ({
+    name,
+    wrapClassName,
+    label,
+    description,
+    descriptionPlacement,
+    type,
+    className,
+    content,
+}) => {
     return (
-        <div className={props.wrapClassName}>
-            <label htmlFor={props.name} className="gravityform__label">
-                {props.label}
+        <div className={wrapClassName}>
+            <label htmlFor={name} className="gravityform__label">
+                {label}
             </label>
-            {outputDescription(
-                props.description,
-                props.descriptionPlacement,
-                'above'
-            )}
+            {outputDescription(description, descriptionPlacement, 'above')}
             <div
                 className={classnames(
-                    'gravityform__' + props.type + '__wrap',
-                    props.className
+                    'gravityform__' + type + '__wrap',
+                    className
                 )}
             >
-                {ReactHtmlParser(props.content)}
+                {ReactHtmlParser(content)}
             </div>
 
-            {outputDescription(
-                props.description,
-                props.descriptionPlacement,
-                'below'
-            )}
+            {outputDescription(description, descriptionPlacement, 'below')}
         </div>
     )
 }
 
 export default Html
+
+Html.propTypes = {
+    name: PropTypes.string,
+    label: PropTypes.string,
+    wrapClassName: PropTypes.string,
+    className: PropTypes.string,
+    content: PropTypes.string,
+    type: PropTypes.string,
+    description: PropTypes.string,
+    descriptionPlacement: PropTypes.string,
+}

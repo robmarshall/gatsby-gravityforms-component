@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import React from 'react'
 import { outputDescription } from '../../utils/inputSettings'
 import strings from '../../utils/strings'
@@ -60,3 +61,16 @@ const Radio = ({
 }
 
 export default Radio
+
+Radio.propTypes = {
+    name: PropTypes.string,
+    label: PropTypes.string,
+    errors: PropTypes.array,
+    description: PropTypes.string,
+    descriptionPlacement: PropTypes.string,
+    className: PropTypes.string,
+    wrapClassName: PropTypes.string,
+    options: PropTypes.array,
+    register: PropTypes.func,
+    required: PropTypes.bool,
+}

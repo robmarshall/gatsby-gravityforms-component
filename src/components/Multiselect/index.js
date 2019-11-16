@@ -1,34 +1,43 @@
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import React from 'react'
 import { outputDescription } from '../../utils/inputSettings'
 
-const Multiselect = props => {
+const Multiselect = ({
+    id,
+    name,
+    label,
+    description,
+    descriptionPlacement,
+    className,
+    options,
+    wrapClassName,
+    required,
+    register,
+    handleChange,
+}) => {
     return (
-        <div className={props.wrapClassName}>
-            <label htmlFor={props.name} className="gravityform__label">
-                {props.label}
+        <div className={wrapClassName}>
+            <label htmlFor={name} className="gravityform__label">
+                {label}
             </label>
-            {outputDescription(
-                props.description,
-                props.descriptionPlacement,
-                'above'
-            )}
+            {outputDescription(description, descriptionPlacement, 'above')}
             <select
-                id={props.name}
-                name={props.name}
+                id={name}
+                name={name}
                 className={classnames(
                     'gravityform__field__input__select',
-                    props.className
+                    className
                 )}
-                ref={props.register({
-                    required: props.required,
+                ref={register({
+                    required: required,
                 })}
-                onChange={props.handleChange}
+                onChange={handleChange}
             >
-                {props.options.map((choice, index) => {
+                {options.map((choice, index) => {
                     return (
                         <option
-                            key={`${props.id}_${index}`}
+                            key={`${id}_${index}`}
                             value={choice.value}
                             defaultValue={choice.isSelected}
                         >
@@ -37,13 +46,23 @@ const Multiselect = props => {
                     )
                 })}
             </select>
-            {outputDescription(
-                props.description,
-                props.descriptionPlacement,
-                'below'
-            )}
+            {outputDescription(description, descriptionPlacement, 'below')}
         </div>
     )
 }
 
 export default Multiselect
+
+Multiselect.propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string,
+    label: PropTypes.string,
+    description: PropTypes.string,
+    descriptionPlacement: PropTypes.string,
+    className: PropTypes.string,
+    options: PropTypes.array,
+    wrapClassName: PropTypes.string,
+    register: PropTypes.func,
+    required: PropTypes.bool,
+    handleChange: PropTypes.func,
+}

@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser'
 import { outputDescription } from '../../utils/inputSettings'
@@ -62,3 +63,16 @@ const Checkbox = ({
 }
 
 export default Checkbox
+
+Checkbox.propTypes = {
+    name: PropTypes.string,
+    label: PropTypes.string,
+    errors: PropTypes.object,
+    options: PropTypes.array,
+    wrapClassName: PropTypes.string,
+    className: PropTypes.string,
+    register: PropTypes.func,
+    required: PropTypes.bool,
+    description: PropTypes.string,
+    descriptionPlacement: PropTypes.string,
+}

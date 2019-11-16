@@ -5,7 +5,7 @@ import ReactHtmlParser from 'react-html-parser'
 import FormGeneralError from './components/FormGeneralError'
 import FieldBuilder from './container/FieldBuilder'
 import getForm from './utils/getForm'
-import { doesObjectExist, isObjEmpty } from './utils/helpers'
+import { doesObjectExist } from './utils/helpers'
 import {
     handleGravityFormsValidationErrors,
     // manageMainFormError,

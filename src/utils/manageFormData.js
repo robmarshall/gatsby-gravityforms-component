@@ -1,5 +1,5 @@
 export const submissionHasOneFieldEntry = values => {
-    const getFieldWithValues = Object.keys(values).filter(function(key, index) {
+    const getFieldWithValues = Object.keys(values).filter(function(key) {
         if (values[key].length > 0) {
             return values[key]
         }

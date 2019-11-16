@@ -15,27 +15,12 @@ function filteredKeys(obj, filter) {
     let key,
         keys = []
     for (key in obj)
-        if (obj.hasOwnProperty(key) && filter.test(key)) keys.push(key)
+        if ({}.hasOwnProperty.call(obj, key) && filter.test(key)) keys.push(key)
     return keys
-}
-
-// Check if element is an object
-function isObject(element) {
-    if (typeof element !== 'object') return false
-    return true
-}
-
-function isObjEmpty(obj) {
-    for (var key in obj) {
-        if (obj.hasOwnProperty(key)) return false
-    }
-    return true
 }
 
 module.exports = {
     createGfKeyFromField,
     doesObjectExist,
     filteredKeys,
-    isObject,
-    isObjEmpty,
 }

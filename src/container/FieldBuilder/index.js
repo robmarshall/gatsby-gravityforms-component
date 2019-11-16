@@ -16,13 +16,7 @@ import {
     islabelHidden,
 } from '../../utils/inputSettings'
 
-const FieldBuilder = ({
-    formId,
-    formData,
-    presetValues = {},
-    register,
-    errors,
-}) => {
+const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
     // The top level settings for the whole form
     const formSettings = {
         descriptionPlacement: formData.descriptionPlacement,
