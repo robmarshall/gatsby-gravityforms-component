@@ -46,7 +46,7 @@ const Input = ({
                 name={name}
                 placeholder={placeholder}
                 ref={register({
-                    required: required && errors.required,
+                    required: required && strings.errors.required,
                     maxlength: {
                         value: maxLength > 0 && maxLength,
                         message:
