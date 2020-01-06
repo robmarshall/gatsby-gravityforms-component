@@ -33,7 +33,6 @@ const Captcha = ({
 
     useEffect(() => {
         if (isLoaded && errors && errors.message) {
-            console.log('resetting')
             captchaRef.current.reset()
         }
     }, [errors, isLoaded])
