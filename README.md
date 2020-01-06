@@ -59,6 +59,8 @@ const allGravityData = () => {
                                 size
                                 defaultValue
                                 maxLength
+                                # Optional, used only when you have a Captcha field on your Gravity Form
+                                captchaTheme
                             }
                             button {
                                 text
@@ -121,9 +123,21 @@ The data flow is as follows:
 3. Server takes post, and passes it to Gravity Forms as POST request
 4. Gravity Forms gets data
 
-Point 3 can be managed in multiple ways, depending on your build.
+Point 3 can be managed in multiple ways, depending on your build. For added security make sure you follow the steps below to implement reCAPTCHA on your form, preventing bots and spam.
 
-### Adding the Lambda (for Netlify)
+<details>
+
+<summary>Implementing Google reCAPTCHA</summary>
+
+On your Gatsby project (importing this module), set up an Environment Variable named `RECAPTCHA_SITE_KEY` with your reCAPTCHA site key as value. This variable will be automatically used whenever you render a Gravity Form that has a reCAPTCHA field.
+
+Upon responding to the captcha Google sends back a **reCAPTCHA response token** that gets stored in a hidden `<input>` on your form. When your form data is sent back to your Wordpress website(through a Lambda function), Gravity Forms will automatically [verify the reCAPTCHA token](https://developers.google.com/recaptcha/docs/verify) token to ensure it was sent by a human.
+
+</details>
+
+---
+
+## Adding the Lambda (for Netlify)
 
 If you are using Netlify then it is recommended you use a Lambda function. This process is _relatively_ plug and play.
 
@@ -220,8 +234,7 @@ If you are developing locally, you may run into an error "Cannot resolve React".
 -   [ ] Radio (half done, need to add default values)
 -   [x] Hidden
 -   [x] HTML
--   [ ] Captcha
-
+-   [x] Captcha
 -   [x] Add masking to inputs
 
 ### General Form
