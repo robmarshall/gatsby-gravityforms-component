@@ -28,7 +28,7 @@ const Captcha = ({ captchaTheme, register, setValue }) => {
                 onExpire={changeCaptchaToken}
                 onVerify={changeCaptchaToken}
                 sitekey={process.env.RECAPTCHA_SITE_KEY}
-                theme={captchaTheme}
+                theme={captchaTheme || 'light'}
             />
             <input
                 name="g-recaptcha-response"
