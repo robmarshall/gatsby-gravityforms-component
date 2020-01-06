@@ -42,7 +42,7 @@ const Input = ({
                 )}
                 defaultValue={value}
                 id={name}
-                maxLength={maxLength > 0 ? maxLength : undefined}
+                maxLength={maxLength} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                 name={name}
                 placeholder={placeholder}
                 ref={register({
@@ -84,7 +84,7 @@ Input.propTypes = {
     errors: PropTypes.object,
     inputMaskValue: PropTypes.string,
     label: PropTypes.string,
-    maxLength: PropTypes.int,
+    maxLength: PropTypes.number,
     name: PropTypes.string,
     placeholder: PropTypes.string,
     register: PropTypes.func,

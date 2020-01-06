@@ -24,7 +24,7 @@ import passToGravityForms from './utils/passToGravityForms'
 
 const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
     // Pull in form functions
-    const { errors, handleSubmit, register, setError } = useForm()
+    const { errors, handleSubmit, register, setError, setValue } = useForm()
 
     const [generalError, setGeneralError] = useState('')
     const [formLoading, setLoadingState] = useState(false)
@@ -106,6 +106,7 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                         formId={id}
                         presetValues={presetValues}
                         register={register}
+                        setValue={setValue}
                     />
                     <button className="gravityform__button" type="submit">
                         {singleForm.button.text

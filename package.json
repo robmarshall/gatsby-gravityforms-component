@@ -39,6 +39,7 @@
         "prop-types": "^15.7.2",
         "react-hook-form": "^3.14.0",
         "react-html-parser": "^2.0.2",
+        "reaptcha": "^1.7.2",
         "sanitize-html": "^1.20.1"
     },
     "devDependencies": {
@@ -66,7 +67,6 @@
         "webpack-cli": "^3.2.0"
     },
     "peerDependencies": {
-        "react": "^16.8.6",
         "react-dom": "^16.8.6"
     }
 }

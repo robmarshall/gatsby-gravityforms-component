@@ -2,6 +2,7 @@ import classnames from 'classnames'
 import _ from 'lodash'
 import React from 'react'
 
+import Captcha from '../../components/Captcha'
 import Checkbox from '../../components/Checkbox'
 import Html from '../../components/Html'
 import Input from '../../components/Input'
@@ -16,7 +17,13 @@ import {
     islabelHidden,
 } from '../../utils/inputSettings'
 
-const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
+const FieldBuilder = ({
+    formData,
+    presetValues = {},
+    setValue,
+    register,
+    errors,
+}) => {
     // The top level settings for the whole form
     const formSettings = {
         descriptionPlacement: formData.descriptionPlacement,
@@ -40,14 +47,12 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
             // Add note for unsupported captcha field
             case 'captcha':
                 return (
-                    <p>
-                        <strong>
-                            Gatsby Gravity Form Component currently does not
-                            support the CAPTCHA field. Form will not submit with
-                            this field present. Remove this field from the
-                            Gravity Form.
-                        </strong>
-                    </p>
+                    <Captcha
+                        captchaTheme={field.captchaTheme}
+                        key={field.id}
+                        register={register}
+                        setValue={setValue}
+                    />
                 )
             // Start with the standard fields
             case 'text':
@@ -96,7 +101,7 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
                         inputMaskValue={field.inputMaskValue}
                         key={field.id}
                         label={field.label}
-                        maxLength={field.maxLength}
+                        maxLength={field.maxLength || 52428} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                         name={`input_${field.id}`}
                         placeholder={field.placeholder}
                         register={register}
