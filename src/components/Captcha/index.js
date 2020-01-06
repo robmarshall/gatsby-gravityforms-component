@@ -1,8 +1,14 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Reaptcha from 'reaptcha'
 
-const Captcha = ({ captchaTheme, register, setValue }) => {
+const Captcha = ({
+    captchaTheme,
+    errors,
+    register,
+    setValue,
+    wrapClassName,
+}) => {
     if (!process.env.RECAPTCHA_SITE_KEY) {
         return (
             <p>
@@ -18,15 +24,27 @@ const Captcha = ({ captchaTheme, register, setValue }) => {
         )
     }
 
+    const captchaRef = useRef(null)
+    const [isLoaded, setLoaded] = useState(false)
+
     const changeCaptchaToken = (token = '') => {
         setValue('g-recaptcha-response', token, true)
     }
 
+    useEffect(() => {
+        if (isLoaded && errors && errors.message) {
+            console.log('resetting')
+            captchaRef.current.reset()
+        }
+    }, [errors, isLoaded])
+
     return (
-        <>
+        <div className={wrapClassName}>
             <Reaptcha
                 onExpire={changeCaptchaToken}
+                onLoad={() => setLoaded(true)}
                 onVerify={changeCaptchaToken}
+                ref={captchaRef}
                 sitekey={process.env.RECAPTCHA_SITE_KEY}
                 theme={captchaTheme || 'light'}
             />
@@ -35,14 +53,21 @@ const Captcha = ({ captchaTheme, register, setValue }) => {
                 ref={register({})}
                 type="hidden"
             />
-        </>
+            {errors && (
+                <div className="gravityform__error_message">
+                    {errors.message}
+                </div>
+            )}
+        </div>
     )
 }
 
 Captcha.propTypes = {
     captchaTheme: PropTypes.string,
+    errors: PropTypes.object,
     register: PropTypes.func,
     setValue: PropTypes.func,
+    wrapClassName: PropTypes.string,
 }
 
 export default Captcha
