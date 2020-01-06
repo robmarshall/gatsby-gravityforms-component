@@ -5,7 +5,6 @@ import ReactHtmlParser from 'react-html-parser'
 import FormGeneralError from './components/FormGeneralError'
 import FieldBuilder from './container/FieldBuilder'
 import getForm from './utils/getForm'
-import { doesObjectExist } from './utils/helpers'
 import {
     handleGravityFormsValidationErrors,
     // manageMainFormError,
@@ -38,13 +37,13 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
     const onSubmitCallback = async values => {
         // Make sure we are not already waiting for a response
         if (!formLoading) {
-            setLoadingState(true)
-
             // Clean error
             setGeneralError('')
 
             // Check that at least one field has been filled in
             if (submissionHasOneFieldEntry(values)) {
+                setLoadingState(true)
+
                 const restResponse = await passToGravityForms(
                     singleForm.apiURL,
                     values,
@@ -56,17 +55,18 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                 if (restResponse.status === 'error') {
                     // Handle the errors
                     // First check to make sure we have the correct data
-                    if (doesObjectExist(restResponse.data)) {
+                    if (restResponse.data) {
                         // Validation errors passed back by Gravity Forms
-                        if (restResponse.data.status === 'gravityFormErrors') {
+                        const { data } = restResponse.data
+
+                        if (data.status === 'gravityFormErrors') {
                             // Pass messages to handle that sets react-hook-form errors
                             handleGravityFormsValidationErrors(
-                                restResponse.data.validation_messages,
+                                data.validation_messages,
                                 setError
                             )
                         }
                     } else {
-                        console.log(restResponse)
                         // Seemed to be an unknown issue
                         setGeneralError('unknownError')
                     }
