@@ -18,11 +18,11 @@ import {
 } from '../../utils/inputSettings'
 
 const FieldBuilder = ({
+    errors,
     formData,
     presetValues = {},
-    setValue,
     register,
-    errors,
+    setValue,
 }) => {
     // The top level settings for the whole form
     const formSettings = {
@@ -49,9 +49,11 @@ const FieldBuilder = ({
                 return (
                     <Captcha
                         captchaTheme={field.captchaTheme}
+                        errors={errors[`input_${field.id}`]}
                         key={field.id}
                         register={register}
                         setValue={setValue}
+                        wrapClassName={inputWrapperClass}
                     />
                 )
             // Start with the standard fields
@@ -101,7 +103,7 @@ const FieldBuilder = ({
                         inputMaskValue={field.inputMaskValue}
                         key={field.id}
                         label={field.label}
-                        maxLength={field.maxLength || 52428} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
+                        maxLength={field.maxLength}
                         name={`input_${field.id}`}
                         placeholder={field.placeholder}
                         register={register}

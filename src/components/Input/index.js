@@ -42,7 +42,7 @@ const Input = ({
                 )}
                 defaultValue={value}
                 id={name}
-                maxLength={maxLength} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
+                maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                 name={name}
                 placeholder={placeholder}
                 ref={register({
