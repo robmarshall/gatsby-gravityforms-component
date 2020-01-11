@@ -59,8 +59,7 @@ const allGravityData = () => {
                                 size
                                 defaultValue
                                 maxLength
-                                # Optional, used only when you have a Captcha field on your Gravity Form
-                                captchaTheme
+                                captchaTheme    // Optional, used only when you have a Captcha field on your Gravity Form.
                             }
                             button {
                                 text
