@@ -1,68 +1,60 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { outputDescription } from '../../utils/inputSettings'
+import InputWrapper from '../../components/InputWrapper'
 
-const Multiselect = ({
-    className,
-    description,
-    descriptionPlacement,
-    handleChange,
-    id,
-    label,
-    name,
-    options,
-    register,
-    required,
-    wrapClassName,
-}) => {
+const Multiselect = ({ errors, fieldData, name, register, ...wrapProps }) => {
+    const { choices, cssClass, id, isRequired, size } = fieldData
+    const options = JSON.parse(choices)
     return (
-        <div className={wrapClassName}>
-            <label className="gravityform__label" htmlFor={name}>
-                {label}
-            </label>
-            {outputDescription(description, descriptionPlacement, 'above')}
+        <InputWrapper
+            errors={errors}
+            inputData={fieldData}
+            labelFor={name}
+            {...wrapProps}
+        >
             <select
+                //TODO: GF uses select2 library and classes, need to figure out how to handle here if we're mimicing their functionality
                 className={classnames(
                     'gravityform__field__input__select',
-                    className
+                    'gfield_select',
+                    cssClass,
+                    size
                 )}
                 id={name}
                 name={name}
-                onChange={handleChange}
                 ref={register({
-                    required: required,
+                    required: isRequired,
                 })}
             >
-                {options.map((choice, index) => {
+                {options.map(({ isSelected, text, value }, index) => {
                     return (
                         <option
-                            defaultValue={choice.isSelected}
+                            defaultValue={isSelected}
                             key={`${id}_${index}`}
-                            value={choice.value}
+                            value={value}
                         >
-                            {choice.text}
+                            {text}
                         </option>
                     )
                 })}
             </select>
-            {outputDescription(description, descriptionPlacement, 'below')}
-        </div>
+        </InputWrapper>
     )
 }
 
 export default Multiselect
 
 Multiselect.propTypes = {
-    className: PropTypes.string,
-    description: PropTypes.string,
-    descriptionPlacement: PropTypes.string,
-    handleChange: PropTypes.func,
-    id: PropTypes.string,
-    label: PropTypes.string,
+    errors: PropTypes.object,
+    fieldData: PropTypes.shape({
+        cssClass: PropTypes.string,
+        id: PropTypes.string,
+        choices: PropTypes.string,
+        size: PropTypes.string,
+        isRequired: PropTypes.bool,
+    }),
     name: PropTypes.string,
-    options: PropTypes.array,
     register: PropTypes.func,
-    required: PropTypes.bool,
-    wrapClassName: PropTypes.string,
+    wrapProps: PropTypes.object,
 }

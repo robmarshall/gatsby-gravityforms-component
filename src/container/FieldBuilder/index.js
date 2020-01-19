@@ -2,37 +2,45 @@ import classnames from 'classnames'
 import _ from 'lodash'
 import React from 'react'
 
-import Checkbox from '../../components/Checkbox'
 import Html from '../../components/Html'
 import Input from '../../components/Input'
 import Multiselect from '../../components/Multiselect'
-import Radio from '../../components/Radio'
 import Select from '../../components/Select'
+import SelectorList from '../../components/SelectorList'
 import Textarea from '../../components/Textarea'
 import { filteredKeys } from '../../utils/helpers'
-import {
-    getPlacement,
-    ifDefaultValue,
-    islabelHidden,
-} from '../../utils/inputSettings'
+import { ifDefaultValue, islabelHidden } from '../../utils/inputSettings'
 
 const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
-    // The top level settings for the whole form
-    const formSettings = {
-        descriptionPlacement: formData.descriptionPlacement,
-    }
-
     // Loop through fields and create
     return formData.formFields.map(field => {
         // Set the wrapper classes
+        const {
+            isRequired,
+            descriptionPlacement = formData.descriptionPlacement,
+            subLabelPlacement = formData.subLabelPlacement,
+            visibility,
+        } = field
+
+        const fieldData = { ...field, descriptionPlacement }
         let inputWrapperClass = classnames(
+            'gfield',
             'gravityform__field',
             'gravityform__field__' + field.type,
             'gravityform__field--' + field.size,
             field.cssClass,
             { 'field-required': field.isRequired },
-            { 'hidden-label': islabelHidden(field.labelPlacement) }
+            { 'hidden-label': islabelHidden(field.labelPlacement) },
+            { gfield_contains_required: isRequired },
+            `field_sublabel_${subLabelPlacement}`,
+            `field_description_${descriptionPlacement}`,
+            `gfield_visibility_${visibility}`
         )
+
+        const wrapId = `field_${formData.id}_${field.id}`
+
+        //TODO: Should this match GF version "input_form.id_input.id"
+        const inputName = `input_${field.id}`
 
         let errorKey = ''
 
@@ -51,228 +59,86 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
                 )
             // Start with the standard fields
             case 'text':
+            case 'number':
             case 'email':
+            case 'hidden':
             case 'phone':
                 return (
                     <Input
-                        className={field.cssClass}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
-                        errors={errors[`input_${field.id}`]}
-                        inputMaskValue={field.inputMaskValue}
+                        errors={errors[inputName]}
+                        fieldData={fieldData}
                         key={field.id}
-                        label={field.label}
-                        maxLength={field.maxLength}
-                        name={`input_${field.id}`}
-                        placeholder={field.placeholder}
+                        name={inputName}
                         register={register}
-                        required={field.isRequired}
-                        type={field.type}
                         value={
-                            _.get(presetValues, `input_${field.id}`, false)
-                                ? _.get(
-                                      presetValues,
-                                      `input_${field.id}`,
-                                      false
-                                  )
+                            _.get(presetValues, inputName, false)
+                                ? _.get(presetValues, inputName, false)
                                 : ifDefaultValue(field)
                         }
                         wrapClassName={inputWrapperClass}
+                        wrapId={wrapId}
                     />
                 )
             case 'textarea':
                 return (
                     <Textarea
-                        className={field.cssClass}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
-                        errors={errors[`input_${field.id}`]}
-                        inputMaskValue={field.inputMaskValue}
+                        errors={errors[inputName]}
+                        fieldData={fieldData}
                         key={field.id}
-                        label={field.label}
-                        maxLength={field.maxLength}
-                        name={`input_${field.id}`}
-                        placeholder={field.placeholder}
+                        name={inputName}
                         register={register}
-                        required={field.isRequired}
-                        type={field.type}
-                        value={
-                            _.get(presetValues, `input_${field.id}`, false)
-                                ? _.get(
-                                      presetValues,
-                                      `input_${field.id}`,
-                                      false
-                                  )
-                                : ifDefaultValue(field)
-                        }
                         wrapClassName={inputWrapperClass}
+                        wrapId={wrapId}
                     />
                 )
             case 'select':
                 return (
                     <Select
-                        className={field.cssClass}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
-                        errors={errors[`input_${field.id}`]}
+                        errors={errors[inputName]}
+                        fieldData={fieldData}
                         key={field.id}
-                        label={field.label}
-                        name={`input_${field.id}`}
-                        options={JSON.parse(field.choices)}
+                        name={inputName}
                         register={register}
-                        required={field.isRequired}
-                        value={ifDefaultValue(field)}
                         wrapClassName={inputWrapperClass}
+                        wrapId={wrapId}
                     />
                 )
             case 'multiselect':
                 return (
                     <Multiselect
-                        className={field.cssClass}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
-                        errors={errors[`input_${field.id}`]}
+                        errors={errors[inputName]}
+                        fieldData={fieldData}
                         key={field.id}
-                        label={field.label}
-                        name={`input_${field.id}`}
-                        options={JSON.parse(field.choices)}
+                        name={inputName}
                         register={register}
-                        required={field.isRequired}
-                        value={ifDefaultValue(field)}
                         wrapClassName={inputWrapperClass}
-                    />
-                )
-            case 'number':
-                return (
-                    <Input
-                        className={field.cssClass}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
-                        errors={errors[`input_${field.id}`]}
-                        inputMaskValue={field.inputMaskValue}
-                        key={field.id}
-                        label={field.label}
-                        maxLength={field.maxLength}
-                        name={`input_${field.id}`}
-                        placeholder={field.placeholder}
-                        register={register}
-                        required={field.isRequired}
-                        type={field.type}
-                        value={
-                            _.get(presetValues, `input_${field.id}`, false)
-                                ? _.get(
-                                      presetValues,
-                                      `input_${field.id}`,
-                                      false
-                                  )
-                                : ifDefaultValue(field)
-                        }
-                        wrapClassName={inputWrapperClass}
-                    />
-                )
-            case 'checkbox':
-                errorKey = filteredKeys(errors, RegExp(`input_${field.id}_`))
-                return (
-                    <Checkbox
-                        className={field.cssClass}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
-                        errors={
-                            errorKey.length > 0 ? errors[errorKey[0]] : null
-                        }
-                        key={field.id}
-                        label={field.label}
-                        name={`input_${field.id}`}
-                        options={JSON.parse(field.choices)}
-                        register={register}
-                        required={field.isRequired}
-                        wrapClassName={inputWrapperClass}
+                        wrapId={wrapId}
                     />
                 )
             case 'radio':
+            case 'checkbox':
                 errorKey = filteredKeys(errors, RegExp(`input_${field.id}_`))
                 return (
-                    <Radio
-                        className={field.cssClass}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
+                    <SelectorList
                         errors={
                             errorKey.length > 0 ? errors[errorKey[0]] : null
                         }
+                        fieldData={fieldData}
                         key={field.id}
-                        label={field.label}
-                        name={`input_${field.id}`}
-                        options={JSON.parse(field.choices)}
+                        name={inputName}
                         register={register}
-                        required={field.isRequired}
                         wrapClassName={inputWrapperClass}
-                    />
-                )
-            case 'hidden':
-                return (
-                    <Input
-                        className={field.cssClass}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
-                        errors={errors[`input_${field.id}`]}
-                        key={field.id}
-                        label={field.label}
-                        name={`input_${field.id}`}
-                        placeholder={field.placeholder}
-                        register={register}
-                        required={field.isRequired}
-                        type={field.type}
-                        value={
-                            _.get(presetValues, `input_${field.id}`, false)
-                                ? _.get(
-                                      presetValues,
-                                      `input_${field.id}`,
-                                      false
-                                  )
-                                : ifDefaultValue(field)
-                        }
-                        wrapClassName={inputWrapperClass}
+                        wrapId={wrapId}
                     />
                 )
             case 'html':
                 return (
                     <Html
-                        className={field.cssClass}
-                        content={field.content}
-                        description={field.description}
-                        descriptionPlacement={getPlacement(
-                            formSettings.descriptionPlacement,
-                            field.descriptionPlacement
-                        )}
+                        fieldData={fieldData}
                         key={field.id}
-                        label={field.label}
-                        name={`input_${field.id}`}
-                        type={field.type}
+                        name={inputName}
                         wrapClassName={inputWrapperClass}
+                        wrapId={wrapId}
                     />
                 )
 

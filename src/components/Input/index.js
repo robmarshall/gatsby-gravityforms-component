@@ -1,52 +1,43 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { outputDescription } from '../../utils/inputSettings'
 import strings from '../../utils/strings'
+import InputWrapper from '../InputWrapper'
 
-const Input = ({
-    className,
-    description,
-    descriptionPlacement,
-    errors,
-    inputMaskValue,
-    label,
-    maxLength,
-    name,
-    placeholder,
-    register,
-    required,
-    type,
-    value,
-    wrapClassName,
-}) => {
+const Input = ({ errors, fieldData, name, register, value, ...wrapProps }) => {
+    const {
+        cssClass,
+        inputMaskValue,
+        isRequired,
+        maxLength,
+        placeholder,
+        size,
+        type,
+    } = fieldData
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
-
     return (
-        <div
-            className={classnames(
-                wrapClassName,
-                errors && 'gravityform__field--error'
-            )}
+        <InputWrapper
+            errors={errors}
+            inputData={fieldData}
+            labelFor={name}
+            {...wrapProps}
         >
-            <label className="gravityform__label" htmlFor={name}>
-                {label}
-                {maxLength > 0 && maxLengthSentence(maxLength, type)}
-            </label>
-            {outputDescription(description, descriptionPlacement, 'above')}
             <input
+                aria-invalid={errors}
+                aria-required={isRequired}
                 className={classnames(
                     'gravityform__field__input',
                     `gravityform__field__input__${type}`,
-                    className
+                    cssClass,
+                    size
                 )}
                 defaultValue={value}
                 id={name}
-                maxLength={maxLength > 0 ? maxLength : undefined}
+                maxLength={maxLength || undefined}
                 name={name}
                 placeholder={placeholder}
                 ref={register({
-                    required: required && strings.errors.required,
+                    required: isRequired && strings.errors.required,
                     maxlength: {
                         value: maxLength > 0 && maxLength,
                         message:
@@ -58,38 +49,27 @@ const Input = ({
                         message: regex && strings.errors.pattern,
                     },
                 })}
-                type={type}
+                type={type === 'phone' ? 'tel' : type}
             />
-            {outputDescription(description, descriptionPlacement, 'below')}
-            {errors && (
-                <div className="gravityform__error_message">
-                    {errors.message}
-                </div>
-            )}
-        </div>
+        </InputWrapper>
     )
 }
 
 export default Input
 
-const maxLengthSentence = (length, type) => {
-    let word = type === 'number' ? 'numbers' : 'characters'
-    return length && ` (maxiumum ${length} ${word})`
-}
-
 Input.propTypes = {
-    className: PropTypes.string,
-    description: PropTypes.string,
-    descriptionPlacement: PropTypes.string,
     errors: PropTypes.object,
-    inputMaskValue: PropTypes.string,
-    label: PropTypes.string,
-    maxLength: PropTypes.int,
+    fieldData: PropTypes.shape({
+        cssClass: PropTypes.string,
+        inputMaskValue: PropTypes.string,
+        maxLength: PropTypes.int,
+        placeholder: PropTypes.string,
+        isRequired: PropTypes.bool,
+        type: PropTypes.string,
+        size: PropTypes.string,
+    }),
     name: PropTypes.string,
-    placeholder: PropTypes.string,
     register: PropTypes.func,
-    required: PropTypes.bool,
-    type: PropTypes.string,
     value: PropTypes.string,
-    wrapClassName: PropTypes.string,
+    wrapProps: PropTypes.object,
 }
