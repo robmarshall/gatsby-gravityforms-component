@@ -66,6 +66,7 @@
         "webpack-cli": "^3.2.0"
     },
     "peerDependencies": {
+        "gatsby": "^2.18.25",
         "react": "^16.8.6",
         "react-dom": "^16.8.6"
     }
