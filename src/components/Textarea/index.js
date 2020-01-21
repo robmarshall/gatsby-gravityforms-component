@@ -37,7 +37,7 @@ const Textarea = ({
         >
             <textarea
                 aria-invalid={errors}
-                aris-required={isRequired}
+                aria-required={isRequired}
                 className={classnames(
                     'gravityform__field__input',
                     `gravityform__field__input__${type}`,
