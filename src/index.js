@@ -104,7 +104,7 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                         )}
                         <div className="gform_body">
                             <ul
-                                className={`gform_fields form_sublabel_${formData.subLabelPlacement} description_${formData.descriptionPlacement} ${formData.labelPlacement}`}
+                                className={`gform_fields form_sublabel_${singleForm.subLabelPlacement} description_${singleForm.descriptionPlacement} ${singleForm.labelPlacement}`}
                                 id={`gform_fields_${id}`}
                             >
                                 <FieldBuilder

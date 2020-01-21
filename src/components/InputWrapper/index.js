@@ -7,6 +7,7 @@ const InputWrapper = ({
     children,
     errors,
     inputData: {
+        cssClass,
         description,
         descriptionPlacement,
         isRequired,
@@ -22,7 +23,8 @@ const InputWrapper = ({
         <li
             className={classnames(
                 wrapClassName,
-                errors && 'gravityform__field--error'
+                errors && 'gravityform__field--error',
+                cssClass
             )}
             id={wrapId}
         >
@@ -39,7 +41,7 @@ const InputWrapper = ({
                 'above',
                 errors
             )}
-            <div className={`ginput_container ginput_container_textarea`}>
+            <div className={`ginput_container ginput_container_${type}`}>
                 {children}
                 {maxLength > 0 && (
                     <div className="charleft ginput_counter warningTextareaInfo">
@@ -88,6 +90,7 @@ InputWrapper.propTypes = {
         isRequired: PropTypes.bool,
         maxLength: PropTypes.number,
         type: PropTypes.string,
+        cssClass: PropTypes.string,
     }),
     labelFor: PropTypes.string,
     maxLength: PropTypes.int,

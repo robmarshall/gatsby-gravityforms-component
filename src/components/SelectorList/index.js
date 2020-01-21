@@ -16,7 +16,7 @@ const SelectorList = ({ errors, fieldData, name, register, ...wrapProps }) => {
             labelFor={name}
             {...wrapProps}
         >
-            <ul className="gfield_checkbox" id={name}>
+            <ul className={`gfield_${type}`} id={name}>
                 {options.map(({ isSelected, text, value }, index) => {
                     const choiceID = index + 1
                     return (

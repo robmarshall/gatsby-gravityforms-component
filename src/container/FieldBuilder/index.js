@@ -37,7 +37,7 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
             `gfield_visibility_${visibility}`
         )
 
-        const wrapId = `field_${formData.id}_${field.id}`
+        const wrapId = `field_${formData.formId}_${field.id}`
 
         //TODO: Should this match GF version "input_form.id_input.id"
         const inputName = `input_${field.id}`
@@ -48,7 +48,7 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
             // Add note for unsupported captcha field
             case 'captcha':
                 return (
-                    <p>
+                    <p key="capcha">
                         <strong>
                             Gatsby Gravity Form Component currently does not
                             support the CAPTCHA field. Form will not submit with
