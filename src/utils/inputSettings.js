@@ -15,8 +15,9 @@ export function outputDescription(
     if (description && currentPosition === placement) {
         return (
             <div
-                className={`gravityforms__description gravityforms__description--${placement} gfield_description${errors &&
-                    ' validation_error'}`}
+                className={`gravityforms__description gravityforms__description--${placement} gfield_description${
+                    errors ? ' validation_error' : ''
+                }`}
             >
                 {ReactHtmlParser(description)}
             </div>

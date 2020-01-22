@@ -49,7 +49,7 @@ Multiselect.propTypes = {
     errors: PropTypes.object,
     fieldData: PropTypes.shape({
         cssClass: PropTypes.string,
-        id: PropTypes.string,
+        id: PropTypes.number,
         choices: PropTypes.string,
         size: PropTypes.string,
         isRequired: PropTypes.bool,

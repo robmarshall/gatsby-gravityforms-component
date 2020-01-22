@@ -16,11 +16,17 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
     return formData.formFields.map(field => {
         // Set the wrapper classes
         const {
+            descriptionPlacement: fieldDescPlace,
             isRequired,
-            descriptionPlacement = formData.descriptionPlacement,
-            subLabelPlacement = formData.subLabelPlacement,
+            subLabelPlacement: fieldSubLabelPlace,
             visibility,
         } = field
+
+        const descriptionPlacement =
+            fieldDescPlace || formData.descriptionPlacement
+
+        const subLabelPlacement =
+            fieldSubLabelPlace || formData.subLabelPlacement
 
         const fieldData = { ...field, descriptionPlacement }
         let inputWrapperClass = classnames(

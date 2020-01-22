@@ -39,6 +39,7 @@ const SelectorList = ({ errors, fieldData, name, register, ...wrapProps }) => {
                                 type={type}
                                 value={value}
                             />
+                            &nbsp;
                             <label htmlFor={`${name}_${choiceID}`}>
                                 {ReactHtmlParser(text)}
                             </label>
@@ -57,7 +58,7 @@ SelectorList.propTypes = {
     fieldData: PropTypes.shape({
         choices: PropTypes.string,
         cssClass: PropTypes.string,
-        id: PropTypes.string,
+        id: PropTypes.number,
         isRequired: PropTypes.bool,
         size: PropTypes.string,
         type: PropTypes.string,
