@@ -22,6 +22,7 @@ const Multiselect = ({ errors, fieldData, name, register, ...wrapProps }) => {
                     size
                 )}
                 id={name}
+                multiple={true}
                 name={name}
                 ref={register({
                     required: isRequired,
