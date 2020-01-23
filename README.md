@@ -122,19 +122,13 @@ The data flow is as follows:
 3. Server takes post, and passes it to Gravity Forms as POST request
 4. Gravity Forms gets data
 
-Point 3 can be managed in multiple ways, depending on your build. For added security make sure you follow the steps below to implement reCAPTCHA on your form, preventing bots and spam.
+Point 3 can be managed in multiple ways, depending on your build.
 
-<details>
+## Implementing Google reCAPTCHA
 
-<summary>Implementing Google reCAPTCHA</summary>
-
-On your Gatsby project (importing this module), set up an Environment Variable named `GATSBY_RECAPTCHA_SITE_KEY` with your reCAPTCHA site key as value. This variable will be automatically used whenever you render a Gravity Form that has a reCAPTCHA field.
+On your Gatsby project set up an Environment Variable named `GATSBY_RECAPTCHA_SITE_KEY` with your reCAPTCHA site key as value. This variable will be automatically used whenever Gravity Form that has a reCAPTCHA field.
 
 Upon responding to the captcha Google sends back a **reCAPTCHA response token** that gets stored in a hidden `<input>` on your form. When your form data is sent back to your Wordpress website(through a Lambda function), Gravity Forms will automatically [verify the reCAPTCHA token](https://developers.google.com/recaptcha/docs/verify) token to ensure it was sent by a human.
-
-</details>
-
----
 
 ## Adding the Lambda (for Netlify)
 
