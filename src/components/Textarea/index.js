@@ -79,7 +79,7 @@ Textarea.propTypes = {
     errors: PropTypes.obj,
     inputMaskValue: PropTypes.string,
     label: PropTypes.string,
-    maxLength: PropTypes.string,
+    maxLength: PropTypes.number,
     name: PropTypes.string,
     placeholder: PropTypes.string,
     register: PropTypes.func,
