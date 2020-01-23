@@ -15,7 +15,7 @@ const Captcha = ({
                 <strong>
                     To use reCAPTCHA, you need to sign up for an API key pair
                     for your site and use it as a node environment variable
-                    named RECAPTCHA_SITE_KEY. The key pair consists of a site
+                    named GATSBY_RECAPTCHA_SITE_KEY. The key pair consists of a site
                     key and secret. The site key is used to display the widget
                     on your site. Sign up for an API key pair at
                     http://www.google.com/recaptcha.
