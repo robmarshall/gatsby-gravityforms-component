@@ -59,8 +59,7 @@ const allGravityData = () => {
                                 size
                                 defaultValue
                                 maxLength
-                                # Optional, used only when you have a Captcha field on your Gravity Form
-                                captchaTheme
+                                captchaTheme    // Optional, used only when you have a Captcha field on your Gravity Form.
                             }
                             button {
                                 text
@@ -129,7 +128,7 @@ Point 3 can be managed in multiple ways, depending on your build. For added secu
 
 <summary>Implementing Google reCAPTCHA</summary>
 
-On your Gatsby project (importing this module), set up an Environment Variable named `RECAPTCHA_SITE_KEY` with your reCAPTCHA site key as value. This variable will be automatically used whenever you render a Gravity Form that has a reCAPTCHA field.
+On your Gatsby project (importing this module), set up an Environment Variable named `GATSBY_RECAPTCHA_SITE_KEY` with your reCAPTCHA site key as value. This variable will be automatically used whenever you render a Gravity Form that has a reCAPTCHA field.
 
 Upon responding to the captcha Google sends back a **reCAPTCHA response token** that gets stored in a hidden `<input>` on your form. When your form data is sent back to your Wordpress website(through a Lambda function), Gravity Forms will automatically [verify the reCAPTCHA token](https://developers.google.com/recaptcha/docs/verify) token to ensure it was sent by a human.
 
