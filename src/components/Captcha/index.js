@@ -9,7 +9,7 @@ const Captcha = ({
     setValue,
     wrapClassName,
 }) => {
-    if (!process.env.RECAPTCHA_SITE_KEY) {
+    if (!process.env.GATSBY_RECAPTCHA_SITE_KEY) {
         return (
             <p>
                 <strong>
