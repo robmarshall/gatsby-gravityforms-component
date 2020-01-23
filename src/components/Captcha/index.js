@@ -44,7 +44,7 @@ const Captcha = ({
                 onLoad={() => setLoaded(true)}
                 onVerify={changeCaptchaToken}
                 ref={captchaRef}
-                sitekey={process.env.RECAPTCHA_SITE_KEY}
+                sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
                 theme={captchaTheme || 'light'}
             />
             <input
