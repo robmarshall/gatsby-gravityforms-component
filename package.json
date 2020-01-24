@@ -1,6 +1,6 @@
 {
     "name": "gatsby-gravityforms-component",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "A component to take gatsby-source-gravityforms query data and return usable components",
     "main": "dist/index.js",
     "scripts": {
