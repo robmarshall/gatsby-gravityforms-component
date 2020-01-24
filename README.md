@@ -14,6 +14,26 @@ yarn add gatsby-gravityforms-component
 npm i gatsby-gravityforms-component
 ```
 
+## Gravity Forms Data and GraphQL Fragment
+[GraphQL Fragments](https://www.gatsbyjs.org/docs/using-graphql-fragments/) are available from this component for making fetching the needed data. The `GravityFormComponent` fragment amy be used on any `GF__Form` type node. Example:
+
+```graphql
+query {
+    allGfForm {
+        edges {
+            node {
+                ...GravityFormComponent
+            }
+        }
+    }
+}
+```
+
+GraphQL fragments are automatically available to Gatsby components. If you're looking to use these in `gatsby-node.js` you will need to import them from `gatsby-gravityforms-component/fragments`.
+
+
+- GravityFormComponent
+
 ## Using the component
 
 1. Once you have set up [gatsby-source-gravityforms](https://www.npmjs.com/package/gatsby-source-gravityforms)

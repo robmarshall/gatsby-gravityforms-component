@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby'
 
-export const fragment = graphql`
+export const GravityFormComponent = graphql`
     fragment GravityFormComponent on GF__Form {
         formId
         title
@@ -19,10 +19,13 @@ export const fragment = graphql`
             message
         }
     }
+`
 
+export const GravityFormField = graphql`
     fragment GravityFormField on GF__FormFormFields {
         id
         label
+        labelPlacement
         subLabelPlacement
         description
         descriptionPlacement
