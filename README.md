@@ -29,8 +29,11 @@ query {
 }
 ```
 
-GraphQL fragments are automatically available to Gatsby components. If you're looking to use these in `gatsby-node.js` you will need to import them from `gatsby-gravityforms-component/fragments`.
+GraphQL fragments are automatically available to Gatsby components. If you're looking to use these in `gatsby-node.js` you will need to import them from `gatsby-gravityforms-component/fragments` using the below snippet.
 
+```
+import 'node_modules/gatsby-gravityforms-component/fragments.js'
+```
 
 - GravityFormComponent
 
