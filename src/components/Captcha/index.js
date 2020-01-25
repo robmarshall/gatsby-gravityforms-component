@@ -11,16 +11,25 @@ const Captcha = ({
 }) => {
     if (!process.env.GATSBY_RECAPTCHA_SITE_KEY) {
         return (
-            <p>
-                <strong>
-                    To use reCAPTCHA, you need to sign up for an API key pair
-                    for your site and use it as a node environment variable
-                    named GATSBY_RECAPTCHA_SITE_KEY. The key pair consists of a site
-                    key and secret. The site key is used to display the widget
-                    on your site. Sign up for an API key pair at
-                    http://www.google.com/recaptcha.
-                </strong>
-            </p>
+            <div className="gravityform__captcha_notification">
+                <p>
+                    <strong>
+                        To use reCAPTCHA, you need to sign up for an API key
+                        pair for your site and use it as a node environment
+                        variable named GATSBY_RECAPTCHA_SITE_KEY. The key pair
+                        consists of a site key and secret. The site key is used
+                        to display the widget on your site. Sign up for an API
+                        key pair at 
+                        <a
+                            target="_blank"
+                            title="This link opens a new page"
+                            href="http://www.google.com/recaptcha"
+                        >
+                            http://www.google.com/recaptcha
+                        </a>
+                    </strong>
+                </p>
+            </div>
         )
     }
 
