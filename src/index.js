@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import useForm from 'react-hook-form/dist/react-hook-form.ie11'
@@ -104,7 +105,14 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                         )}
                         <div className="gform_body">
                             <ul
-                                className={`gform_fields form_sublabel_${singleForm.subLabelPlacement} description_${singleForm.descriptionPlacement} ${singleForm.labelPlacement}`}
+                                className={classnames(
+                                    'gform_fields',
+                                    {
+                                        [`form_sublabel_${singleForm.subLabelPlacement}`]: singleForm.subLabelPlacement,
+                                    },
+                                    `description_${singleForm.descriptionPlacement}`,
+                                    `${singleForm.labelPlacement}`
+                                )}
                                 id={`gform_fields_${id}`}
                             >
                                 <FieldBuilder

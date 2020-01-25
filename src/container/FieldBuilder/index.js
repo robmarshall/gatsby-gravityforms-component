@@ -38,7 +38,7 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
             { 'field-required': field.isRequired },
             { 'hidden-label': islabelHidden(field.labelPlacement) },
             { gfield_contains_required: isRequired },
-            `field_sublabel_${subLabelPlacement}`,
+            { [`field_sublabel_${subLabelPlacement}`]: subLabelPlacement },
             `field_description_${descriptionPlacement}`,
             `gfield_visibility_${visibility}`
         )
