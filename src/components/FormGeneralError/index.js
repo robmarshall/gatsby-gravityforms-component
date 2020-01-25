@@ -18,7 +18,7 @@ const FormGeneralError = props => {
 
     if (errorMessage) {
         return (
-            <div className="gravityform__error_inform">
+            <div className="gravityform__error_inform validation_error">
                 <p>{errorMessage}</p>
             </div>
         )

@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import useForm from 'react-hook-form/dist/react-hook-form.ie11'
@@ -85,47 +86,72 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
 
     if (!confirmationMessage) {
         return (
-            singleForm && (
-                <form
-                    className={
-                        formLoading
-                            ? `gravityform gravityform--loading gravityform--id-${id}`
-                            : `gravityform gravityform--id-${id}`
-                    }
-                    id={`gravityform--id-${id}`}
-                    key={`gravityform--id-${id}`}
-                    onSubmit={handleSubmit(onSubmitCallback)}
-                >
-                    {generalError && (
-                        <FormGeneralError errorCode={generalError} />
-                    )}
-
-                    <FieldBuilder
-                        errors={errors}
-                        formData={singleForm}
-                        formId={id}
-                        presetValues={presetValues}
-                        register={register}
-                    />
-                    <button className="gravityform__button" type="submit">
-                        {singleForm.button.text
-                            ? singleForm.button.text
-                            : 'Submit'}{' '}
-                        {formLoading && (
-                            <span className="gravityform__button__loading_span">
-                                Loading
-                            </span>
+            <div className="gform_wrapper" id={`gform_wrapper_${id}`}>
+                <div className="gform_anchor" id={`gf_${id}`} />
+                {singleForm && (
+                    <form
+                        className={
+                            formLoading
+                                ? `gravityform gravityform--loading gravityform--id-${id}`
+                                : `gravityform gravityform--id-${id}`
+                        }
+                        //TODO: ID change go GF standard "gfrom_1"?
+                        id={`gravityform--id-${id}`}
+                        key={`gravityform--id-${id}`}
+                        onSubmit={handleSubmit(onSubmitCallback)}
+                    >
+                        {generalError && (
+                            <FormGeneralError errorCode={generalError} />
                         )}
-                    </button>
-                </form>
-            )
+                        <div className="gform_body">
+                            <ul
+                                className={classnames(
+                                    'gform_fields',
+                                    {
+                                        [`form_sublabel_${singleForm.subLabelPlacement}`]: singleForm.subLabelPlacement,
+                                    },
+                                    `description_${singleForm.descriptionPlacement}`,
+                                    `${singleForm.labelPlacement}`
+                                )}
+                                id={`gform_fields_${id}`}
+                            >
+                                <FieldBuilder
+                                    errors={errors}
+                                    formData={singleForm}
+                                    formId={id}
+                                    presetValues={presetValues}
+                                    register={register}
+                                />
+                            </ul>
+                        </div>
+
+                        <div
+                            className={`gform_footer ${singleForm.labelPlacement}`}
+                        >
+                            <button
+                                className="gravityform__button gform_button button"
+                                id={`gform_submit_button_${id}`}
+                                type="submit"
+                            >
+                                {`${singleForm?.button?.text || 'Submit'}${
+                                    formLoading ? (
+                                        <span className="gravityform__button__loading_span">
+                                            Loading
+                                        </span>
+                                    ) : (
+                                        ''
+                                    )
+                                }`}
+                            </button>
+                        </div>
+                    </form>
+                )}
+            </div>
         )
     }
 
     return ReactHtmlParser(confirmationMessage)
 }
-
-export default GravityFormForm
 
 GravityFormForm.defaultProps = {
     lambda: '',
@@ -136,3 +162,5 @@ GravityFormForm.propTypes = {
     id: PropTypes.number.isRequired,
     lambda: PropTypes.string,
 }
+
+export default GravityFormForm

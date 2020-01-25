@@ -1,44 +1,49 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { outputDescription } from '../../utils/inputSettings'
+import InputWrapper from '../../components/InputWrapper'
 import strings from '../../utils/strings'
 
 const Textarea = ({
-    className,
-    description,
-    descriptionPlacement,
     errors,
-    inputMaskValue,
-    label,
-    maxLength,
+    fieldData,
     name,
-    placeholder,
     register,
-    required,
-    type,
     value,
     wrapClassName,
+    wrapId,
 }) => {
+    const {
+        cssClass,
+        description,
+        descriptionPlacement,
+        inputMaskValue,
+        isRequired,
+        label,
+        maxLength,
+        placeholder,
+        size,
+        type,
+    } = fieldData
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
 
     return (
-        <div
-            className={classnames(
-                wrapClassName,
-                errors && 'gravityform__field--error'
-            )}
+        <InputWrapper
+            errors={errors}
+            inputData={fieldData}
+            labelFor={name}
+            wrapClassName={wrapClassName}
+            wrapId={wrapId}
         >
-            <label className="gravityform__label" htmlFor={name}>
-                {label}
-                {maxLength > 0 && `(maxiumum ${maxLength} characters)`}
-            </label>
-            {outputDescription(description, descriptionPlacement, 'above')}
             <textarea
+                aria-invalid={errors}
+                aria-required={isRequired}
                 className={classnames(
                     'gravityform__field__input',
                     `gravityform__field__input__${type}`,
-                    className
+                    cssClass,
+                    size,
+                    'textarea'
                 )}
                 defaultValue={value}
                 id={name}
@@ -46,7 +51,7 @@ const Textarea = ({
                 name={name}
                 placeholder={placeholder}
                 ref={register({
-                    required: required && strings.errors.required,
+                    required: isRequired && strings.errors.required,
                     maxlength: {
                         value: maxLength > 0 && maxLength,
                         message:
@@ -60,31 +65,29 @@ const Textarea = ({
                 })}
                 type={type}
             />
-            {outputDescription(description, descriptionPlacement, 'below')}
-            {errors && (
-                <div className="gravityform__error_message">
-                    {errors.message}
-                </div>
-            )}
-        </div>
+        </InputWrapper>
     )
 }
 
 export default Textarea
 
 Textarea.propTypes = {
-    className: PropTypes.string,
-    description: PropTypes.string,
-    descriptionPlacement: PropTypes.string,
-    errors: PropTypes.obj,
-    inputMaskValue: PropTypes.string,
-    label: PropTypes.string,
-    maxLength: PropTypes.string,
+    errors: PropTypes.object,
+    fieldData: PropTypes.shape({
+        cssClass: PropTypes.string,
+        description: PropTypes.string,
+        inputMaskValue: PropTypes.string,
+        label: PropTypes.string,
+        descriptionPlacement: PropTypes.string,
+        maxLength: PropTypes.int,
+        placeholder: PropTypes.string,
+        isRequired: PropTypes.bool,
+        type: PropTypes.string,
+        size: PropTypes.string,
+    }),
     name: PropTypes.string,
-    placeholder: PropTypes.string,
     register: PropTypes.func,
-    required: PropTypes.bool,
-    type: PropTypes.string,
     value: PropTypes.string,
     wrapClassName: PropTypes.string,
+    wrapId: PropTypes.string,
 }

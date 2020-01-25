@@ -6,21 +6,24 @@ import ReactHtmlParser from 'react-html-parser'
  * Things such as: Input Mask, Required, Visibility
  */
 
-export function getPlacement(formSetting, fieldSettings) {
-    return fieldSettings ? fieldSettings : formSetting
-}
-
-export function outputDescription(description, placement, currentPosition) {
+export function outputDescription(
+    description,
+    placement,
+    currentPosition,
+    errors
+) {
     if (description && currentPosition === placement) {
         return (
-            <p
-                className={`gravityforms__description gravityforms__description--${placement}`}
+            <div
+                className={`gravityforms__description gravityforms__description--${placement} gfield_description${
+                    errors ? ' validation_error' : ''
+                }`}
             >
                 {ReactHtmlParser(description)}
-            </p>
+            </div>
         )
     }
-    return false
+    return null
 }
 
 export function islabelHidden(label) {
@@ -28,5 +31,6 @@ export function islabelHidden(label) {
 }
 
 export function ifDefaultValue(field) {
+    //TODO: My emty default vaules are "" ? that doesn't seem helpful
     return field['defaultValue'] !== 'undefined' ? field['defaultValue'] : false
 }
