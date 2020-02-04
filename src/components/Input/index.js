@@ -33,7 +33,7 @@ const Input = ({ errors, fieldData, name, register, value, ...wrapProps }) => {
                 )}
                 defaultValue={value}
                 id={name}
-                maxLength={maxLength || undefined}
+                maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                 name={name}
                 placeholder={placeholder}
                 ref={register({
@@ -62,7 +62,7 @@ Input.propTypes = {
     fieldData: PropTypes.shape({
         cssClass: PropTypes.string,
         inputMaskValue: PropTypes.string,
-        maxLength: PropTypes.int,
+        maxLength: PropTypes.number,
         placeholder: PropTypes.string,
         isRequired: PropTypes.bool,
         type: PropTypes.string,

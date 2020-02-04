@@ -15,6 +15,7 @@ npm i gatsby-gravityforms-component
 ```
 
 ## Gravity Forms Data and GraphQL Fragment
+
 [GraphQL Fragments](https://www.gatsbyjs.org/docs/using-graphql-fragments/) are available from this component for making fetching the needed data. The `GravityFormComponent` fragment amy be used on any `GF__Form` type node. Example:
 
 ```graphql
@@ -35,7 +36,7 @@ GraphQL fragments are automatically available to Gatsby components. If you're lo
 import 'node_modules/gatsby-gravityforms-component/fragments.js'
 ```
 
-- GravityFormComponent
+-   GravityFormComponent
 
 ## Using the component
 
@@ -118,7 +119,13 @@ The data flow is as follows:
 
 Point 3 can be managed in multiple ways, depending on your build.
 
-### Adding the Lambda (for Netlify)
+## Implementing Google reCAPTCHA
+
+On your Gatsby project set up an Environment Variable named `GATSBY_RECAPTCHA_SITE_KEY` with your reCAPTCHA site key as value. This variable will be automatically used whenever Gravity Form that has a reCAPTCHA field.
+
+Upon responding to the captcha Google sends back a **reCAPTCHA response token** that gets stored in a hidden `<input>` on your form. When your form data is sent back to your Wordpress website(through a Lambda function), Gravity Forms will automatically [verify the reCAPTCHA token](https://developers.google.com/recaptcha/docs/verify) token to ensure it was sent by a human.
+
+## Adding the Lambda (for Netlify)
 
 If you are using Netlify then it is recommended you use a Lambda function. This process is _relatively_ plug and play.
 
@@ -215,8 +222,7 @@ If you are developing locally, you may run into an error "Cannot resolve React".
 -   [ ] Radio (half done, need to add default values)
 -   [x] Hidden
 -   [x] HTML
--   [ ] Captcha
-
+-   [x] Captcha
 -   [x] Add masking to inputs
 
 ### General Form

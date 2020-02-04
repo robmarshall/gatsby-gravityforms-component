@@ -41,5 +41,6 @@ export const GravityFormField = graphql`
         size
         defaultValue
         maxLength
+        captchaTheme
     }
 `
