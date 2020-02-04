@@ -66,6 +66,7 @@ const FieldBuilder = ({
                         errors={errors[`input_${field.id}`]}
                         fieldData={fieldData}
                         key={field.id}
+                        name={inputName}
                         register={register}
                         setValue={setValue}
                         wrapClassName={inputWrapperClass}

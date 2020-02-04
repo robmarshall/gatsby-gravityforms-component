@@ -2,12 +2,13 @@ import PropTypes from 'prop-types'
 import React, { useState, useRef, useEffect } from 'react'
 import Reaptcha from 'reaptcha'
 
-import InputWrapper from './InputWrapper'
+import InputWrapper from '../InputWrapper'
 
 const Captcha = ({
     captchaTheme,
     errors,
     fieldData,
+    name,
     register,
     setValue,
     ...wrapProps
@@ -78,6 +79,7 @@ Captcha.propTypes = {
     captchaTheme: PropTypes.string,
     errors: PropTypes.object,
     fieldData: PropTypes.object,
+    name: PropTypes.string,
     register: PropTypes.func,
     setValue: PropTypes.func,
     wrapClassName: PropTypes.string,
