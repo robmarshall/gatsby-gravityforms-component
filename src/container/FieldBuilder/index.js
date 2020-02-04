@@ -64,6 +64,7 @@ const FieldBuilder = ({
                     <Captcha
                         captchaTheme={field.captchaTheme}
                         errors={errors[`input_${field.id}`]}
+                        fieldData={fieldData}
                         key={field.id}
                         register={register}
                         setValue={setValue}
