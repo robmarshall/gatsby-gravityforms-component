@@ -2,6 +2,7 @@ import classnames from 'classnames'
 import _ from 'lodash'
 import React from 'react'
 
+import Captcha from '../../components/Captcha'
 import Html from '../../components/Html'
 import Input from '../../components/Input'
 import Multiselect from '../../components/Multiselect'
@@ -54,14 +55,14 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
             // Add note for unsupported captcha field
             case 'captcha':
                 return (
-                    <p key="capcha">
-                        <strong>
-                            Gatsby Gravity Form Component currently does not
-                            support the CAPTCHA field. Form will not submit with
-                            this field present. Remove this field from the
-                            Gravity Form.
-                        </strong>
-                    </p>
+                    <Captcha
+                        captchaTheme={field.captchaTheme}
+                        errors={errors[`input_${field.id}`]}
+                        key={field.id}
+                        register={register}
+                        setValue={setValue}
+                        wrapClassName={inputWrapperClass}
+                    />
                 )
             // Start with the standard fields
             case 'text':

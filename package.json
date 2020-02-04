@@ -1,6 +1,6 @@
 {
     "name": "gatsby-gravityforms-component",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "A component to take gatsby-source-gravityforms query data and return usable components",
     "main": "dist/index.js",
     "scripts": {
@@ -39,6 +39,7 @@
         "prop-types": "^15.7.2",
         "react-hook-form": "^3.14.0",
         "react-html-parser": "^2.0.2",
+        "reaptcha": "^1.7.2",
         "sanitize-html": "^1.20.1"
     },
     "devDependencies": {
