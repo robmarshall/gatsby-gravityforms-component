@@ -86,18 +86,21 @@ const GravityFormForm = ({
                         setGeneralError('unknownError')
                     }
 
-                    errorCallback({ values, error: data, reset })
+                    errorCallback &&
+                        errorCallback({ values, error: data, reset })
                 }
 
                 if (status === 'success') {
                     const { confirmation_message } = data?.data
 
-                    const { confirmations } = singleForm.confirmations
+                    const { confirmations } = singleForm
 
-                    const confirmation = confirmations.find(el => el.isDefault)
+                    const confirmation = confirmations?.find(el => el.isDefault)
 
                     setConfirmationMessage(
-                        confirmation_message || confirmation.message
+                        confirmation_message ||
+                            confirmation.message ||
+                            'Success'
                     )
 
                     successCallback({
