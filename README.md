@@ -75,7 +75,7 @@ function handleError({values, error, reset}) => {
     //handle error
 }
 
-function handleSuccess({values, reset}) => {
+function handleSuccess({values, reset, confirmations}) => {
     //handle success
 }
 
@@ -98,7 +98,7 @@ This outputs the form that has been set up in WordPress - Gravity Forms. Ready f
 -   formDate: The data passed from the query function - this is the same for all forms
 -   presetValues: An object, with the keys set as the input ID (shown in Gravity Forms editor) and the value to set the field as. Great for hidden fields.
 -   lambda: The URL to the lambda endpoint
--   successCallback: function to be called on successful form submission. values: form values, reset: function to reset form.
+-   successCallback: function to be called on successful form submission. values: form values, reset: function to reset form, confirmations: form confirmations set in WP GF.
 -   errorCallback: function to be called on error in form submission. values: form values, reset: function to reset form, error: error response from API.
 
 ## Add Environment Variables

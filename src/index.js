@@ -59,7 +59,7 @@ const GravityFormForm = ({
             if (submissionHasOneFieldEntry(values)) {
                 setLoadingState(true)
 
-                const restResponse = await passToGravityForms(
+                const { data, status } = await passToGravityForms(
                     singleForm.apiURL,
                     values,
                     lambda
@@ -67,12 +67,12 @@ const GravityFormForm = ({
 
                 setLoadingState(false)
 
-                if (restResponse.status === 'error') {
+                if (status === 'error') {
                     // Handle the errors
                     // First check to make sure we have the correct data
-                    if (restResponse.data) {
+                    if (data) {
                         // Validation errors passed back by Gravity Forms
-                        const { data } = restResponse.data
+                        const { data } = data
 
                         if (data.status === 'gravityFormErrors') {
                             // Pass messages to handle that sets react-hook-form errors
@@ -86,15 +86,25 @@ const GravityFormForm = ({
                         setGeneralError('unknownError')
                     }
 
-                    errorCallback({ values, error: restResponse.data, reset })
+                    errorCallback({ values, error: data, reset })
                 }
 
-                if (restResponse.status === 'success') {
+                if (status === 'success') {
+                    const { confirmation_message } = data?.data
+
+                    const { confirmations } = singleForm.confirmations
+
+                    const confirmation = confirmations.find(el => el.isDefault)
+
                     setConfirmationMessage(
-                        restResponse.data.data.confirmation_message
+                        confirmation_message || confirmation.message
                     )
 
-                    successCallback({ values, reset })
+                    successCallback({
+                        values,
+                        reset,
+                        confirmations,
+                    })
                 }
             } else {
                 setGeneralError('leastOneField')
