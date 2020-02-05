@@ -134,13 +134,12 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                                 id={`gform_submit_button_${id}`}
                                 type="submit"
                             >
-                                {singleForm?.button?.text || 'Submit'}
                                 {formLoading ? (
                                     <span className="gravityform__button__loading_span">
                                         Loading
                                     </span>
                                 ) : (
-                                    ''
+                                    singleForm?.button?.text || 'Submit'
                                 )}
                             </button>
                         </div>
