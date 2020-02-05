@@ -22,9 +22,22 @@ import passToGravityForms from './utils/passToGravityForms'
  *                              netlify or similar
  */
 
-const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
+const GravityFormForm = ({
+    id,
+    formData,
+    lambda,
+    presetValues = {},
+    successCallback = ({ reset }) => reset(),
+}) => {
     // Pull in form functions
-    const { errors, handleSubmit, register, setError, setValue } = useForm()
+    const {
+        errors,
+        handleSubmit,
+        register,
+        reset,
+        setError,
+        setValue,
+    } = useForm()
 
     const [generalError, setGeneralError] = useState('')
     const [formLoading, setLoadingState] = useState(false)
@@ -77,6 +90,8 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
                     setConfirmationMessage(
                         restResponse.data.data.confirmation_message
                     )
+
+                    successCallback({ values, reset })
                 }
             } else {
                 setGeneralError('leastOneField')
@@ -160,6 +175,7 @@ GravityFormForm.propTypes = {
     formData: PropTypes.object.isRequired,
     id: PropTypes.number.isRequired,
     lambda: PropTypes.string,
+    successCallback: PropTypes.func,
 }
 
 export default GravityFormForm
