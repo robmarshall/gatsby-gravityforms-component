@@ -71,12 +71,22 @@ const allGravityData = () => {
     return allGfForm
 }
 
+function handleError({values, error, reset}) => {
+    //handle error
+}
+
+function handleSuccess({values, reset}) => {
+    //handle success
+}
+
 const examplePage = () => (
     <GravityFormForm
         id={1}
         formData={allGravityData()}
         presetValues={{ input_1: 'special_value' }}
         lambda={process.env.LAMBDA_ENDPOINT}
+        successCallback={handleSuccess}
+        errorCallback={handleError}
     />
 )
 export default examplePage
@@ -88,6 +98,8 @@ This outputs the form that has been set up in WordPress - Gravity Forms. Ready f
 -   formDate: The data passed from the query function - this is the same for all forms
 -   presetValues: An object, with the keys set as the input ID (shown in Gravity Forms editor) and the value to set the field as. Great for hidden fields.
 -   lambda: The URL to the lambda endpoint
+-   successCallback: function to be called on successful form submission. values: form values, reset: function to reset form.
+-   errorCallback: function to be called on error in form submission. values: form values, reset: function to reset form, error: error response from API.
 
 ## Add Environment Variables
 
@@ -228,7 +240,7 @@ If you are developing locally, you may run into an error "Cannot resolve React".
 ### General Form
 
 -   [ ] Honeypot
--   [ ] Add submit/error callback for custom use
+-   [x] Add submit/error callback for custom use
 
 ### Send to CMS
 

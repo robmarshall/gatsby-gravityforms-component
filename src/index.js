@@ -28,6 +28,7 @@ const GravityFormForm = ({
     lambda,
     presetValues = {},
     successCallback = ({ reset }) => reset(),
+    errorCallback,
 }) => {
     // Pull in form functions
     const {
@@ -84,6 +85,8 @@ const GravityFormForm = ({
                         // Seemed to be an unknown issue
                         setGeneralError('unknownError')
                     }
+
+                    errorCallback({ values, error: restResponse.data, reset })
                 }
 
                 if (restResponse.status === 'success') {
@@ -172,6 +175,7 @@ GravityFormForm.defaultProps = {
 }
 
 GravityFormForm.propTypes = {
+    errorCallback: PropTypes.func,
     formData: PropTypes.object.isRequired,
     id: PropTypes.number.isRequired,
     lambda: PropTypes.string,
