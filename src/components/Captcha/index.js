@@ -2,12 +2,16 @@ import PropTypes from 'prop-types'
 import React, { useState, useRef, useEffect } from 'react'
 import Reaptcha from 'reaptcha'
 
+import InputWrapper from '../InputWrapper'
+
 const Captcha = ({
     captchaTheme,
     errors,
+    fieldData,
+    name,
     register,
     setValue,
-    wrapClassName,
+    ...wrapProps
 }) => {
     if (!process.env.GATSBY_RECAPTCHA_SITE_KEY) {
         return (
@@ -21,9 +25,10 @@ const Captcha = ({
                         to display the widget on your site. Sign up for an API
                         key pair at
                         <a
+                            href="http://www.google.com/recaptcha"
+                            rel="noopener noreferrer"
                             target="_blank"
                             title="This link opens a new page"
-                            href="http://www.google.com/recaptcha"
                         >
                             http://www.google.com/recaptcha
                         </a>
@@ -47,7 +52,12 @@ const Captcha = ({
     }, [errors, isLoaded])
 
     return (
-        <div className={wrapClassName}>
+        <InputWrapper
+            errors={errors}
+            inputData={fieldData}
+            labelFor={name}
+            {...wrapProps}
+        >
             <Reaptcha
                 onExpire={changeCaptchaToken}
                 onLoad={() => setLoaded(true)}
@@ -61,18 +71,15 @@ const Captcha = ({
                 ref={register({})}
                 type="hidden"
             />
-            {errors && (
-                <div className="gravityform__error_message">
-                    {errors.message}
-                </div>
-            )}
-        </div>
+        </InputWrapper>
     )
 }
 
 Captcha.propTypes = {
     captchaTheme: PropTypes.string,
     errors: PropTypes.object,
+    fieldData: PropTypes.object,
+    name: PropTypes.string,
     register: PropTypes.func,
     setValue: PropTypes.func,
     wrapClassName: PropTypes.string,

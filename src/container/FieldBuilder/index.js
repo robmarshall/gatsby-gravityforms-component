@@ -12,7 +12,13 @@ import Textarea from '../../components/Textarea'
 import { filteredKeys } from '../../utils/helpers'
 import { ifDefaultValue, islabelHidden } from '../../utils/inputSettings'
 
-const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
+const FieldBuilder = ({
+    formData,
+    presetValues = {},
+    register,
+    errors,
+    setValue,
+}) => {
     // Loop through fields and create
     return formData.formFields.map(field => {
         // Set the wrapper classes
@@ -58,7 +64,9 @@ const FieldBuilder = ({ formData, presetValues = {}, register, errors }) => {
                     <Captcha
                         captchaTheme={field.captchaTheme}
                         errors={errors[`input_${field.id}`]}
+                        fieldData={fieldData}
                         key={field.id}
+                        name={inputName}
                         register={register}
                         setValue={setValue}
                         wrapClassName={inputWrapperClass}

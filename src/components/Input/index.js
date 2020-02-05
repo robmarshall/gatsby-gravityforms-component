@@ -62,7 +62,7 @@ Input.propTypes = {
     fieldData: PropTypes.shape({
         cssClass: PropTypes.string,
         inputMaskValue: PropTypes.string,
-        maxLength: PropTypes.int,
+        maxLength: PropTypes.number,
         placeholder: PropTypes.string,
         isRequired: PropTypes.bool,
         type: PropTypes.string,

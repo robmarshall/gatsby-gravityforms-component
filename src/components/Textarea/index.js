@@ -79,7 +79,7 @@ Textarea.propTypes = {
         inputMaskValue: PropTypes.string,
         label: PropTypes.string,
         descriptionPlacement: PropTypes.string,
-        maxLength: PropTypes.int,
+        maxLength: PropTypes.number,
         placeholder: PropTypes.string,
         isRequired: PropTypes.bool,
         type: PropTypes.string,
