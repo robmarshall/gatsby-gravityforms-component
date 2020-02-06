@@ -38,7 +38,7 @@ exports.handler = async event => {
     // Parse that post data body
     const data = JSON.parse(event.body)
 
-    const apiUrl = data.data.baseUrl + '/submissions'
+    const apiUrl = data.baseUrl + '/submissions'
 
     // Check we have the required data
     if (!apiUrl) {
@@ -72,7 +72,7 @@ exports.handler = async event => {
                 ...authParams,
                 oauth_signature: signature,
             },
-            data: data.data.payload,
+            data: data.payload,
         })
     } catch (error) {
         // Check the function log for this!
