@@ -70,17 +70,13 @@ const GravityFormForm = ({
                 if (status === 'error') {
                     // Handle the errors
                     // First check to make sure we have the correct data
-                    if (data) {
-                        // Validation errors passed back by Gravity Forms
-                        const { data } = data
 
-                        if (data.status === 'gravityFormErrors') {
-                            // Pass messages to handle that sets react-hook-form errors
-                            handleGravityFormsValidationErrors(
-                                data.validation_messages,
-                                setError
-                            )
-                        }
+                    if (data?.status === 'gravityFormErrors') {
+                        // Pass messages to handle that sets react-hook-form errors
+                        handleGravityFormsValidationErrors(
+                            data.validation_messages,
+                            setError
+                        )
                     } else {
                         // Seemed to be an unknown issue
                         setGeneralError('unknownError')
