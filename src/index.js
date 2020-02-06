@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
-import useForm from 'react-hook-form/dist/react-hook-form.ie11'
+import { useForm } from 'react-hook-form/dist/react-hook-form.ie11'
 import ReactHtmlParser from 'react-html-parser'
 import FormGeneralError from './components/FormGeneralError'
 import FieldBuilder from './container/FieldBuilder'
