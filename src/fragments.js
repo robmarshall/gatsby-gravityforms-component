@@ -16,7 +16,14 @@ export const GravityFormComponent = graphql`
             text
         }
         confirmations {
+            id
+            name
+            isDefault
+            type
             message
+            url
+            queryString
+            disableAutoformat
         }
     }
 `

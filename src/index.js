@@ -22,9 +22,23 @@ import passToGravityForms from './utils/passToGravityForms'
  *                              netlify or similar
  */
 
-const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
+const GravityFormForm = ({
+    id,
+    formData,
+    lambda,
+    presetValues = {},
+    successCallback = ({ reset }) => reset(),
+    errorCallback,
+}) => {
     // Pull in form functions
-    const { errors, handleSubmit, register, setError, setValue } = useForm()
+    const {
+        errors,
+        handleSubmit,
+        register,
+        reset,
+        setError,
+        setValue,
+    } = useForm()
 
     const [generalError, setGeneralError] = useState('')
     const [formLoading, setLoadingState] = useState(false)
@@ -45,7 +59,7 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
             if (submissionHasOneFieldEntry(values)) {
                 setLoadingState(true)
 
-                const restResponse = await passToGravityForms(
+                const { data, status } = await passToGravityForms(
                     singleForm.apiURL,
                     values,
                     lambda
@@ -53,30 +67,41 @@ const GravityFormForm = ({ id, formData, lambda, presetValues = {} }) => {
 
                 setLoadingState(false)
 
-                if (restResponse.status === 'error') {
+                if (status === 'error') {
                     // Handle the errors
                     // First check to make sure we have the correct data
-                    if (restResponse.data) {
-                        // Validation errors passed back by Gravity Forms
-                        const { data } = restResponse.data
 
-                        if (data.status === 'gravityFormErrors') {
-                            // Pass messages to handle that sets react-hook-form errors
-                            handleGravityFormsValidationErrors(
-                                data.validation_messages,
-                                setError
-                            )
-                        }
+                    if (data?.status === 'gravityFormErrors') {
+                        // Pass messages to handle that sets react-hook-form errors
+                        handleGravityFormsValidationErrors(
+                            data.validation_messages,
+                            setError
+                        )
                     } else {
                         // Seemed to be an unknown issue
                         setGeneralError('unknownError')
                     }
+
+                    errorCallback &&
+                        errorCallback({ values, error: data, reset })
                 }
 
-                if (restResponse.status === 'success') {
+                if (status === 'success') {
+                    const { confirmation_message } = data?.data
+
+                    const { confirmations } = singleForm
+
+                    const confirmation = confirmations?.find(el => el.isDefault)
+
                     setConfirmationMessage(
-                        restResponse.data.data.confirmation_message
+                        confirmation_message || confirmation.message || false
                     )
+
+                    successCallback({
+                        values,
+                        reset,
+                        confirmations,
+                    })
                 }
             } else {
                 setGeneralError('leastOneField')
@@ -157,9 +182,11 @@ GravityFormForm.defaultProps = {
 }
 
 GravityFormForm.propTypes = {
+    errorCallback: PropTypes.func,
     formData: PropTypes.object.isRequired,
     id: PropTypes.number.isRequired,
     lambda: PropTypes.string,
+    successCallback: PropTypes.func,
 }
 
 export default GravityFormForm
