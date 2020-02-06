@@ -37,7 +37,7 @@
         "nanoid": "^2.0.3",
         "oauth-signature": "^1.5.0",
         "prop-types": "^15.7.2",
-        "react-hook-form": "^3.14.0",
+        "react-hook-form": "^3.29.4",
         "react-html-parser": "^2.0.2",
         "reaptcha": "^1.7.2",
         "sanitize-html": "^1.20.1"
