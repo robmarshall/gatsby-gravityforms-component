@@ -9,11 +9,8 @@ export default async (baseUrl, formData, lambdaEndpoint) => {
     let result
 
     try {
-        result = await axios.post(lambdaEndpoint, {
+        result = await axios.post(lambdaEndpoint, lambaData, {
             responseType: 'json',
-            withCredentials: true,
-            crossdomain: true,
-            data: lambaData,
         })
     } catch (err) {
         // Pass back error
