@@ -29,6 +29,7 @@ const GravityFormForm = ({
     presetValues = {},
     successCallback = ({ reset }) => reset(),
     errorCallback,
+    buttonLoading = 'Loading',
 }) => {
     // Pull in form functions
     const {
@@ -159,9 +160,9 @@ const GravityFormForm = ({
                                 id={`gform_submit_button_${id}`}
                                 type="submit"
                             >
-                                {formLoading ? (
+                                {formLoading && buttonLoading ? (
                                     <span className="gravityform__button__loading_span">
-                                        Loading
+                                        {buttonLoading}
                                     </span>
                                 ) : (
                                     singleForm?.button?.text || 'Submit'
