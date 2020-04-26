@@ -93,7 +93,6 @@ InputWrapper.propTypes = {
         cssClass: PropTypes.string,
     }),
     labelFor: PropTypes.string,
-    maxLength: PropTypes.int,
     wrapClassName: PropTypes.string,
     wrapId: PropTypes.string,
 }
