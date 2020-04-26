@@ -16,7 +16,7 @@ npm i gatsby-gravityforms-component
 
 ## Gravity Forms Data and GraphQL Fragment
 
-[GraphQL Fragments](https://www.gatsbyjs.org/docs/using-graphql-fragments/) are available from this component for making fetching the needed data. The `GravityFormComponent` fragment amy be used on any `GF__Form` type node. Example:
+[GraphQL Fragments](https://www.gatsbyjs.org/docs/using-graphql-fragments/) are available from this component for making fetching the needed data. The `GravityFormComponent` fragment can be used on any `GF__Form` type node. Example:
 
 ```graphql
 query {
@@ -36,7 +36,6 @@ GraphQL fragments are automatically available to Gatsby components. If you're lo
 import 'node_modules/gatsby-gravityforms-component/fragments.js'
 ```
 
--   GravityFormComponent
 
 ## Using the component
 
