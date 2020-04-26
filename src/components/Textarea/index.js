@@ -15,11 +15,8 @@ const Textarea = ({
 }) => {
     const {
         cssClass,
-        description,
-        descriptionPlacement,
         inputMaskValue,
         isRequired,
-        label,
         maxLength,
         placeholder,
         size,

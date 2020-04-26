@@ -35,6 +35,6 @@ Html.propTypes = {
         type: PropTypes.string,
     }),
     name: PropTypes.string,
-    wrapProps: PropTypes.object,
     wrapClassName: PropTypes.string,
+    wrapProps: PropTypes.object,
 }
