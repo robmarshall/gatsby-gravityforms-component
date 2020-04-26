@@ -30,12 +30,20 @@ query {
 }
 ```
 
+### Using in gatsby-node.js
+
 GraphQL fragments are automatically available to Gatsby components. If you're looking to use these in `gatsby-node.js` you will need to import them from `gatsby-gravityforms-component/fragments` using the below snippet.
 
 ```
 import 'node_modules/gatsby-gravityforms-component/fragments.js'
 ```
 
+### Custom Query
+
+Sometimes you may need to customize this, depending on the plugins API version,
+or if you want to reduce the weight of the request due to not using all fields.
+
+The full fragment can be found in /src/fragments.js. Copy this into your hook.
 
 ## Using the component
 
