@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import _ from 'lodash'
+import get from 'lodash/get'
 import React from 'react'
 
 import Captcha from '../../components/Captcha'
@@ -86,8 +86,8 @@ const FieldBuilder = ({
                         name={inputName}
                         register={register}
                         value={
-                            _.get(presetValues, inputName, false)
-                                ? _.get(presetValues, inputName, false)
+                            get(presetValues, inputName, false)
+                                ? get(presetValues, inputName, false)
                                 : ifDefaultValue(field)
                         }
                         wrapClassName={inputWrapperClass}
