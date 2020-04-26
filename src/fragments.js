@@ -8,7 +8,6 @@ export const GravityFormComponent = graphql`
         apiURL
         labelPlacement
         descriptionPlacement
-        subLabelPlacement
         formFields {
             ...GravityFormField
         }
@@ -23,7 +22,6 @@ export const GravityFormComponent = graphql`
             message
             url
             queryString
-            disableAutoformat
         }
     }
 `
@@ -48,6 +46,5 @@ export const GravityFormField = graphql`
         size
         defaultValue
         maxLength
-        captchaTheme
     }
 `
