@@ -1,12 +1,11 @@
 /**
- * Get the form from ID
+ * Get the form from ID.
  * Takes the full dataset passed back graphQL. Loops through and returns
- * the form in question
- * @param mixed formData    Form dataset from graphQL
- * @param int   id          Form ID from Gravity Forms
- * @returns array or false
+ * the form in question.
+ * @param {mixed} formData Form dataset from graphQL.
+ * @param {int} id Form ID from Gravity Forms.
+ * @returns array or false.
  */
-
 export default (formData, id) => {
     if (formData && id) {
         // Filter returned data to get specific form

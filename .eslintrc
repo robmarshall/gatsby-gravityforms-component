@@ -1,5 +1,10 @@
 {
     "parser": "babel-eslint",
+    "settings": {
+        "react": {
+            "version": "latest"
+        }
+    },
     "env": {
         "browser": true,
         "amd": true,

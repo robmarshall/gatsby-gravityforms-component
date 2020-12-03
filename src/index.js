@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form/dist/react-hook-form.ie11'
+import { useForm } from 'react-hook-form/dist/index.ie11'
 import ReactHtmlParser from 'react-html-parser'
 import FormGeneralError from './components/FormGeneralError'
 import FieldBuilder from './container/FieldBuilder'
@@ -16,12 +16,11 @@ import passToGravityForms from './utils/passToGravityForms'
 /**
  * Component to take Gravity Form graphQL data and turn into
  * a fully functional form.
- * @param mixed     formData    Form dataset from graphQL
- * @param int       id          Form ID from Gravity Forms
- * @param string    lambda      API link for Lambda functions when working with
- *                              netlify or similar
+ * @param {mixed} formData Form dataset from graphQL
+ * @param {int} id Form ID from Gravity Forms
+ * @param {string} lambda API link for Lambda functions when working with
+ *                        netlify or similar
  */
-
 const GravityFormForm = ({
     id,
     formData,
