@@ -52,7 +52,7 @@ The full fragment can be found in /src/fragments.js. Copy this into your hook.
 3. Grab the GraphQL data from the gatsby-source-gravityforms plugin and pass to component
 4. Set the form ID
 5. Add your environment variables
-6. Add the Lambda function (scroll down a little)
+6. [Add the Lambda function](#adding-the-lambda-for-netlify)
 
 ```js
 import React from 'react'
@@ -115,10 +115,8 @@ The following environment variables should be added to your hosting provider bac
 ```js
 GF_CONSUMER_KEY = 'XXXXXX'
 GF_CONSUMER_SECRET = 'XXXXXX'
-LAMBDA_ENDPOINT = 'https://examplesite.com/.netlify/functions/newGfEntry'
+LAMBDA_ENDPOINT = 'https://examplesite.com/.netlify/functions/new-gf-entry'
 ```
-
-See "/examples/lambda/.env/sample" for the file.
 
 Depending on what build (Gatsby/React/ect) you are using, these will need to be defined and pulled into your project in different ways.
 
@@ -154,32 +152,35 @@ Using a combination of environment variables and a Lambda function we can naviga
 
 Add the following function as a Lambda function, and add your Gravity Form keys as environment variables (these will be already set if you are using the gatsby-source-gravityforms plugin).
 
-The steps below are a boilerplate to build this bridge. However you will need to add a new step in your development process. [This blog post explains](https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e) how to start locally developing lambda functions. You can test the function locally by adding the below environment variables. _See section below about testing on localhost and circumventing security warnings_
+The steps below are a boilerplate to build this bridge. You can test the function locally by adding the below environment variables. You will first need to install the [netlify-cli](https://docs.netlify.com/cli/get-started/#installation) package. This allows easy local use of Netlify Lambda functions.
+
+_See section below about testing on localhost and circumventing security warnings_
 
 ```env.development
-LAMBDA_ENDPOINT="http://localhost:9000/.netlify/functions/newGfEntry"
+LAMBDA_ENDPOINT="http://localhost:8888/.netlify/functions/new-gf-entry"
 ```
 
 ```env.production
-LAMBDA_ENDPOINT="https://website-name/.netlify/functions/newGfEntry"
+LAMBDA_ENDPOINT="https://website-name/.netlify/functions/new-gf-entry"
 ```
 
 1. Add a folder called "lambda" in your projects /src folder
-2. Create a file inside called "newGfEntry.js"
-3. Copy the code from /examples/lambda/newGfEntry.js into that file
+2. Create a file inside called "new-gf-entry.js"
+3. Copy the code from /examples/new-gf-entry.js into that file
 4. Make sure all environment variables at the top of the code have been updated with yours.
-5. Add a folder at the root of your project called "lambda". This will be empty. The built lambda function will go in here on deployment.
-6. Create a file at the root of your project called netlify.toml
-7. Add the following code to netlify.toml:
+5. Create a file at the root of your project called netlify.toml
+6. Add the following code to netlify.toml:
 
 ```netlify.toml
 [build]
-  Functions = "lambda"
-  Command = "npm run build:lambda && gatsby build"
+[build]
+    command = "yarn build"
+    functions = "src/lambda"
+    publish = "build"
 
 [build.environment]
-  GF_CONSUMER_KEY="XXX"
-  GF_CONSUMER_SECRET="XXX"
+    GF_CONSUMER_KEY="XXX"
+    GF_CONSUMER_SECRET="XXX"
 ```
 
 The `netlify.toml` file will override your build command on deployment. So we need to tell Netlify to build your lamdba function _and also_ your Gatsby site.
@@ -188,11 +189,12 @@ The lambda function _does not_ have access to your `.env.*` files you need to de
 
 When done, you will have created these files and folders:
 ./netlify.toml
-./lambda/
 ./src/lambda/
-./src/lambda/newGfEntry.js
+./src/lambda/new-gf-entry.js
 
-To test all this make sure to run `npm run start:lambda` in one tab, which will spin up the endpoint at `http://localhost:9000`, and then run `gatsby develop` in another.
+To test all this make sure to run `netlify dev`, this will spin up your site at `http://localhost:8888/`, you can then access the function at: `http://localhost:8888/.netlify/functions/new-gf-entry`.
+
+When `netlify dev` is run, it will create a new folder called 'lambda' in the root, with the compiled function.
 
 If you have any issues with these steps, see these articles:
 
@@ -214,13 +216,13 @@ For more information: https://stackoverflow.com/questions/10883211/deadly-cors-w
 
 ## Self Signed Certificate Error - SSL
 
-If you are having Self Signed Certificate issues, put this at the top of the newGfEntry.js file.
+If you are having Self Signed Certificate issues during development, put this at the top of the new-gf-entry.js file.
 
 ```
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 ```
 
--   But only on your localhost!!! \*
+But only on your localhost!!! \*
 
 ## Testing & Developing
 

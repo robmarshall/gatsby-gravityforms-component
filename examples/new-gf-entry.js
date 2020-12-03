@@ -16,17 +16,16 @@ const secretData = {
 }
 
 // For those requests
-// Update with correct origin when on production!
 const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
 }
 
-exports.handler = async event => {
+exports.handler = async (event, context, callback) => {
     // Make sure we are dealing with a POST request
     if (event.httpMethod !== 'POST') {
         return {
-            statusCode: 200, // <-- Important for CORS
+            statusCode: 400,
             headers,
             body: JSON.stringify({
                 status: 'notPost',
