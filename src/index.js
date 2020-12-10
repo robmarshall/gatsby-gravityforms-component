@@ -93,7 +93,7 @@ const GravityFormForm = ({
                     const confirmation = confirmations?.find(el => el.isDefault)
 
                     setConfirmationMessage(
-                        confirmation_message || confirmation.message || false
+                        confirmation_message || confirmation?.message || false
                     )
 
                     successCallback({
