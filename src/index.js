@@ -86,7 +86,7 @@ const GravityFormForm = ({
                 }
 
                 if (status === 'success') {
-                    const { confirmation_message } = data
+                    const { confirmation_message } = data?.data
 
                     const { confirmations } = singleForm
 

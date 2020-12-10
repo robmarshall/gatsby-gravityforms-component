@@ -227,6 +227,10 @@ Firstly, yes please! Any help would be great.
 
 If you are developing locally, you may run into an error "Cannot resolve React". If you do, check out this article: https://thoughtsandstuff.com/building-react-components-for-gatsby-using-npm-link-and-hooks-cant-resolve-react-solution
 
+### Developing Locally
+
+To develop the component, you first need to link it to a Gatsby project. This is so you have an environment to work with. The [Gatsby Default Starter](https://github.com/gatsbyjs/gatsby-starter-default) is a good choice.
+
 ## To Do
 
 ### Field Components
