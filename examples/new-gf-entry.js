@@ -75,13 +75,13 @@ exports.handler = async (event, context, callback) => {
         })
     } catch (error) {
         // Check the function log for this!
-        console.log('newGFEntry.js Error Data')
+        console.log('new-gf-entry.js Error Data')
         console.log(error)
 
-        const errorResponse = error.response.data
+        const errorResponse = error.response?.data
 
         // Here we know this is a Gravity Form Error
-        if (errorResponse.is_valid === false) {
+        if (errorResponse && errorResponse?.is_valid === false) {
             return {
                 statusCode: 422,
                 headers,
