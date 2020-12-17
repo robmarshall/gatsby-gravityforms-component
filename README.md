@@ -198,9 +198,16 @@ If you have any issues with these steps, see these articles:
 -   https://travishorn.com/netlify-lambda-functions-from-scratch-1186f61c659e
 -   https://macarthur.me/posts/building-a-lambda-function-with-netlify
 
-### Using a Server
+### Directly into WordPress
 
-TODO
+_Warning: This is lack on security and is only as an example_
+
+If you are unable to set up a lambda function, and are looking to plug directly into your WordPress install, this is
+how to do it. It essentially bypasses the need for API keys.
+
+Add the code within 'examples/gf-api.php' to your theme.
+
+Then set the LAMBDA_ENDPOINT environment variable to: 'https://website-name/formsubmit/v1/submit/.
 
 ### Running on Localhost
 

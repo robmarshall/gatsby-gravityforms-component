@@ -58,11 +58,12 @@ const GravityFormForm = ({
             if (submissionHasOneFieldEntry(values)) {
                 setLoadingState(true)
 
-                const { data, status } = await passToGravityForms(
-                    singleForm.apiURL,
-                    values,
-                    lambda
-                )
+                const { data, status } = await passToGravityForms({
+                    baseUrl: singleForm.apiURL,
+                    formData: values,
+                    id,
+                    lambdaEndpoint: lambda,
+                })
 
                 setLoadingState(false)
 
