@@ -77,6 +77,7 @@ const FieldBuilder = ({
             case 'number':
             case 'email':
             case 'hidden':
+            case 'date':
             case 'phone':
                 return (
                     <Input
