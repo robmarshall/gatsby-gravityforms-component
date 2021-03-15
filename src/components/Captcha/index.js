@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { useState, useRef, useEffect } from 'react'
-import Reaptcha from 'reaptcha'
+// import Reaptcha from 'reaptcha'
 
 import InputWrapper from '../InputWrapper'
 
@@ -58,14 +58,14 @@ const Captcha = ({
             labelFor={name}
             {...wrapProps}
         >
-            <Reaptcha
-                onExpire={changeCaptchaToken}
-                onLoad={() => setLoaded(true)}
-                onVerify={changeCaptchaToken}
-                ref={captchaRef}
-                sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
-                theme={captchaTheme || 'light'}
-            />
+            {/* <Reaptcha */}
+            {/*     onExpire={changeCaptchaToken} */}
+            {/*     onLoad={() => setLoaded(true)} */}
+            {/*     onVerify={changeCaptchaToken} */}
+            {/*     ref={captchaRef} */}
+            {/*     sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY} */}
+            {/*     theme={captchaTheme || 'light'} */}
+            {/* /> */}
             <input
                 name="g-recaptcha-response"
                 ref={register({})}
