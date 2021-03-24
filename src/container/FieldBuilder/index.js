@@ -18,6 +18,9 @@ const FieldBuilder = ({
     register,
     errors,
     setValue,
+    controls = {},
+    formLoading,
+    setFormLoading,
 }) => {
     // Loop through fields and create
     return formData.formFields.map(field => {
@@ -55,7 +58,26 @@ const FieldBuilder = ({
         //TODO: Should this match GF version "input_form.id_input.id"
         const inputName = `input_${field.id}`
 
+        const componentProps = {
+            errors: errors[inputName],
+            formLoading: formLoading,
+            setFormLoading: setFormLoading,
+            fieldData: fieldData,
+            key: field.id,
+            name: inputName,
+            register: register,
+            value: get(presetValues, inputName, false)
+                ? get(presetValues, inputName, false)
+                : ifDefaultValue(field),
+
+            wrapClassName: inputWrapperClass,
+            wrapId: wrapId,
+        }
+
         let errorKey = ''
+        if (controls[field.type]) {
+            return React.cloneElement(controls[field.type], componentProps)
+        }
 
         switch (field.type) {
             // Add note for unsupported captcha field
