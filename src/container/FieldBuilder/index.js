@@ -5,6 +5,7 @@ import React from 'react'
 import Captcha from '../../components/Captcha'
 import Html from '../../components/Html'
 import Input from '../../components/Input'
+import InputWrapper from '../../components/InputWrapper'
 import Multiselect from '../../components/Multiselect'
 import Select from '../../components/Select'
 import SelectorList from '../../components/SelectorList'
@@ -76,7 +77,7 @@ const FieldBuilder = ({
 
         let errorKey = ''
         if (controls[field.type]) {
-            return React.cloneElement(controls[field.type], componentProps)
+          return (<InputWrapper inputData={fieldData} labelFor={inputName} {...componentProps}>{React.cloneElement(controls[field.type], componentProps)}</InputWrapper>)
         }
 
         switch (field.type) {

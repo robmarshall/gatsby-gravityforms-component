@@ -160,6 +160,7 @@ const GravityFormForm = ({
                         >
                             <button
                                 className="gravityform__button gform_button button"
+                                disabled={formLoading}
                                 id={`gform_submit_button_${id}`}
                                 type="submit"
                             >
