@@ -4,6 +4,17 @@ import React from 'react'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 
+const standardType = (type) => {
+  switch (type) {
+    case 'phone':
+      return 'tel'
+    case 'fileupload':
+      return 'file'
+    default:
+      return type
+  }
+}
+
 const Input = ({ errors, fieldData, name, register, value, ...wrapProps }) => {
     const {
         cssClass,
@@ -15,6 +26,7 @@ const Input = ({ errors, fieldData, name, register, value, ...wrapProps }) => {
         type,
     } = fieldData
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
+    let inputType = standardType(type)
     return (
         <InputWrapper
             errors={errors}
@@ -49,7 +61,7 @@ const Input = ({ errors, fieldData, name, register, value, ...wrapProps }) => {
                         message: regex && strings.errors.pattern,
                     },
                 })}
-                type={type === 'phone' ? 'tel' : type}
+                type={inputType}
             />
         </InputWrapper>
     )
