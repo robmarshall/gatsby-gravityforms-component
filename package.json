@@ -1,5 +1,5 @@
 {
-    "name": "gatsby-gravityforms-component",
+    "name": "ridgehkr/gatsby-gravityforms-component",
     "version": "3.1.0",
     "description": "A component to take gatsby-source-gravityforms query data and return a usable form.",
     "main": "dist/index.js",
@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/robmarshall/gatsby-gravityforms-component.git"
+        "url": "git+https://github.com/ridgehkr/gatsby-gravityforms-component.git"
     },
     "keywords": [
         "gravity",
@@ -25,9 +25,9 @@
     "author": "Robert Marshall (https://robertmarshall.dev)",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/robmarshall/gatsby-gravityforms-component/issues"
+        "url": "https://github.com/ridgehkr/gatsby-gravityforms-component/issues"
     },
-    "homepage": "https://github.com/robmarshall/gatsby-gravityforms-component#readme",
+    "homepage": "https://github.com/ridgehkr/gatsby-gravityforms-component#readme",
     "dependencies": {
         "axios": "^0.21.0",
         "classnames": "^2.2.6",
