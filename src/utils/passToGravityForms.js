@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default async ({ baseUrl, formData, id, lambdaEndpoint }) => {
-    let lambaData = {
+    let lambdaData = {
         baseUrl: baseUrl,
         formid: id,
         payload: formData,
@@ -10,7 +10,7 @@ export default async ({ baseUrl, formData, id, lambdaEndpoint }) => {
     let result
 
     try {
-        result = await axios.post(lambdaEndpoint, lambaData, {
+        result = await axios.post(lambdaEndpoint, lambdaData, {
             responseType: 'json',
         })
     } catch (err) {
