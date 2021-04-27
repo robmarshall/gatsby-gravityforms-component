@@ -31,7 +31,9 @@ const SelectorList = ({ errors, fieldData, name, register, ...wrapProps }) => {
                                 )}
                                 defaultChecked={isSelected}
                                 id={`${name}_${choiceID}`}
-                                name={`${name}_${choiceID}`}
+                                name={`${name}${
+                                    type === 'checkbox' ? `.${choiceID}` : ''
+                                }`}
                                 ref={register({
                                     required:
                                         isRequired && strings.errors.required,
