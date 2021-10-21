@@ -31,6 +31,7 @@ const GravityFormForm = ({
     presetValues = {},
     successCallback = ({ reset }) => reset(),
     errorCallback,
+    controls,
 }) => {
     // Pull in form functions
     const {
@@ -148,6 +149,9 @@ const GravityFormForm = ({
                                 id={`gform_fields_${id}`}
                             >
                                 <FieldBuilder
+                                    formLoading={formLoading}
+                                    setFormLoading={setLoadingState}
+                                    controls={controls}
                                     errors={errors}
                                     formData={singleForm}
                                     formId={id}
@@ -163,6 +167,7 @@ const GravityFormForm = ({
                         >
                             <button
                                 className="gravityform__button gform_button button"
+                                disabled={formLoading}
                                 id={`gform_submit_button_${id}`}
                                 type="submit"
                             >
@@ -189,6 +194,7 @@ GravityFormForm.defaultProps = {
 }
 
 GravityFormForm.propTypes = {
+    controls: PropTypes.object,
     errorCallback: PropTypes.func,
     formData: PropTypes.object.isRequired,
     id: PropTypes.number.isRequired,
