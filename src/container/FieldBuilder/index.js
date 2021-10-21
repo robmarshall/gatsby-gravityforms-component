@@ -5,6 +5,7 @@ import React from 'react'
 import Captcha from '../../components/Captcha'
 import Html from '../../components/Html'
 import Input from '../../components/Input'
+import InputWrapper from '../../components/InputWrapper'
 import Multiselect from '../../components/Multiselect'
 import Select from '../../components/Select'
 import SelectorList from '../../components/SelectorList'
@@ -18,6 +19,9 @@ const FieldBuilder = ({
     register,
     errors,
     setValue,
+    controls = {},
+    formLoading,
+    setFormLoading,
 }) => {
     // Loop through fields and create
     return formData.formFields.map(field => {
@@ -55,7 +59,26 @@ const FieldBuilder = ({
         //TODO: Should this match GF version "input_form.id_input.id"
         const inputName = `input_${field.id}`
 
+        const componentProps = {
+            errors: errors[inputName],
+            formLoading: formLoading,
+            setFormLoading: setFormLoading,
+            fieldData: fieldData,
+            key: field.id,
+            name: inputName,
+            register: register,
+            value: get(presetValues, inputName, false)
+                ? get(presetValues, inputName, false)
+                : ifDefaultValue(field),
+
+            wrapClassName: inputWrapperClass,
+            wrapId: wrapId,
+        }
+
         let errorKey = ''
+        if (controls[field.type]) {
+          return (<InputWrapper inputData={fieldData} labelFor={inputName} {...componentProps}>{React.cloneElement(controls[field.type], componentProps)}</InputWrapper>)
+        }
 
         switch (field.type) {
             // Add note for unsupported captcha field
@@ -77,6 +100,7 @@ const FieldBuilder = ({
             case 'number':
             case 'email':
             case 'hidden':
+            case 'date':
             case 'phone':
                 return (
                     <Input

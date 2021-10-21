@@ -10,7 +10,10 @@ import {
     handleGravityFormsValidationErrors,
     // manageMainFormError,
 } from './utils/manageErrors'
-import { submissionHasOneFieldEntry } from './utils/manageFormData'
+import {
+    submissionHasOneFieldEntry,
+    cleanGroupedFields,
+} from './utils/manageFormData'
 import passToGravityForms from './utils/passToGravityForms'
 
 /**
@@ -28,6 +31,7 @@ const GravityFormForm = ({
     presetValues = {},
     successCallback = ({ reset }) => reset(),
     errorCallback,
+    controls,
 }) => {
     // Pull in form functions
     const {
@@ -48,7 +52,7 @@ const GravityFormForm = ({
     // Take ID argument and graphQL Gravity Form data for this form
     const singleForm = getForm(formData, id)
 
-    const onSubmitCallback = async values => {
+    const onSubmitCallback = async (values) => {
         // Make sure we are not already waiting for a response
         if (!formLoading) {
             // Clean error
@@ -58,9 +62,11 @@ const GravityFormForm = ({
             if (submissionHasOneFieldEntry(values)) {
                 setLoadingState(true)
 
+                const filteredValues = cleanGroupedFields(values)
+
                 const { data, status } = await passToGravityForms({
                     baseUrl: singleForm.apiURL,
-                    formData: values,
+                    formData: filteredValues,
                     id,
                     lambdaEndpoint: lambda,
                 })
@@ -83,7 +89,7 @@ const GravityFormForm = ({
                     }
 
                     errorCallback &&
-                        errorCallback({ values, error: data, reset })
+                        errorCallback({ filteredValues, error: data, reset })
                 }
 
                 if (status === 'success') {
@@ -91,14 +97,16 @@ const GravityFormForm = ({
 
                     const { confirmations } = singleForm
 
-                    const confirmation = confirmations?.find(el => el.isDefault)
+                    const confirmation = confirmations?.find(
+                        (el) => el.isDefault
+                    )
 
                     setConfirmationMessage(
                         confirmation_message || confirmation?.message || false
                     )
 
                     successCallback({
-                        values,
+                        filteredValues,
                         reset,
                         confirmations,
                     })
@@ -141,6 +149,9 @@ const GravityFormForm = ({
                                 id={`gform_fields_${id}`}
                             >
                                 <FieldBuilder
+                                    formLoading={formLoading}
+                                    setFormLoading={setLoadingState}
+                                    controls={controls}
                                     errors={errors}
                                     formData={singleForm}
                                     formId={id}
@@ -156,6 +167,7 @@ const GravityFormForm = ({
                         >
                             <button
                                 className="gravityform__button gform_button button"
+                                disabled={formLoading}
                                 id={`gform_submit_button_${id}`}
                                 type="submit"
                             >
@@ -182,6 +194,7 @@ GravityFormForm.defaultProps = {
 }
 
 GravityFormForm.propTypes = {
+    controls: PropTypes.object,
     errorCallback: PropTypes.func,
     formData: PropTypes.object.isRequired,
     id: PropTypes.number.isRequired,

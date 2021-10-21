@@ -36,9 +36,9 @@
         "nanoid": "^3.1.20",
         "oauth-signature": "^1.5.0",
         "prop-types": "^15.7.2",
+        "react-google-recaptcha": "^2.1.0",
         "react-hook-form": "^6.12.0",
         "react-html-parser": "^2.0.2",
-        "reaptcha": "^1.7.2",
         "sanitize-html": "^2.2.0"
     },
     "devDependencies": {
