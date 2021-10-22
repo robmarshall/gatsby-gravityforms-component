@@ -1,30 +1,18 @@
 import classnames from 'classnames'
-import get from 'lodash/get'
 import React from 'react'
 
 import Captcha from '../../components/Captcha'
 import Html from '../../components/Html'
 import Input from '../../components/Input'
-import InputWrapper from '../../components/InputWrapper'
 import Multiselect from '../../components/Multiselect'
 import Select from '../../components/Select'
 import SelectorList from '../../components/SelectorList'
 import Textarea from '../../components/Textarea'
-import { filteredKeys } from '../../utils/helpers'
-import { ifDefaultValue, islabelHidden } from '../../utils/inputSettings'
+import { islabelHidden } from '../../utils/inputSettings'
 
-const FieldBuilder = ({
-    formData,
-    presetValues = {},
-    register,
-    errors,
-    setValue,
-    controls = {},
-    formLoading,
-    setFormLoading,
-}) => {
+const FieldBuilder = ({ formData, formLoading, setFormLoading }) => {
     // Loop through fields and create
-    return formData.formFields.map(field => {
+    return formData.formFields.map((field) => {
         // Set the wrapper classes
         const {
             descriptionPlacement: fieldDescPlace,
@@ -59,39 +47,15 @@ const FieldBuilder = ({
         //TODO: Should this match GF version "input_form.id_input.id"
         const inputName = `input_${field.id}`
 
-        const componentProps = {
-            errors: errors[inputName],
-            formLoading: formLoading,
-            setFormLoading: setFormLoading,
-            fieldData: fieldData,
-            key: field.id,
-            name: inputName,
-            register: register,
-            value: get(presetValues, inputName, false)
-                ? get(presetValues, inputName, false)
-                : ifDefaultValue(field),
-
-            wrapClassName: inputWrapperClass,
-            wrapId: wrapId,
-        }
-
-        let errorKey = ''
-        if (controls[field.type]) {
-          return (<InputWrapper inputData={fieldData} labelFor={inputName} {...componentProps}>{React.cloneElement(controls[field.type], componentProps)}</InputWrapper>)
-        }
-
         switch (field.type) {
             // Add note for unsupported captcha field
             case 'captcha':
                 return (
                     <Captcha
                         captchaTheme={field.captchaTheme}
-                        errors={errors[`input_${field.id}`]}
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}
-                        register={register}
-                        setValue={setValue}
                         wrapClassName={inputWrapperClass}
                     />
                 )
@@ -104,16 +68,9 @@ const FieldBuilder = ({
             case 'phone':
                 return (
                     <Input
-                        errors={errors[inputName]}
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}
-                        register={register}
-                        value={
-                            get(presetValues, inputName, false)
-                                ? get(presetValues, inputName, false)
-                                : ifDefaultValue(field)
-                        }
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
                     />
@@ -121,11 +78,9 @@ const FieldBuilder = ({
             case 'textarea':
                 return (
                     <Textarea
-                        errors={errors[inputName]}
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}
-                        register={register}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
                     />
@@ -133,11 +88,9 @@ const FieldBuilder = ({
             case 'select':
                 return (
                     <Select
-                        errors={errors[inputName]}
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}
-                        register={register}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
                     />
@@ -145,27 +98,20 @@ const FieldBuilder = ({
             case 'multiselect':
                 return (
                     <Multiselect
-                        errors={errors[inputName]}
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}
-                        register={register}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
                     />
                 )
             case 'radio':
             case 'checkbox':
-                errorKey = filteredKeys(errors, RegExp(`input_${field.id}_`))
                 return (
                     <SelectorList
-                        errors={
-                            errorKey.length > 0 ? errors[errorKey[0]] : null
-                        }
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}
-                        register={register}
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
                     />

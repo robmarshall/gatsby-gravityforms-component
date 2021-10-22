@@ -1,32 +1,30 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import React from 'react'
+import { useFormContext } from 'react-hook-form'
 import InputWrapper from '../../components/InputWrapper'
 import strings from '../../utils/strings'
 
-const Textarea = ({
-    errors,
-    fieldData,
-    name,
-    register,
-    value,
-    wrapClassName,
-    wrapId,
-}) => {
+const Textarea = ({ fieldData, name, wrapClassName, wrapId }) => {
     const {
         cssClass,
         inputMaskValue,
         isRequired,
         maxLength,
         placeholder,
+        defaultValue,
         size,
         type,
     } = fieldData
+
     const regex = inputMaskValue ? new RegExp(inputMaskValue) : false
+
+    const { register, errors } = useFormContext()
 
     return (
         <InputWrapper
-            errors={errors}
+            errors={errors[name]}
             inputData={fieldData}
             labelFor={name}
             wrapClassName={wrapClassName}
@@ -42,7 +40,7 @@ const Textarea = ({
                     size,
                     'textarea'
                 )}
-                defaultValue={value}
+                defaultValue={defaultValue}
                 id={name}
                 maxLength={maxLength > 0 ? maxLength : undefined}
                 name={name}
@@ -69,7 +67,6 @@ const Textarea = ({
 export default Textarea
 
 Textarea.propTypes = {
-    errors: PropTypes.object,
     fieldData: PropTypes.shape({
         cssClass: PropTypes.string,
         description: PropTypes.string,
@@ -79,12 +76,48 @@ Textarea.propTypes = {
         maxLength: PropTypes.number,
         placeholder: PropTypes.string,
         isRequired: PropTypes.bool,
+        defaultValue: PropTypes.string,
         type: PropTypes.string,
         size: PropTypes.string,
     }),
     name: PropTypes.string,
-    register: PropTypes.func,
-    value: PropTypes.string,
     wrapClassName: PropTypes.string,
     wrapId: PropTypes.string,
 }
+
+export const TextAreaField = graphql`
+    fragment TextAreaField on WpTextAreaField {
+        adminLabel
+        adminOnly
+        allowsPrepopulate
+        conditionalLogic {
+            actionType
+            rules {
+                fieldId
+                operator
+                value
+            }
+        }
+        cssClass
+        defaultValue
+        description
+        descriptionPlacement
+        errorMessage
+        formId
+        id
+        inputName
+        isRequired
+        label
+        layoutGridColumnSpan
+        layoutSpacerGridColumnSpan
+        maxLength
+        noDuplicates
+        pageNumber
+        placeholder
+        size
+        type
+        useRichTextEditor
+        value
+        visibility
+    }
+`

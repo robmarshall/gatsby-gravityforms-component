@@ -1,17 +1,24 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { useFormContext } from 'react-hook-form'
 import ReactHtmlParser from 'react-html-parser'
+import { filteredKeys } from '../../utils/helpers'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
 
 // TODO: Enable Select All Choice
-const SelectorList = ({ errors, fieldData, name, register, ...wrapProps }) => {
+const SelectorList = ({ fieldData, name, ...wrapProps }) => {
     const { choices, cssClass, isRequired, size, type } = fieldData
     const options = JSON.parse(choices)
+
+    const { register, errors } = useFormContext()
+
+    const errorKey = filteredKeys(errors, RegExp(`input_${field.id}_`))
+
     return (
         <InputWrapper
-            errors={errors}
+            errors={errorKey.length > 0 ? errors[errorKey[0]] : null}
             inputData={fieldData}
             labelFor={name}
             {...wrapProps}
@@ -56,7 +63,6 @@ const SelectorList = ({ errors, fieldData, name, register, ...wrapProps }) => {
 export default SelectorList
 
 SelectorList.propTypes = {
-    errors: PropTypes.object,
     fieldData: PropTypes.shape({
         choices: PropTypes.string,
         cssClass: PropTypes.string,
@@ -66,6 +72,5 @@ SelectorList.propTypes = {
         type: PropTypes.string,
     }),
     name: PropTypes.string,
-    register: PropTypes.func,
     wrapProps: PropTypes.object,
 }

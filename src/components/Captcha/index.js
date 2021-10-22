@@ -1,18 +1,14 @@
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import React, { useState, useRef, useEffect } from 'react'
+import { useFormContext } from 'react-hook-form'
 import ReCAPTCHA from 'react-google-recaptcha'
 
 import InputWrapper from '../InputWrapper'
 
-const Captcha = ({
-    captchaTheme,
-    errors,
-    fieldData,
-    name,
-    register,
-    setValue,
-    ...wrapProps
-}) => {
+const Captcha = ({ captchaTheme, fieldData, name, ...wrapProps }) => {
+    const { register, errors, setValue } = useFormContext()
+
     if (!process.env.GATSBY_RECAPTCHA_SITE_KEY) {
         return (
             <div className="gravityform__captcha_notification">
@@ -53,7 +49,7 @@ const Captcha = ({
 
     return (
         <InputWrapper
-            errors={errors}
+            errors={errors[`g-recaptcha-response`]}
             inputData={fieldData}
             labelFor={name}
             {...wrapProps}
@@ -77,12 +73,42 @@ const Captcha = ({
 
 Captcha.propTypes = {
     captchaTheme: PropTypes.string,
-    errors: PropTypes.object,
     fieldData: PropTypes.object,
     name: PropTypes.string,
-    register: PropTypes.func,
-    setValue: PropTypes.func,
     wrapClassName: PropTypes.string,
 }
 
 export default Captcha
+
+export const CaptchaField = graphql`
+    fragment CaptchaField on WpCaptchaField {
+        captchaLanguage
+        captchaTheme
+        captchaType
+        conditionalLogic {
+            rules {
+                fieldId
+                operator
+                value
+            }
+            actionType
+            logicType
+        }
+        cssClass
+        description
+        descriptionPlacement
+        displayOnly
+        errorMessage
+        formId
+        id
+        label
+        layoutGridColumnSpan
+        layoutSpacerGridColumnSpan
+        pageNumber
+        simpleCaptchaBackgroundColor
+        simpleCaptchaFontColor
+        simpleCaptchaSize
+        size
+        type
+    }
+`

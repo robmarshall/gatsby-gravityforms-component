@@ -1,50 +1,38 @@
-import { graphql } from 'gatsby'
-
-export const GravityFormComponent = graphql`
-    fragment GravityFormComponent on GF__Form {
-        formId
-        title
-        slug
-        apiURL
-        labelPlacement
-        descriptionPlacement
-        formFields {
-            ...GravityFormField
+export const Button = graphql`
+    fragment Button on WpButton {
+        conditionalLogic {
+            actionType
+            logicType
+            rules {
+                fieldId
+                operator
+                value
+            }
         }
-        button {
-            text
-        }
-        confirmations {
-            id
-            name
-            isDefault
-            type
-            message
-            url
-            queryString
-        }
+        imageUrl
+        text
+        type
     }
 `
 
-export const GravityFormField = graphql`
-    fragment GravityFormField on GF__FormFormFields {
+export const FormConfirmation = graphql`
+    fragment FormConfirmation on WpFormConfirmation {
+        conditionalLogic {
+            actionType
+            logicType
+            rules {
+                fieldId
+                operator
+                value
+            }
+        }
         id
-        label
-        labelPlacement
-        subLabelPlacement
-        description
-        descriptionPlacement
+        isDefault
+        message
+        name
+        pageId
+        queryString
         type
-        choices
-        content
-        errorMessage
-        inputMaskValue
-        isRequired
-        visibility
-        cssClass
-        placeholder
-        size
-        defaultValue
-        maxLength
+        url
     }
 `
