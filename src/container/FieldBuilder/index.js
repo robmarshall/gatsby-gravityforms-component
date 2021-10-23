@@ -10,7 +10,12 @@ import SelectorList from '../../components/SelectorList'
 import Textarea from '../../components/Textarea'
 import { islabelHidden } from '../../utils/inputSettings'
 
-const FieldBuilder = ({ formData, formLoading, setFormLoading }) => {
+const FieldBuilder = ({
+    formData,
+    formLoading,
+    setFormLoading,
+    presetValues,
+}) => {
     // Loop through fields and create
     return formData.formFields.map((field) => {
         // Set the wrapper classes
@@ -71,6 +76,11 @@ const FieldBuilder = ({ formData, formLoading, setFormLoading }) => {
                         fieldData={fieldData}
                         key={field.id}
                         name={inputName}
+                        value={
+                            get(presetValues, inputName, false)
+                                ? get(presetValues, inputName, false)
+                                : ifDefaultValue(field)
+                        }
                         wrapClassName={inputWrapperClass}
                         wrapId={wrapId}
                     />

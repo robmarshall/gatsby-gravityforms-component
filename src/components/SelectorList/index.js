@@ -2,7 +2,6 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
-import ReactHtmlParser from 'react-html-parser'
 import { filteredKeys } from '../../utils/helpers'
 import strings from '../../utils/strings'
 import InputWrapper from '../InputWrapper'
@@ -49,9 +48,10 @@ const SelectorList = ({ fieldData, name, ...wrapProps }) => {
                                 value={value}
                             />
                             &nbsp;
-                            <label htmlFor={`${name}_${choiceID}`}>
-                                {ReactHtmlParser(text)}
-                            </label>
+                            <label
+                                htmlFor={`${name}_${choiceID}`}
+                                dangerouslySetInnerHTML={{ __html: text }}
+                            />
                         </li>
                     )
                 })}

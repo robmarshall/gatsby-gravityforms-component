@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 import { useForm, FormProvider } from 'react-hook-form'
-import ReactHtmlParser from 'react-html-parser'
 import FormGeneralError from './components/FormGeneralError'
 import FieldBuilder from './container/FieldBuilder'
 import getForm from './utils/getForm'
@@ -24,6 +23,7 @@ import {
  */
 const GravityFormForm = ({
     formData,
+    presetValues = {},
     successCallback = ({ reset }) => reset(),
     errorCallback,
     controls,
@@ -142,6 +142,7 @@ const GravityFormForm = ({
                                         formLoading={formLoading}
                                         setFormLoading={setLoadingState}
                                         formData={singleForm}
+                                        presetValues={presetValues}
                                     />
                                 </ul>
                             </div>
@@ -171,11 +172,12 @@ const GravityFormForm = ({
         )
     }
 
-    return ReactHtmlParser(confirmationMessage)
-}
-
-GravityFormForm.defaultProps = {
-    lambda: '',
+    return (
+        <div
+            /* eslint-disable react/no-danger */
+            dangerouslySetInnerHTML={{ __html: confirmationMessage }}
+        />
+    )
 }
 
 GravityFormForm.propTypes = {
@@ -191,8 +193,12 @@ export const GravityFormFields = graphql`
         formId
         title
         description
-        ...button
-        ...FormConfirmation
+        button {
+            ...Button
+        }
+        confirmations {
+            ...FormConfirmation
+        }
         formFields {
             nodes {
                 id

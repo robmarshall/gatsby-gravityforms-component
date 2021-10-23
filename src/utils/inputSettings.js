@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactHtmlParser from 'react-html-parser'
 
 /**
  * This file manages all of the Gravity Forms input settings.
@@ -18,9 +17,8 @@ export function outputDescription(
                 className={`gravityforms__description gravityforms__description--${placement} gfield_description${
                     errors ? ' validation_error' : ''
                 }`}
-            >
-                {ReactHtmlParser(description)}
-            </div>
+                dangerouslySetInnerHTML={{ __html: description }}
+            />
         )
     }
     return null

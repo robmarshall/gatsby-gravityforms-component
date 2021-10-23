@@ -1,3 +1,5 @@
+import { graphql } from 'gatsby'
+
 export const Button = graphql`
     fragment Button on WpButton {
         conditionalLogic {

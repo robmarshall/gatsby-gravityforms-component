@@ -1,7 +1,6 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import ReactHtmlParser from 'react-html-parser'
 import InputWrapper from '../../components/InputWrapper'
 
 const Html = ({ fieldData, name, wrapClassName, ...wrapProps }) => {
@@ -20,9 +19,8 @@ const Html = ({ fieldData, name, wrapClassName, ...wrapProps }) => {
                 'gravityform__' + type + '__wrap',
                 cssClass
             )}
-        >
-            {ReactHtmlParser(content)}
-        </InputWrapper>
+            dangerouslySetInnerHTML={{ __html: content }}
+        />
     )
 }
 

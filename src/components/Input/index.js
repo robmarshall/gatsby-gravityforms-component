@@ -17,7 +17,7 @@ const standardType = (type) => {
     }
 }
 
-const Input = ({ fieldData, name, ...wrapProps }) => {
+const Input = ({ fieldData, name, value, ...wrapProps }) => {
     const {
         cssClass,
         defaultValue,
@@ -50,7 +50,7 @@ const Input = ({ fieldData, name, ...wrapProps }) => {
                     cssClass,
                     size
                 )}
-                defaultValue={defaultValue}
+                defaultValue={value || defaultValue}
                 id={name}
                 maxLength={maxLength || 524288} // 524288 = 512kb, avoids invalid prop type error if maxLength is undefined.
                 name={name}
@@ -87,6 +87,7 @@ Input.propTypes = {
         type: PropTypes.string,
         size: PropTypes.string,
     }),
+    value: PropTypes.string,
     name: PropTypes.string,
     wrapProps: PropTypes.object,
 }
