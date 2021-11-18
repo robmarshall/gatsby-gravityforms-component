@@ -4,6 +4,11 @@ A (relatively) plug and play component for parsing [gatsby-source-gravityforms](
 
 Uses [React Hook Forms](https://react-hook-form.com/) under the hood for all that good state management.
 
+## No Long Maintained. Outdated Package
+I am no longer maintaining this package. A cleaner way of handling Gravity Forms is over at this repo: https://github.com/robmarshall/gatsby-plugin-gravity-forms
+
+It handles both the sourcing, and rendering of a Gravity Form.
+
 ## Installation
 
 ```js
